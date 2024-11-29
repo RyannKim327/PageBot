@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 module.exports = async (api, event) => {
+  console.log(event);
   const msgs = [
     {
       role: "user",
