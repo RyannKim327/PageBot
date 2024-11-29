@@ -29,5 +29,6 @@ module.exports = async (api, event) => {
       max_tokens: 4000,
     },
   );
-  api.sendMessage(data, event);
+  console.log(data.choices[0]["message"]["content"]);
+  api.sendMessage(data.choices[0]["message"]["content"], event);
 };
