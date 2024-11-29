@@ -1,7 +1,7 @@
 const sendMessage = require("./sendMessage");
 
 module.exports = (event, pageAccessToken) => {
-  const senderID = event.sender.id;
+  const senderID = event.messaging.sender.id;
   const payload = event.postback.payload;
 
   sendMessage(
