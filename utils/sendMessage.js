@@ -2,12 +2,11 @@ const request = require("request");
 
 module.exports = async (senderID, message, pageAccessToken) => {
   console.log("Sending ...");
-  await request(
+  axios.post(
     {
       url: "https://graph.facebook.com/v13.0/me/messages",
       qs: { access_token: pageAccessToken },
-      method: "POST",
-      json: {
+      body: {
         recipient: { id: senderID },
         message: message,
       },
