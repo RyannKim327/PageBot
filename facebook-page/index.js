@@ -39,14 +39,13 @@ class FacebookPage {
     app.post("/webhook", (req, res) => {
       const body = req.body;
       if (body.object === "page") {
+        console.log("PAGE");
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
             console.log(`CUSTOM: ${JSON.stringify(event)}`);
             if (event.message) {
               actions(event);
-              // handleMessage(event, PAGE_ACCESS_TOKEN);
             } else {
-              // handlePostback(event, PAGE_ACCESS_TOKEN);
               this.__postback(event);
             }
           });
