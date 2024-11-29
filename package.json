@@ -14,5 +14,10 @@
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.0",
+    "@types/request": "^2.48.12"
   }
 }
