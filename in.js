@@ -1,6 +1,5 @@
 const express = require("express");
 const body = require("body-parser");
-// import { } from "fs"
 const handleMessage = require("./utils/handleMessage");
 const handlePostback = require("./utils/handlePostback");
 
