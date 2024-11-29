@@ -97,9 +97,10 @@ class FacebookPage {
         } else {
           console.log("Message sent successfully:", body);
         }
-        console.log("Binatong data");
+        console.log("hehe");
       },
     );
+    console.log("Done (ata)");
   }
 }
 
