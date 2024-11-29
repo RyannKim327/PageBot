@@ -21,7 +21,7 @@ module.exports = async (api, event) => {
     "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",
     {
       messages: msgs,
-      stream: true,
+      stream: false,
       model: "gpt-4o-mini",
       temperature: 0.5,
       presence_penalty: 0,
