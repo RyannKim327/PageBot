@@ -71,6 +71,7 @@ class FacebookPage {
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
       );
+    console.log("Sending");
     let msg = message;
     if (typeof message === "string") msg = { text: message };
     request(
