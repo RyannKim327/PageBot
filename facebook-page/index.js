@@ -64,20 +64,22 @@ class FacebookPage {
   }
 
   sendMessage(message, event) {
+    if (!this.FB_TOKEN) {
+      return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
+    }
     if (typeof event !== "object") {
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
       );
     }
     console.log("Sending");
-    console.log(`sending event ${event}`);
+    console.log(`sending event ${JSON.stringify(event)}`);
     let msg = message;
 
     if (typeof message === "string") {
       msg = { text: message };
     }
     console.log(msg);
-    console.log(this.FB_TOKEN);
     request(
       {
         url: "https://graph.facebook.com/v13.0/me/messages",
