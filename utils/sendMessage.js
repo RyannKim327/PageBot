@@ -10,18 +10,19 @@ module.exports = async (senderID, message, pageAccessToken) => {
         recipient: { id: senderID },
         message: message,
       },
-    },
-    (error, response, body) => {
+    }).then((error, response) => {
       console.log("Tesst");
       if (error) {
         console.error("Error sending message:", error);
-      } else if (response.body.error) {
+      } else if (response.body) {
         console.error("Error response:", response.body.error);
       } else {
         console.log("Message sent successfully:", body);
       }
-    },
-    console.log("Binatong data"),
+    }).catch(e => {
+      console.error(`Error [Catch]: ${e}`)
+    })
+  console.log("Binatong data"),
   );
   // request(
   //   {
