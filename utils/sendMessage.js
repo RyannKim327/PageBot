@@ -25,6 +25,7 @@ module.exports = async (senderID, message, pageAccessToken) => {
       console.error(`Error [Catch]: ${e}`);
     });
   console.log("Binatong data");
+
   // );
   // request(
   //   {
