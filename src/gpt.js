@@ -16,6 +16,7 @@ module.exports = async (api, event) => {
       content: event.message.text,
     },
   ];
+  console.log("GPT");
   const { data } = await axios.post(
     "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",
     {
