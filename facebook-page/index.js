@@ -35,10 +35,8 @@ class FacebookPage {
     app.post("/webhook", (req, res) => {
       const body = req.body;
       if (body.object === "page") {
-        // console.log("PAGE");
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
-            // console.log(`CUSTOM: ${JSON.stringify(event)}`);
             if (event.message) {
               actions(event);
             } else {
@@ -72,14 +70,12 @@ class FacebookPage {
         "ERROR [event type]: The event must be in Object or JSON type",
       );
     }
-    console.log("Sending");
-    console.log(`sending event ${JSON.stringify(event)}`);
+
     let msg = message;
 
     if (typeof message === "string") {
       msg = { text: message };
     }
-    console.log(msg);
     request(
       {
         url: "https://graph.facebook.com/v13.0/me/messages",
@@ -98,10 +94,9 @@ class FacebookPage {
         } else {
           console.log("Message sent successfully:", body);
         }
-        console.log("hehe");
+        console.log("Sent");
       },
     );
-    console.log("Done (ata)");
   }
 }
 
