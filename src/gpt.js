@@ -41,7 +41,7 @@ module.exports = async (api, event) => {
   const { data } = await axios.post(
     "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",
     {
-      messages: msgs[senderID],
+      messages: msg[senderID],
       stream: false,
       model: "gpt-4o-mini",
       temperature: 0.5,
