@@ -28,7 +28,7 @@ app.post("/webhook", (req, res) => {
   const body = req.body;
   if (body.object === "page") {
     body.entry.forEach((event) => {
-      console.log(`CUSTOM: ${event}`);
+      console.log(`CUSTOM: ${JSON.stringify(event)}`);
       if (event.message) {
         handleMessage(event, PAGE_ACCESS_TOKEN);
       } else {
