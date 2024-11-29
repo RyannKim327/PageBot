@@ -38,10 +38,10 @@ class FacebookPage {
     app.post("/webhook", (req, res) => {
       const body = req.body;
       if (body.object === "page") {
-        console.log("PAGE");
+        // console.log("PAGE");
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
-            console.log(`CUSTOM: ${JSON.stringify(event)}`);
+            // console.log(`CUSTOM: ${JSON.stringify(event)}`);
             if (event.message) {
               actions(event);
             } else {
@@ -70,7 +70,7 @@ class FacebookPage {
       );
     }
     console.log("Sending");
-    console.log(event);
+    console.log(`sending event ${event}`);
     let msg = message;
 
     if (typeof message === "string") {
