@@ -4,6 +4,7 @@ const fs = require("fs");
 module.exports = async (api, event) => {
   const senderID = event.sender.id;
   if (!fs.existsSync(`${__dirname}/../data/gpt.json`)) {
+    fs.createWriteStream(`${__dirname}/..data/gpt.json`);
     const msgs = [
       {
         role: "user",
