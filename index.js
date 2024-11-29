@@ -9,8 +9,8 @@ app.use(body.json());
 
 const VERIFY_TOKEN = "pagebot";
 const PAGE_ACCESS_TOKEN =
-  // "EAAH40A5UDrYBO1LbsViUiZANJlU8DZAQye7f6OsLLZAtmQi61ivl1ZA8sthoc9ogad4I54sOZBPXEZBA8gIZCGZCa7h5eAf9GJtCwR0TVZAOr4i989uoos10Rc4ReajiObhLHGWN6eFi0XgeOrgQynZBhW25s7PXMa9184I7WQulCRr8BxVkOJAJnX7uZA9WCL7Ei12YFiVMaCn";
-  "EAAH40A5UDrYBOzndZAs3UEw5hpl4l0vidoxkXwkER8YB4olPzyrSzJUVIKGbLDAyxG7IJke4gS3Bb8jsZClh0yMlXOjAZCl3Kghcbc8N6tfLP0PPLYfPDJS7yFDUNUVIwIusSeOMGB6zWZAlADPeCsFw30daL92DuhmcZBtiWvMwE6CW2lh8GSjZCfLIsr4mmWcKgJmPEx";
+  "EAAH40A5UDrYBO5DO2ZC2le5WwRQYpZCLGEjnEAjL8Eqr7mfehDz3zQxiF9IzNKOt6hc1AfLLMah4TMMrLWZCiPiNbgdYOx7rGZAeHEeRKTJ2i8brmSamIZAhXjZBZCZBO2iKYdrYiXV7nkSknYW2jZCNm1i4rTHnYXQY2iXu820BZC26Oz7sXBiJJ5Q7QIQ4DHzZCoQrlkT64sV";
+
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
@@ -24,16 +24,22 @@ app.get("/webhook", (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Basta nagana");
+});
+
 app.post("/webhook", (req, res) => {
   const body = req.body;
   if (body.object === "page") {
-    body.entry.forEach((event) => {
-      console.log(`CUSTOM: ${JSON.stringify(event)}`);
-      if (event.message) {
-        handleMessage(event, PAGE_ACCESS_TOKEN);
-      } else {
-        handlePostback(event, PAGE_ACCESS_TOKEN);
-      }
+    body.entry.forEach((entry) => {
+      entry.messaging.forEach((event) => {
+        console.log(`CUSTOM: ${JSON.stringify(event)}`);
+        if (event.message) {
+          handleMessage(event, PAGE_ACCESS_TOKEN);
+        } else {
+          handlePostback(event, PAGE_ACCESS_TOKEN);
+        }
+      });
     });
     res.status(200).send("EVENT_RECEIVED");
   }
