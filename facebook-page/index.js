@@ -5,13 +5,10 @@ const request = require("request");
 class FacebookPage {
   constructor() {
     this.FB_TOKEN = process.env.FB_TOKEN;
-    this.KEY_TOKEN = process.env.KEY_TOKEN || "MPOP";
+    this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
     this.app = express();
     this.app.use(body.json());
-    const port = process.env.PORT || 3000;
-    this.app.listen(port, () => {
-      console.log("The service is now started");
-    });
+    this.__port = process.env.PORT || 3000;
   }
 
   webhookListener(actions) {
@@ -51,6 +48,9 @@ class FacebookPage {
         });
         res.status(200).send("EVENT_RECEIVED");
       }
+    });
+    this.app.listen(this.__port, () => {
+      console.log("The service is now started");
     });
   }
 
