@@ -57,5 +57,6 @@ module.exports = async (api, event) => {
       role: "system",
       content: data.choices[0]["message"]["content"],
     });
+    fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
   });
 };
