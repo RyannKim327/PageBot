@@ -67,13 +67,18 @@ class FacebookPage {
 
   sendMessage(message, event) {
     console.log(event);
-    if (typeof event !== "object")
+    if (typeof event !== "object") {
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
       );
+    }
     console.log("Sending");
     let msg = message;
-    if (typeof message === "string") msg = { text: message };
+
+    if (typeof message === "string") {
+      msg = { text: message };
+    }
+    console.log(msg);
     request(
       {
         url: "https://graph.facebook.com/v13.0/me/messages",
