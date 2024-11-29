@@ -1,6 +1,7 @@
 const request = require("request");
 
 module.exports = (senderID, message, pageAccessToken) => {
+  console.log("Sending ...");
   request(
     {
       method: "POST",
