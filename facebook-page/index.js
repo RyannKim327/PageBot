@@ -61,7 +61,7 @@ class FacebookPage {
     );
   }
 
-  sendMessage(message, event) {
+  sendMessage(message, event, callback) {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
@@ -93,6 +93,11 @@ class FacebookPage {
           console.error("Error response:", response.body.error);
         } else {
           console.log("Message sent successfully:", body);
+          if (callback) {
+            if (typeof callback === "function") {
+              callback();
+            }
+          }
         }
         console.log("Sent");
       },
