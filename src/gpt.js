@@ -34,7 +34,7 @@ module.exports = async (api, event) => {
     msg[senderID] = msgs;
   }
 
-  msg[senderID].append({
+  msg[senderID].push({
     role: "user",
     content: event.message.text,
   });
@@ -53,7 +53,7 @@ module.exports = async (api, event) => {
   );
   console.log(data.choices[0]["message"]["content"]);
   api.sendMessage(data.choices[0]["message"]["content"], event, () => {
-    msg[senderID].append({
+    msg[senderID].push({
       role: "system",
       content: data.choices[0]["message"]["content"],
     });
