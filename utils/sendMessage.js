@@ -1,8 +1,8 @@
 const request = require("request");
 
-module.exports = (senderID, message, pageAccessToken) => {
+module.exports = async (senderID, message, pageAccessToken) => {
   console.log("Sending ...");
-  request(
+  await request(
     {
       url: "https://graph.facebook.com/v13.0/me/messages",
       qs: { access_token: pageAccessToken },
@@ -13,6 +13,7 @@ module.exports = (senderID, message, pageAccessToken) => {
       },
     },
     (error, response, body) => {
+      console.log("Tesst");
       if (error) {
         console.error("Error sending message:", error);
       } else if (response.body.error) {
@@ -21,6 +22,7 @@ module.exports = (senderID, message, pageAccessToken) => {
         console.log("Message sent successfully:", body);
       }
     },
+    console.log("Binatong data"),
   );
   // request(
   //   {

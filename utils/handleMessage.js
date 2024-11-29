@@ -6,7 +6,7 @@ module.exports = (event, pageAccessToken) => {
   sendMessage(
     senderID,
     {
-      text: `You sent with a payload: `,
+      text: messageText,
     },
     pageAccessToken,
   );
