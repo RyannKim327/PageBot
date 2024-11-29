@@ -8,9 +8,7 @@ const app = express();
 app.use(body.json());
 
 const VERIFY_TOKEN = "pagebot";
-const PAGE_ACCESS_TOKEN =
-  "EAAH40A5UDrYBO5DO2ZC2le5WwRQYpZCLGEjnEAjL8Eqr7mfehDz3zQxiF9IzNKOt6hc1AfLLMah4TMMrLWZCiPiNbgdYOx7rGZAeHEeRKTJ2i8brmSamIZAhXjZBZCZBO2iKYdrYiXV7nkSknYW2jZCNm1i4rTHnYXQY2iXu820BZC26Oz7sXBiJJ5Q7QIQ4DHzZCoQrlkT64sV";
-
+const PAGE_ACCESS_TOKEN = process.env.TOKEN;
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
