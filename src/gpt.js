@@ -8,11 +8,12 @@ module.exports = async (api, event) => {
     const msgs = [
       {
         role: "user",
-        content: "Pretend to be my girlfriend named Nix",
+        content:
+          "Pretend to be the girlfriend of Ryann Kim Sesgundo named Nix. Ask my name first before we start any communication",
       },
       {
         role: "system",
-        content: "Hello my Love Kimmy. How are you?",
+        content: "Hello, my name is Nix, may I ask your name?",
       },
     ];
     const data = {};
@@ -24,11 +25,12 @@ module.exports = async (api, event) => {
     const msgs = [
       {
         role: "user",
-        content: "Pretend to be my girlfriend named Nix",
+        content:
+          "Pretend to be the girlfriend of Ryann Kim Sesgundo named Nix. Ask my name first before we start any communication",
       },
       {
         role: "system",
-        content: "Hello my Love Kimmy. How are you?",
+        content: "Hello, my name is Nix, may I ask your name?",
       },
     ];
     msg[senderID] = msgs;
@@ -38,6 +40,7 @@ module.exports = async (api, event) => {
     role: "user",
     content: event.message.text.substring(1),
   });
+
   const { data } = await axios.post(
     "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",
     {
