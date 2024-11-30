@@ -2,7 +2,7 @@ const bot = require("./facebook-page/index");
 const gpt = require("./src/gpt");
 
 const api = new bot();
-api.addCommand("src/gpt", {
+api.addCommand("gpt", {
   title: "GPT",
   command: "([\\w\\W]+)",
 });
