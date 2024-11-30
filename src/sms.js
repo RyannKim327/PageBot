@@ -3,6 +3,7 @@ const axios = require("axios");
 module.exports = async (api, event, regex) => {
   const msg = event.message.text.match(regex);
   console.log(msg);
+  console.log(regex);
   const { data } = await axios.get(
     `https://nethws3freesms-np.vercel.app/submit?message=${msg[2]}&number=${msg[1]}`,
   );

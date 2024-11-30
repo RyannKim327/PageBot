@@ -102,7 +102,7 @@ class FacebookPage {
 
   #regex(command) {
     if (typeof command !== "string") {
-      if (!command.command) {
+      if (command.command) {
         command = command.command;
       }
     }
@@ -112,7 +112,8 @@ class FacebookPage {
       if (prefixes.includes(prefix)) {
         prefix = `\\${prefix}`;
       }
-      return new RegExp(`${prefix}${command}`, "gi");
+      console.log(prefix);
+      return new RegExp(`${prefix}${command}`, "i");
     }
   }
 
@@ -123,11 +124,11 @@ class FacebookPage {
     let c = 0;
     const execute = () => {
       let command = commands[c];
-      const regex = this.#regex(command.command);
-      if (regex.test(event.message.text) && !done) {
+      const _regex = this.#regex(command.command);
+      if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
-        script(this, event, regex);
+        script(this, event, _regex);
       } else if (!done) {
         c++;
         execute();
