@@ -101,7 +101,7 @@ class FacebookPage {
   webhookListener(actions) {
     this.start = true && this.commands.length > 0;
 
-    if (this.start) {
+    if (!this.start) {
       return console.error(
         `The're a problem with your configuration. Kindly check it first`,
       );
