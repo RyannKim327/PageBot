@@ -8,6 +8,11 @@ api.addCommand("cleargpt", {
   command: "clear-gpt",
 });
 
+api.addCommand("sms", {
+  title: "Free Text",
+  command: "([0-9]+): (.*?)",
+});
+
 api.addCommand("gpt", {
   title: "GPT",
   command: "([\\w\\W]+)",

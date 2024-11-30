@@ -120,14 +120,20 @@ class FacebookPage {
     console.log(event);
     let done = false;
     const commands = this.commands;
-    for (let command of commands) {
+    let c = 0;
+    const execute = () => {
+      let command = commands[c];
       const regex = this.#regex(command.command);
       if (regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
-        script(this, event);
+        script(this, event, regex);
+      } else if (!done) {
+        c++;
+        execute();
       }
-    }
+    };
+    execute();
   }
 
   // INFO: Webhook process
