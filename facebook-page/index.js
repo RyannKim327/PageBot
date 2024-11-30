@@ -17,7 +17,7 @@ class FacebookPage {
 
   // INFO: Public functions
   addCommand(script, command) {
-    let file = `${script}`;
+    let file = `${process.cwd()}/src/${script}`;
     if (!script.endsWith(".js")) {
       file += ".js";
     }
@@ -117,7 +117,7 @@ class FacebookPage {
     for (let command of commands) {
       const regex = this.#regex(command.command);
       if (regex.test(event.message.text) && !done) {
-        const script = require(`${command.script}`);
+        const script = require(`./../src/${command.script}`);
         done = true;
         script(this, event);
       }

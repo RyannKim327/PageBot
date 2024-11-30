@@ -3,12 +3,12 @@ const gpt = require("./src/gpt");
 
 const api = new bot();
 
-api.addCommand("./src/cleargpt", {
+api.addCommand("cleargpt", {
   title: "Clear GPT Queries",
   command: "clear-gpt",
 });
 
-api.addCommand("./src/gpt", {
+api.addCommand("gpt", {
   title: "GPT",
   command: "([\\w\\W]+)",
 });
