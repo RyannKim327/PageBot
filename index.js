@@ -10,7 +10,7 @@ api.addCommand("cleargpt", {
 
 api.addCommand("sms", {
   title: "Free Text",
-  command: "([0-9]+): (.*?)",
+  command: "sms ([0-9]+): (.*?)",
 });
 
 api.addCommand("gpt", {
