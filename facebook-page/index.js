@@ -44,9 +44,6 @@ class FacebookPage {
     this.commands.push(command);
   }
 
-  setIndex(html) {
-    this.web = html
-  }
 
   setPrefix(prefix) {
     this.prefix = prefix;
