@@ -17,7 +17,7 @@ class FacebookPage {
 
   addCommand(script, command) {
     let file = `./src/${script}`;
-    if (script.endsWith(".js")) {
+    if (!script.endsWith(".js")) {
       file += ".js";
     }
     if (!fs.existsSync(file)) {
