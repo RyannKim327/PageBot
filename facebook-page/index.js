@@ -15,6 +15,7 @@ class FacebookPage {
     this.start = true;
   }
 
+  // INFO: Public functions
   addCommand(script, command) {
     let file = `${process.cwd()}/src/${script}`;
     if (!script.endsWith(".js")) {
@@ -44,15 +45,6 @@ class FacebookPage {
 
   setPrefix(prefix) {
     this.prefix = prefix;
-  }
-
-  #postback(event) {
-    const payload = event.postback.payload;
-
-    this.sendMessage(
-      `[INFO]: This is a message from a postback with payload: ${payload}`,
-      event,
-    );
   }
 
   sendMessage(message, event, callback) {
@@ -98,6 +90,41 @@ class FacebookPage {
     );
   }
 
+  // INFO: Private Functions
+  #postback(event) {
+    const payload = event.postback.payload;
+
+    this.sendMessage(
+      `[INFO]: This is a message from a postback with payload: ${payload}`,
+      event,
+    );
+  }
+
+  #regex(command) {
+    if (typeof command !== "string") {
+      if (!command.command) {
+        command = command.command;
+      }
+    }
+    if (typeof command === "string") {
+      return new RegExp(`${this.prefix}${command}`, "gi");
+    }
+  }
+
+  #processhandler(event) {
+    let done = false;
+    const commands = this.commands;
+    for (let command of commands) {
+      const regex = this.#regex(command.command);
+      if (regex.test(event.message.text) && !done) {
+        const script = require(`./src/${command.script}`);
+        done = true;
+        script(this, event);
+      }
+    }
+  }
+
+  // INFO: Webhook process
   webhookListener(actions) {
     this.start = true && this.commands.length > 0;
 
@@ -135,7 +162,8 @@ class FacebookPage {
           entry.messaging.forEach((event) => {
             if (event.message) {
               if (event.message.text.startsWith(this.prefix)) {
-                actions(event);
+                // actions(event);
+                this.#processhandler(event);
               }
             } else {
               this.#postback(event);
