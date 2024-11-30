@@ -13,6 +13,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
+    this.web = ""
   }
 
   // INFO: Public functions
@@ -43,6 +44,10 @@ class FacebookPage {
     this.commands.push(command);
   }
 
+  setIndex(html) {
+    this.web = html
+  }
+
   setPrefix(prefix) {
     this.prefix = prefix;
   }
@@ -64,7 +69,7 @@ class FacebookPage {
     }
     request(
       {
-        url: "https://graph.facebook.com/v13.0/me/messages",
+        url: "https://graph.facebook.com/v21.0/me/messages",
         qs: { access_token: this.FB_TOKEN },
         method: "POST",
         json: {
@@ -152,7 +157,11 @@ class FacebookPage {
 
     const app = this.app;
     app.get("/", (req, res) => {
-      res.send("The main webpage was started.");
+      if (this.web === "") {
+        res.send("The main webpage was started.");
+      } else {
+        res.sendFile(`${__dirname}/../web/${this.web}`)
+      }
     });
 
     app.get("/webhook", (req, res) => {
