@@ -18,6 +18,6 @@ api.addCommand("gpt", {
   command: "([\\w\\W]+)",
 });
 
-api.addIndex("index.html");
+api.setIndex("index.html");
 
 api.webhookListener();
