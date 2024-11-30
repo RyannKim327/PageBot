@@ -16,7 +16,7 @@ class FacebookPage {
   }
 
   addCommand(script, command) {
-    let file = `./src/${script}`;
+    let file = `${process.cwd()}/src/${script}`;
     if (!script.endsWith(".js")) {
       file += ".js";
     }
