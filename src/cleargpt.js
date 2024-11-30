@@ -7,7 +7,7 @@ module.exports = (api, event) => {
   api.sendMessage(
     {
       text: "The past queries are now cleared",
-      reply_to: event.message.reply_to.mid,
+      reply_to: event.message.mid,
     },
     event,
   );
