@@ -36,7 +36,7 @@ module.exports = async (api, event) => {
 
   msg[senderID].push({
     role: "user",
-    content: event.message.text,
+    content: event.message.text.substring(1),
   });
   const { data } = await axios.post(
     "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",

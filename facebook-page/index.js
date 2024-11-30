@@ -1,4 +1,5 @@
 const body = require("body-parser");
+const fs = require("fs");
 const express = require("express");
 const request = require("request");
 
@@ -9,50 +10,44 @@ class FacebookPage {
     this.app = express();
     this.app.use(body.json());
     this.__port = process.env.PORT || 3000;
+    this.prefix = "/";
+    this.commands = [];
+    this.start = true;
   }
 
-  webhookListener(actions) {
-    if (typeof actions !== "function")
-      return console.error(`Action type [ERROR]: Actions must be function.`);
-    const app = this.app;
-    app.get("/", (req, res) => {
-      res.send("The main webpage was started.");
-    });
-
-    app.get("/webhook", (req, res) => {
-      const mode = req.query["hub.mode"];
-      const token = req.query["hub.verify_token"];
-      const challenge = req.query["hub.challenge"];
-      if (token && mode) {
-        if (mode === "subscribe" && token === this.KEY_TOKEN) {
-          res.status(200).send(challenge);
-        } else {
-          res.status(403);
-        }
-      }
-    });
-
-    app.post("/webhook", (req, res) => {
-      const body = req.body;
-      if (body.object === "page") {
-        body.entry.forEach((entry) => {
-          entry.messaging.forEach((event) => {
-            if (event.message) {
-              actions(event);
-            } else {
-              this.__postback(event);
-            }
-          });
-        });
-        res.status(200).send("EVENT_RECEIVED");
-      }
-    });
-    this.app.listen(this.__port, () => {
-      console.log("The service is now started");
-    });
+  addCommand(script, command) {
+    const main = process.cwd();
+    let file = `${main}/src/${script}`;
+    if (script.endsWith(".js")) {
+      file += ".js";
+    }
+    if (!fs.existsSync(file)) {
+      this.start = false;
+      return console.error(
+        `Script [ERR]: The directory of the command is invalid or not found.`,
+      );
+    }
+    if (!command) {
+      this.start = false;
+      return console.error(
+        `Command [ERR]: The command must be exists or configured.`,
+      );
+    }
+    if (!command.title || !command.command) {
+      this.start = false;
+      return console.error(
+        `Commands [ERR]: Kindly check your command if there's a title and/or command`,
+      );
+    }
+    command["script"] = script;
+    this.commands.push(command);
   }
 
-  __postback(event) {
+  setPrefix(prefix) {
+    this.prefix = prefix;
+  }
+
+  #postback(event) {
     const payload = event.postback.payload;
 
     this.sendMessage(
@@ -102,6 +97,59 @@ class FacebookPage {
         console.log("Sent");
       },
     );
+  }
+
+  webhookListener(actions) {
+    this.start = true && this.commands.length > 0;
+
+    if (this.start) {
+      return console.error(
+        `The're a problem with your configuration. Kindly check it first`,
+      );
+    }
+
+    if (typeof actions !== "function")
+      return console.error(`Action type [ERROR]: Actions must be function.`);
+
+    const app = this.app;
+    app.get("/", (req, res) => {
+      res.send("The main webpage was started.");
+    });
+
+    app.get("/webhook", (req, res) => {
+      const mode = req.query["hub.mode"];
+      const token = req.query["hub.verify_token"];
+      const challenge = req.query["hub.challenge"];
+      if (token && mode) {
+        if (mode === "subscribe" && token === this.KEY_TOKEN) {
+          res.status(200).send(challenge);
+        } else {
+          res.status(403);
+        }
+      }
+    });
+
+    app.post("/webhook", (req, res) => {
+      const body = req.body;
+      if (body.object === "page") {
+        body.entry.forEach((entry) => {
+          entry.messaging.forEach((event) => {
+            if (event.message) {
+              if (event.message.text.startsWith(this.prefix)) {
+                actions(event);
+              }
+            } else {
+              this.#postback(event);
+            }
+          });
+        });
+        res.status(200).send("EVENT_RECEIVED");
+      }
+    });
+
+    this.app.listen(this.__port, () => {
+      console.log("The service is now started");
+    });
   }
 }
 
