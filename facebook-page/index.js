@@ -134,8 +134,8 @@ class FacebookPage {
       );
     }
 
-    if (typeof actions !== "function")
-      return console.error(`Action type [ERROR]: Actions must be function.`);
+    // if (typeof actions !== "function")
+    //   return console.error(`Action type [ERROR]: Actions must be function.`);
 
     const app = this.app;
     app.get("/", (req, res) => {
