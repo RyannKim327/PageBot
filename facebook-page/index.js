@@ -103,10 +103,13 @@ class FacebookPage {
           message: {
             attachment: {
               type: type,
+              payload: {
+                url: file,
+              },
             },
           },
         },
-        filedata: file,
+        // filedata: file,
         // type: this.types[type.toLowerCase()],
       },
       (error, response, body) => {
@@ -152,24 +155,30 @@ class FacebookPage {
     //     }
     //     // console.log("Sent");
     //   },
-    axios.post(`https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`, {
-      message: msg,
-      recipient: {
-        id: event.sender.id
-      }
-    }).then((response) => {
-      if (callback) {
-        if (typeof callback === 'function') {
-          callback(false, response)
+    axios
+      .post(
+        `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
+        {
+          message: msg,
+          recipient: {
+            id: event.sender.id,
+          },
+        },
+      )
+      .then((response) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(false, response);
+          }
         }
-      }
-    }).catch(error => {
-      if (callback) {
-        if (typeof callback === 'function') {
-          callback(true, error)
+      })
+      .catch((error) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(true, error);
+          }
         }
-      }
-    })
+      });
   }
 
   // INFO: Private Functions

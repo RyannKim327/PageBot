@@ -15,35 +15,34 @@ module.exports = async (api, event, regex) => {
     const file = fs.createWriteStream(
       `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
     );
-    http.get(data.response, (res) => {
-      res.pipe(file);
-      file.on("finish", () => {
-        api.sendMessage(
-          `Here's your request entitled: ${data.title}`,
+    // http.get(data.response, (res) => {
+    api.sendMessage(
+      `Here's your request entitled: ${data.title}`,
+      event,
+      () => {
+        api.sendAttachment(
+          "audio",
+          data.response,
+          // fs.createReadStream(
+          //   `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
+          // ),
           event,
-          () => {
-            api.sendAttachment(
-              "audio",
-              fs.createReadStream(
-                `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
-              ),
-              event,
-              (failed, response) => {
-                console.log(`Music [RES]: ${JSON.stringify(response)}`);
-                console.log("Send");
-                const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
-                if (fs.existsSync(f)) {
-                  fs.unlinkSync(f, (e) => { });
-                }
-              },
-            );
+          (failed, response) => {
+            console.log(`Music [RES]: ${JSON.stringify(response)}`);
+            console.log("Send");
+            const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
+            if (fs.existsSync(f)) {
+              fs.unlinkSync(f, (e) => { });
+            }
           },
         );
-      });
-    });
-  } else {
-    api.sendMessage(
-      "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
+      },
     );
-  }
+    // });
+  })
+} else {
+  api.sendMessage(
+    "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
+  );
+}
 };
