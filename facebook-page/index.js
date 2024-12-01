@@ -14,11 +14,12 @@ class FacebookPage {
     this.commands = [];
     this.start = true;
     this.version = "v21.0";
+    this.fallback = null
     this.types = {
       audio: "audio/mp3",
       image: "image/png",
-      video: "video/mp4"
-    }
+      video: "video/mp4",
+    };
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
       fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
@@ -56,6 +57,27 @@ class FacebookPage {
     this.commands.push(command);
   }
 
+  setFallback(script, command) {
+    if (typeof script !== 'string') {
+      this.start = false
+      return console.error("FALLBACK [ERR]: Script must be a string [File]")
+    }
+    if (!command) {
+      this.start = false
+      return console, error("FALLBACK [ERR]: Command must be exists")
+    }
+    if (typeof command !== 'object') {
+      this.start = false
+      return console.error(`FALLBACK [ERR]: The command must be an Object`)
+    }
+    if (!command.title) {
+      this.start = false
+      return console.error(`FALLBACK [ERR]: Title must be existed`)
+    }
+    this.fallback = command
+    this.fallback['script'] = script
+  }
+
   setPrefix(prefix) {
     this.prefix = prefix;
   }
@@ -82,14 +104,14 @@ class FacebookPage {
               type: type,
             },
           },
-          filedata: `@${file}`,
-          type: this.types[type.toLowerCase()]
+          filedata: `@/${file}`,
+          type: this.types[type.toLowerCase()],
         },
       },
       (error, response, body) => {
         if (callback) {
-          if (typeof callback === 'function') {
-            callback(error, response)
+          if (typeof callback === "function") {
+            callback(error, response);
           }
         }
       },
@@ -123,8 +145,8 @@ class FacebookPage {
       },
       (error, response, body) => {
         if (callback) {
-          if (typeof callback === 'function') {
-            callback(error, response)
+          if (typeof callback === "function") {
+            callback(error, response);
           }
         }
         // console.log("Sent");
@@ -160,7 +182,6 @@ class FacebookPage {
   }
 
   #processhandler(event) {
-    console.log(event);
     let done = false;
     const commands = this.commands;
     let c = 0;
@@ -171,16 +192,19 @@ class FacebookPage {
         const script = require(`./../src/${command.script}`);
         done = true;
         script(this, event, _regex);
-      } else if (!done) {
+      } else if (!done && c < commands.length) {
         c++;
         execute();
+      } else {
+        const script = require(`/../src/${this.fallback.script}`)
+        script(this, event, this.prefix)
       }
     };
     execute();
   }
 
   // INFO: Webhook process
-  webhookListener(actions) {
+  webhookListener() {
     this.start = true && this.commands.length > 0;
 
     if (!this.start) {
@@ -188,9 +212,6 @@ class FacebookPage {
         `The're a problem with your configuration. Kindly check it first`,
       );
     }
-
-    // if (typeof actions !== "function")
-    //   return console.error(`Action type [ERROR]: Actions must be function.`);
 
     const app = this.app;
     app.get("/", (req, res) => {
@@ -217,7 +238,6 @@ class FacebookPage {
           entry.messaging.forEach((event) => {
             if (event.message) {
               if (event.message.text.startsWith(this.prefix)) {
-                // actions(event);
                 this.#processhandler(event);
               }
             } else {

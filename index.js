@@ -18,9 +18,8 @@ api.addCommand("sms", {
   command: "sms ([\\d]+): ([\\w\\W]+)",
 });
 
-api.addCommand("gpt", {
+api.setFallback("gpt", {
   title: "GPT",
-  command: "([\\w\\W]+)",
 });
 
 api.webhookListener();

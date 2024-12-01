@@ -1,7 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
 
-module.exports = async (api, event) => {
+module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
   if (!fs.existsSync(`${__dirname}/../data/gpt.json`)) {
     fs.createWriteStream(`${__dirname}/../data/gpt.json`);
@@ -38,7 +38,7 @@ module.exports = async (api, event) => {
 
   msg[senderID].push({
     role: "user",
-    content: event.message.text.substring(1),
+    content: event.message.text.substring(prefix.length),
   });
 
   const { data } = await axios.post(
