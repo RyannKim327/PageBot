@@ -39,10 +39,10 @@ module.exports = async (api, event, regex) => {
       },
     );
     // });
-  })
-} else {
-  api.sendMessage(
-    "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
-  );
-}
+    // })
+  } else {
+    api.sendMessage(
+      "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
+    );
+  }
 };
