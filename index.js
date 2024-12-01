@@ -8,6 +8,11 @@ api.addCommand("cleargpt", {
   command: "clear-gpt",
 });
 
+api.addCommand("music", {
+  title: "Music Command",
+  command: "music ([\\w\\W]+)",
+});
+
 api.addCommand("sms", {
   title: "Free Text",
   command: "sms ([\\d]+): ([\\w\\W]+)",
