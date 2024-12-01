@@ -176,7 +176,7 @@ class FacebookPage {
       if (prefixes.includes(prefix)) {
         prefix = `\\${prefix}`;
       }
-      console.log(prefix);
+
       return new RegExp(`${prefix}${command}`, "i");
     }
   }
@@ -192,10 +192,10 @@ class FacebookPage {
         const script = require(`./../src/${command.script}`);
         done = true;
         script(this, event, _regex);
-      } else if (!done && c < commands.length) {
+      } else if (!done) {
         c++;
         execute();
-      } else {
+      } else if (this.fallback !== null) {
         const script = require(`/../src/${this.fallback.script}`)
         script(this, event, this.prefix)
       }
