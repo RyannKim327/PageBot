@@ -14,6 +14,11 @@ class FacebookPage {
     this.commands = [];
     this.start = true;
     this.version = "v21.0";
+    this.types = {
+      audio: "audio/mp3",
+      image: "image/png",
+      video: "video/mp4"
+    }
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
       fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
@@ -55,7 +60,7 @@ class FacebookPage {
     this.prefix = prefix;
   }
 
-  sendAttachment(type, url, event, callback) {
+  sendAttachment(type, file, event, callback) {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
@@ -75,12 +80,10 @@ class FacebookPage {
           message: {
             attachment: {
               type: type,
-              payload: {
-                url: url,
-                is_reusable: true,
-              },
             },
           },
+          filedata: file,
+          type: this.types[type.toLowerCase()]
         },
       },
       (error, response, body) => {
