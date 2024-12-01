@@ -30,6 +30,7 @@ module.exports = async (api, event, regex) => {
                 if (error) {
                   console.error(`Music [Err]: ${error}`);
                 }
+                console.log("Send");
                 const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
                 if (fs.existsSync(f)) {
                   fs.unlinkSync(f, (e) => { });
