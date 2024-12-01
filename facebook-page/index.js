@@ -65,11 +65,6 @@ class FacebookPage {
       );
     }
 
-    let msg = message;
-
-    if (typeof message === "string") {
-      msg = { text: message };
-    }
     request(
       {
         url: `https://graph.facebook.com/${this.version}/me/messages`,
