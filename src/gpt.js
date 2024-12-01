@@ -55,15 +55,11 @@ module.exports = async (api, event, prefix) => {
     },
   );
   console.log(data.choices[0]["message"]["content"]);
-  api.sendMessage(
-    data.choices[0]["message"]["content"],
-    event,
-    (error, response) => {
-      msg[senderID].push({
-        role: "system",
-        content: data.choices[0]["message"]["content"],
-      });
-      fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
-    },
-  );
+  api.sendMessage(data.choices[0]["message"]["content"], event, (response) => {
+    msg[senderID].push({
+      role: "system",
+      content: data.choices[0]["message"]["content"],
+    });
+    fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
+  });
 };

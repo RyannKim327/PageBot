@@ -158,7 +158,7 @@ class FacebookPage {
         id: event.sender.id
       }
     }).then((response) => {
-      callback(null, response)
+      callback(response)
     }).catch(error => {
       callback(error)
     })
