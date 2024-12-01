@@ -38,19 +38,19 @@ class FacebookPage {
     if (!fs.existsSync(file)) {
       this.start = false;
       return console.error(
-        `Script [ERR]: The directory of the command is invalid or not found.`,
+        `${script} Script [ERR]: The directory of the command is invalid or not found.`,
       );
     }
     if (!command) {
       this.start = false;
       return console.error(
-        `Command [ERR]: The command must be exists or configured.`,
+        `${script} Command [ERR]: The command must be exists or configured.`,
       );
     }
     if (!command.title || !command.command) {
       this.start = false;
       return console.error(
-        `Commands [ERR]: Kindly check your command if there's a title and/or command`,
+        `${script} Command [ERR]: Kindly check your command if there's a title and/or command`,
       );
     }
     command["script"] = script;
@@ -192,10 +192,10 @@ class FacebookPage {
         const script = require(`./../src/${command.script}`);
         done = true;
         script(this, event, _regex);
-      } else if (!done) {
+      } else if (!done && c < commands.length) {
         c++;
         execute();
-      } else if (this.fallback !== null) {
+      } else if (this.fallback !== null && typeof this.fallback === 'object' && !done) {
         const script = require(`/../src/${this.fallback.script}`)
         script(this, event, this.prefix)
       }
