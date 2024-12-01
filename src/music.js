@@ -24,11 +24,13 @@ module.exports = async (api, event, regex) => {
           () => {
             api.sendAttachment(
               "audio",
-              `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
+              fs.createReadStream(
+                `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
+              ),
               event,
               (error, response) => {
                 console.error(`Music [Err]: ${error}`);
-                console.log(`Music [RES]: ${response}`);
+                console.log(`Music [RES]: ${JSON.stringify(response)}`);
                 console.log("Send");
                 const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
                 if (fs.existsSync(f)) {
