@@ -4,6 +4,7 @@ const http = require("https");
 
 module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex);
+  api.sendMessage(`Searching: ${body[1]}`, event);
   const search = await axios.get(
     `https://apiv2.kenliejugarap.com/ytsearch?title=${body[1]}`,
   );
@@ -38,8 +39,9 @@ module.exports = async (api, event, regex) => {
         );
       });
     });
+  } else {
+    api.sendMessage(
+      "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
+    );
   }
-  api.sendMessage(
-    "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
-  );
 };
