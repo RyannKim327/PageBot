@@ -186,16 +186,18 @@ class FacebookPage {
     const commands = this.commands;
     let c = 0;
     const execute = () => {
-      let command = commands[c];
-      const _regex = this.#regex(command.command);
-      if (_regex.test(event.message.text) && !done) {
-        const script = require(`./../src/${command.script}`);
-        done = true;
-        script(this, event, _regex);
-      } else if (!done && c < commands.length) {
-        c++;
-        execute();
-      } else if (this.fallback !== null && typeof this.fallback === 'object' && !done) {
+      if (commands) {
+        let command = commands[c];
+        const _regex = this.#regex(command.command);
+        if (_regex.test(event.message.text) && !done) {
+          const script = require(`./../src/${command.script}`);
+          done = true;
+          script(this, event, _regex);
+        } else if (!done && c < commands.length) {
+          c++;
+          execute();
+        }
+      } if (this.fallback !== null && typeof this.fallback === 'object' && !done) {
         const script = require(`/../src/${this.fallback.script}`)
         script(this, event, this.prefix)
       }
