@@ -28,7 +28,7 @@ module.exports = async (api, event, regex) => {
                 `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
               ),
               event,
-              (response) => {
+              (failed, response) => {
                 console.log(`Music [RES]: ${JSON.stringify(response)}`);
                 console.log("Send");
                 const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;

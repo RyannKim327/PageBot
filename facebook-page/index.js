@@ -158,9 +158,17 @@ class FacebookPage {
         id: event.sender.id
       }
     }).then((response) => {
-      callback(response)
+      if (callback) {
+        if (typeof callback === 'function') {
+          callback(false, response)
+        }
+      }
     }).catch(error => {
-      callback(error)
+      if (callback) {
+        if (typeof callback === 'function') {
+          callback(true, error)
+        }
+      }
     })
   }
 
