@@ -103,7 +103,7 @@ class FacebookPage {
             attachment: {
               type: type,
               payload: {
-                url: `${os.hostname()}/${file}`,
+                url: `@/${file}`,
               },
             },
           },
