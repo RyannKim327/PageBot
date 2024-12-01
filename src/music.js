@@ -19,22 +19,20 @@ module.exports = async (api, event, regex) => {
       res.pipe(file);
       file.on("finish", () => {
         api.sendMessage(
-          {
-            text: `Here's your request entitled: ${data.title}`,
-            attachment: {
-              type: "audio",
-              payload: {
-                url: `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
-                is_reusable: true,
-              },
-            },
-          },
+          `Here's your request entitled: ${data.title}`,
           event,
           () => {
-            const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
-            if (fs.existsSync(f)) {
-              fs.unlinkSync(f, (e) => { });
-            }
+            api.sendAttachment(
+              "audio",
+              `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
+              event,
+              () => {
+                const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
+                if (fs.existsSync(f)) {
+                  fs.unlinkSync(f, (e) => { });
+                }
+              },
+            );
           },
         );
       });

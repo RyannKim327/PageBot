@@ -13,6 +13,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
+    this.version = "v21.0";
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
       fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
@@ -54,6 +55,57 @@ class FacebookPage {
     this.prefix = prefix;
   }
 
+  sendAttachment(type, url, event, callback) {
+    if (!this.FB_TOKEN) {
+      return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
+    }
+    if (typeof event !== "object") {
+      return console.error(
+        "ERROR [event type]: The event must be in Object or JSON type",
+      );
+    }
+
+    let msg = message;
+
+    if (typeof message === "string") {
+      msg = { text: message };
+    }
+    request(
+      {
+        url: `https://graph.facebook.com/${this.version}/me/messages`,
+        qs: { access_token: this.FB_TOKEN },
+        method: "POST",
+        json: {
+          recipient: { id: event.sender.id },
+          message: {
+            attachment: {
+              type: type,
+              payload: {
+                url: url,
+                is_reusable: true,
+              },
+            },
+          },
+        },
+      },
+      (error, response, body) => {
+        if (error) {
+          console.error("Error sending message:", error);
+        } else if (response.body.error) {
+          console.error("Error response:", response.body.error);
+        } else {
+          console.log("Message sent successfully:", body);
+          if (callback) {
+            if (typeof callback === "function") {
+              callback();
+            }
+          }
+        }
+        console.log("Sent");
+      },
+    );
+  }
+
   sendMessage(message, event, callback) {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
@@ -71,7 +123,7 @@ class FacebookPage {
     }
     request(
       {
-        url: "https://graph.facebook.com/v21.0/me/messages",
+        url: `https://graph.facebook.com/${this.version}/me/messages`,
         qs: { access_token: this.FB_TOKEN },
         method: "POST",
         json: {
