@@ -14,7 +14,7 @@ class FacebookPage {
     this.commands = [];
     this.start = true;
     this.version = "v21.0";
-    this.fallback = null
+    this.fallback = null;
     this.types = {
       audio: "audio/mp3",
       image: "image/png",
@@ -58,24 +58,24 @@ class FacebookPage {
   }
 
   setFallback(script, command) {
-    if (typeof script !== 'string') {
-      this.start = false
-      return console.error("FALLBACK [ERR]: Script must be a string [File]")
+    if (typeof script !== "string") {
+      this.start = false;
+      return console.error("FALLBACK [ERR]: Script must be a string [File]");
     }
     if (!command) {
-      this.start = false
-      return console, error("FALLBACK [ERR]: Command must be exists")
+      this.start = false;
+      return console, error("FALLBACK [ERR]: Command must be exists");
     }
-    if (typeof command !== 'object') {
-      this.start = false
-      return console.error(`FALLBACK [ERR]: The command must be an Object`)
+    if (typeof command !== "object") {
+      this.start = false;
+      return console.error(`FALLBACK [ERR]: The command must be an Object`);
     }
     if (!command.title) {
-      this.start = false
-      return console.error(`FALLBACK [ERR]: Title must be existed`)
+      this.start = false;
+      return console.error(`FALLBACK [ERR]: Title must be existed`);
     }
-    this.fallback = command
-    this.fallback['script'] = script
+    command["script"] = script;
+    this.fallback = command;
   }
 
   setPrefix(prefix) {
@@ -186,23 +186,22 @@ class FacebookPage {
     const commands = this.commands;
     let c = 0;
     const execute = () => {
-      if (commands) {
-        let command = commands[c];
-        const _regex = this.#regex(command.command);
-        if (_regex.test(event.message.text) && !done) {
-          const script = require(`./../src/${command.script}`);
-          done = true;
-          script(this, event, _regex);
-        } else if (!done && c < commands.length) {
-          c++;
-          execute();
-        }
-      } if (this.fallback !== null && typeof this.fallback === 'object' && !done) {
-        const script = require(`/../src/${this.fallback.script}`)
-        script(this, event, this.prefix)
+      let command = commands[c];
+      const _regex = this.#regex(command.command);
+      if (_regex.test(event.message.text) && !done) {
+        const script = require(`./../src/${command.script}`);
+        done = true;
+        script(this, event, _regex);
+      } else if (!done && c < commands.length - 1) {
+        c++;
+        execute();
       }
     };
     execute();
+    if (this.fallback !== null && typeof this.fallback === "object" && !done) {
+      const script = require(`/../src/${this.fallback.script}`);
+      script(this, event, this.prefix);
+    }
   }
 
   // INFO: Webhook process
