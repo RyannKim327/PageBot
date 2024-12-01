@@ -199,7 +199,7 @@ class FacebookPage {
     };
     execute();
     if (this.fallback !== null && typeof this.fallback === "object" && !done) {
-      const script = require(`/../src/${this.fallback.script}`);
+      const script = require(`. /../src/${this.fallback.script}`);
       script(this, event, this.prefix);
     }
   }
