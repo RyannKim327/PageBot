@@ -82,24 +82,16 @@ class FacebookPage {
               type: type,
             },
           },
-          filedata: file,
+          filedata: `@${file}`,
           type: this.types[type.toLowerCase()]
         },
       },
       (error, response, body) => {
-        if (error) {
-          console.error("Error sending message:", error);
-        } else if (response.body.error) {
-          console.error("Error response:", response.body.error);
-        } else {
-          console.log("Message sent successfully:", body);
-          if (callback) {
-            if (typeof callback === "function") {
-              callback();
-            }
+        if (callback) {
+          if (typeof callback === 'function') {
+            callback(error, response)
           }
         }
-        console.log("Sent");
       },
     );
   }
@@ -130,19 +122,12 @@ class FacebookPage {
         },
       },
       (error, response, body) => {
-        if (error) {
-          console.error("Error sending message:", error);
-        } else if (response.body.error) {
-          console.error("Error response:", response.body.error);
-        } else {
-          console.log("Message sent successfully:", body);
-          if (callback) {
-            if (typeof callback === "function") {
-              callback();
-            }
+        if (callback) {
+          if (typeof callback === 'function') {
+            callback(error, response)
           }
         }
-        console.log("Sent");
+        // console.log("Sent");
       },
     );
   }
