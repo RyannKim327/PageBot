@@ -13,7 +13,13 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
-    this.web = ""
+
+    if (fs.existsSync(`${__dirname}/../temp/`)) {
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+    }
+    setTimeout(() => {
+      fs.mkdirSync(`${__dirname}/../temp`);
+    }, 150);
   }
 
   // INFO: Public functions
@@ -43,7 +49,6 @@ class FacebookPage {
     command["script"] = script;
     this.commands.push(command);
   }
-
 
   setPrefix(prefix) {
     this.prefix = prefix;
@@ -154,11 +159,7 @@ class FacebookPage {
 
     const app = this.app;
     app.get("/", (req, res) => {
-      if (this.web === "") {
-        res.send("The main webpage was started.");
-      } else {
-        res.sendFile(`${__dirname}/../web/${this.web}`)
-      }
+      res.send("The main webpage was started.");
     });
 
     app.get("/webhook", (req, res) => {
