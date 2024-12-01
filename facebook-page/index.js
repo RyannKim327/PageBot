@@ -83,7 +83,7 @@ class FacebookPage {
     this.prefix = prefix;
   }
 
-  sendAttachment(type, file, event, callback) {
+  sendAttachment(type, fileUrl, event, callback) {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
@@ -93,33 +93,31 @@ class FacebookPage {
       );
     }
 
-    request(
-      {
-        url: `https://graph.facebook.com/${this.version}/me/messages`,
-        qs: { access_token: this.FB_TOKEN },
-        method: "POST",
-        json: {
-          recipient: { id: event.sender.id },
-          message: {
-            attachment: {
-              type: type,
-              payload: {
-                url: file,
-              },
-            },
-          },
-        },
-        // filedata: file,
-        // type: this.types[type.toLowerCase()],
+    axios.post(`https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`, {
+      recipient: {
+        id: event.sender.id
       },
-      (error, response, body) => {
-        if (callback) {
-          if (typeof callback === "function") {
-            callback(error, response);
+      message: {
+        attachment: {
+          type: type,
+          payload: {
+            url: fileUrl
           }
         }
-      },
-    );
+      }
+    }).then(response => {
+      if (callback) {
+        if (typeof callback === "function") {
+          callback(false, response);
+        }
+      }
+    }).catch(error => {
+      if (callback) {
+        if (typeof callback === "function") {
+          callback(true, error);
+        }
+      }
+    })
   }
 
   sendMessage(message, event, callback) {
@@ -137,24 +135,7 @@ class FacebookPage {
     if (typeof message === "string") {
       msg = { text: message };
     }
-    // request(
-    //   {
-    //     url: `https://graph.facebook.com/${this.version}/me/messages`,
-    //     qs: { access_token: this.FB_TOKEN },
-    //     method: "POST",
-    //     json: {
-    //       recipient: { id: event.sender.id },
-    //       message: msg,
-    //     },
-    //   },
-    //   (error, response, body) => {
-    //     if (callback) {
-    //       if (typeof callback === "function") {
-    //         callback(error, response);
-    //       }
-    //     }
-    //     // console.log("Sent");
-    //   },
+
     axios
       .post(
         `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
