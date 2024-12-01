@@ -2,6 +2,7 @@ const body = require("body-parser");
 const fs = require("fs");
 const express = require("express");
 const request = require("request");
+const axios = require("axios");
 
 class FacebookPage {
   constructor() {
@@ -94,7 +95,7 @@ class FacebookPage {
 
     request(
       {
-        url: `https://graph.facebook.com/${this.version}/me/messages`,
+        url: `https://graph.facebook.com/${this.version}/me/message_attachments`,
         qs: { access_token: this.FB_TOKEN },
         method: "POST",
         json: {
@@ -102,13 +103,10 @@ class FacebookPage {
           message: {
             attachment: {
               type: type,
-              payload: {
-                url: file
-              },
             },
           },
         },
-        // filedata: `@/${file}`,
+        filedata: file,
         // type: this.types[type.toLowerCase()],
       },
       (error, response, body) => {
@@ -136,25 +134,34 @@ class FacebookPage {
     if (typeof message === "string") {
       msg = { text: message };
     }
-    request(
-      {
-        url: `https://graph.facebook.com/${this.version}/me/messages`,
-        qs: { access_token: this.FB_TOKEN },
-        method: "POST",
-        json: {
-          recipient: { id: event.sender.id },
-          message: msg,
-        },
-      },
-      (error, response, body) => {
-        if (callback) {
-          if (typeof callback === "function") {
-            callback(error, response);
-          }
-        }
-        // console.log("Sent");
-      },
-    );
+    // request(
+    //   {
+    //     url: `https://graph.facebook.com/${this.version}/me/messages`,
+    //     qs: { access_token: this.FB_TOKEN },
+    //     method: "POST",
+    //     json: {
+    //       recipient: { id: event.sender.id },
+    //       message: msg,
+    //     },
+    //   },
+    //   (error, response, body) => {
+    //     if (callback) {
+    //       if (typeof callback === "function") {
+    //         callback(error, response);
+    //       }
+    //     }
+    //     // console.log("Sent");
+    //   },
+    axios.post(`https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`, {
+      message: msg,
+      recipient: {
+        id: event.sender.id
+      }
+    }).then((response) => {
+      callback(null, response)
+    }).catch(error => {
+      callback(error)
+    })
   }
 
   // INFO: Private Functions
