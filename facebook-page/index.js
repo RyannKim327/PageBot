@@ -94,7 +94,7 @@ class FacebookPage {
 
     request(
       {
-        url: `https://graph.facebook.com/${this.version}/me/message_attachments`,
+        url: `https://graph.facebook.com/${this.version}/me/messages`,
         qs: { access_token: this.FB_TOKEN },
         method: "POST",
         json: {
@@ -102,9 +102,12 @@ class FacebookPage {
           message: {
             attachment: {
               type: type,
+              payload: {
+                url: `${os.hostname()}/${file}`,
+              },
             },
           },
-          filedata: `@/${file}`,
+          // filedata: `@/${file}`,
           // type: this.types[type.toLowerCase()],
         },
       },
