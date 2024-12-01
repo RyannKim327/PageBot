@@ -10,7 +10,7 @@ module.exports = async (api, event, regex) => {
   );
   if (search.data) {
     const { data } = await axios.get(
-      `https://apiv2.kenliejugarap.com/music?url=${search.data[0].url}`,
+      `https://apiv2.kenliejugarap.com/music?url=${search.data.videos[0].url}`,
     );
     const file = fs.createWriteStream(
       `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
