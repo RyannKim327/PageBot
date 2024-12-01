@@ -16,7 +16,7 @@ class FacebookPage {
     this.version = "v21.0";
     this.fallback = null;
     this.types = {
-      audio: "audio/mp3",
+      audio: "audio/mpeg",
       image: "image/png",
       video: "video/mp4",
     };
@@ -94,7 +94,7 @@ class FacebookPage {
 
     request(
       {
-        url: `https://graph.facebook.com/${this.version}/me/messages`,
+        url: `https://graph.facebook.com/${this.version}/me/message_attachments`,
         qs: { access_token: this.FB_TOKEN },
         method: "POST",
         json: {
@@ -105,7 +105,7 @@ class FacebookPage {
             },
           },
           filedata: `@/${file}`,
-          type: this.types[type.toLowerCase()],
+          // type: this.types[type.toLowerCase()],
         },
       },
       (error, response, body) => {
