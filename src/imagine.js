@@ -3,7 +3,7 @@ module.exports = (api, event, regex) => {
   api.sendMessage("Generating... ", event);
   api.sendAttachment(
     "image",
-    `https://image.pollinations.ai/prompt/${encodeURIComponent(body[1])}`,
+    `https://image.pollinations.ai/prompt/${encodeURI(body[1])}`,
     event,
     (failed, response) => {},
   );
