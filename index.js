@@ -7,6 +7,11 @@ api.addCommand("cleargpt", {
   command: "clear-gpt",
 });
 
+api.addCommand("imagine", {
+  title: "Image Generator",
+  command: "imagine ([\\w\\W]+)",
+});
+
 api.addCommand("music", {
   title: "Music Command",
   command: "music ([\\w\\W]+)",
