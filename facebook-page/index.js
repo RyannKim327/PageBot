@@ -111,25 +111,26 @@ class FacebookPage {
 
     let url = "messages";
     if (!fileUrl.startsWith("http")) {
-      console.log("NON URL");
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
       }
-      console.log(`@${fileUrl}`);
+
       url = "message_attachments";
       if (!fs.existsSync(fileUrl)) {
         this.sendMessage("File doesn't exists", event);
       }
+
       data = {
         recipient: {
           id: event.sender.id,
         },
         message: {
           attachment: {
-            type: type,
+            type: "file",
           },
         },
         filedata: `@${fileUrl}`,
+        type: "file",
       };
     }
 
