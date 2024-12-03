@@ -128,7 +128,7 @@ class FacebookPage {
         message: {
           attachment: {
             type: type,
-            filedata: `@${filedata}`,
+            // filedata: `@${filedata}`,
           },
         },
         filedata: `@${fileUrl}`,
