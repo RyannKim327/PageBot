@@ -112,7 +112,10 @@ class FacebookPage {
     let url = "messages";
     if (!fileUrl.startsWith("http")) {
       console.log("NON URL");
-      console.log(`@/${fileUrl}`);
+      if (!fileUrl.startsWith("/")) {
+        fileUrl = `/${fileUrl}`;
+      }
+      console.log(`@${fileUrl}`);
       url = "message_attachments";
       data = {
         recipient: {
@@ -123,7 +126,7 @@ class FacebookPage {
             type: type,
           },
         },
-        filedata: `@/${fileUrl}`,
+        filedata: `@${fileUrl}`,
       };
     }
 
