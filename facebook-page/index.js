@@ -120,17 +120,18 @@ class FacebookPage {
         this.sendMessage("File doesn't exists", event);
       }
 
+      console.log(fileUrl);
       data = {
         recipient: {
           id: event.sender.id,
         },
         message: {
           attachment: {
-            type: "file",
+            type: type,
           },
         },
         filedata: `@${fileUrl}`,
-        type: "file",
+        type: type,
       };
     }
 
