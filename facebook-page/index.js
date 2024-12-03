@@ -117,6 +117,9 @@ class FacebookPage {
       }
       console.log(`@${fileUrl}`);
       url = "message_attachments";
+      if (!fs.existsSync(fileUrl)) {
+        this.sendMessage("File doesn't exists", event);
+      }
       data = {
         recipient: {
           id: event.sender.id,

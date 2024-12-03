@@ -5,6 +5,7 @@ const http = require("https");
 module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex);
   api.sendMessage(`Searching: ${body[1]}`, event);
+
   const search = await axios.get(
     `https://apiv2.kenliejugarap.com/ytsearch?title=${body[1]}`,
   );
@@ -12,10 +13,7 @@ module.exports = async (api, event, regex) => {
     const { data } = await axios.get(
       `https://apiv2.kenliejugarap.com/music?url=${search.data.videos[0].url}`,
     );
-    const file = fs.createWriteStream(
-      `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
-    );
-    // http.get(data.response, (res) => {
+
     api.sendMessage(
       `Here's your request entitled: ${data.title}`,
       event,
@@ -23,26 +21,18 @@ module.exports = async (api, event, regex) => {
         api.sendAttachment(
           "audio",
           data.response,
-          // fs.createReadStream(
-          //   `temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id}.mp3`,
-          // ),
           event,
           (failed, response) => {
-            console.log(`Music [RES]: ${JSON.stringify(response)}`);
+            console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
             console.log("Send");
-            const f = `${__dirname}/../temp/${data.title.replace(/\W/gi, "_")}_${event.sender.id},mp3`;
-            if (fs.existsSync(f)) {
-              fs.unlinkSync(f, (e) => { });
-            }
           },
         );
       },
     );
-    // });
-    // })
   } else {
     api.sendMessage(
       "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
+      event,
     );
   }
 };
