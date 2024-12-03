@@ -130,14 +130,14 @@ class FacebookPage {
             type: type,
           },
         },
-        filedata: `@${fileUrl}`,
+        filedata: `${fileUrl}`,
         type: type,
       };
     }
 
     axios
       .post(
-        `https://graph.facebook.com/${this.version}/me/${url}?access_token=${this.FB_TOKEN} `,
+        `https://graph.facebook.com/${this.version}/me/${url}?access_token=${this.FB_TOKEN}`,
         data,
       )
       .then((response) => {
