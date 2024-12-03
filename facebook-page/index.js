@@ -111,12 +111,12 @@ class FacebookPage {
 
     let url = "messages";
     if (!fileUrl.startsWith("http")) {
-      if (!fileUrl.startsWith("/")) {
-        fileUrl = `/${fileUrl}`;
+      if (fileUrl.startsWith("/")) {
+        fileUrl = `${fileUrl}`.substring(1);
       }
 
-      url = "message_attachments";
-      if (!fs.existsSync(fileUrl)) {
+      // url = "message_attachments";
+      if (!fs.existsSync(fileUrl.substring())) {
         this.sendMessage("File doesn't exists", event);
       }
 
