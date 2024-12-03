@@ -111,6 +111,8 @@ class FacebookPage {
 
     let url = "messages";
     if (!fileUrl.startsWith("http")) {
+      console.log("NON URL");
+      console.log(`@/${fileUrl}`);
       url = "message_attachments";
       data = {
         recipient: {
@@ -121,13 +123,13 @@ class FacebookPage {
             type: type,
           },
         },
-        attachment: `@/{fileUrl}`,
+        filedata: `@/${fileUrl}`,
       };
     }
 
     axios
       .post(
-        `https://graph.facebook.com/${this.version}/me/${url}?access_token = ${this.FB_TOKEN} `,
+        `https://graph.facebook.com/${this.version}/me/${url}?access_token=${this.FB_TOKEN} `,
         data,
       )
       .then((response) => {
