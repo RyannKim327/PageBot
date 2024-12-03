@@ -6,7 +6,7 @@ module.exports = (api, event) => {
     event,
     (failed, response) => {
       console.log(failed);
-      console.log(response);
+      console.log(JSON.stringify(response));
     },
   );
 };
