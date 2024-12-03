@@ -23,8 +23,9 @@ class FacebookPage {
     };
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
     }
+
     setTimeout(() => {
       fs.mkdirSync(`${__dirname}/../temp`);
     }, 150);
@@ -87,42 +88,67 @@ class FacebookPage {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
+
     if (typeof event !== "object") {
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
       );
     }
 
-    axios.post(`https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`, {
+    let data = {
       recipient: {
-        id: event.sender.id
+        id: event.sender.id,
       },
       message: {
         attachment: {
           type: type,
           payload: {
-            url: fileUrl
+            url: fileUrl,
+          },
+        },
+      },
+    };
+
+    let url = "messages";
+    if (!fileUrl.startsWith("http")) {
+      url = "message_attachments";
+      data = {
+        recipient: {
+          id: event.sender.id,
+        },
+        message: {
+          attachment: {
+            type: type,
+          },
+        },
+        attachment: `@/{fileUrl}`,
+      };
+    }
+
+    axios
+      .post(
+        `https://graph.facebook.com/${this.version}/me/${url}?access_token = ${this.FB_TOKEN} `,
+        data,
+      )
+      .then((response) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(false, response);
           }
         }
-      }
-    }).then(response => {
-      if (callback) {
-        if (typeof callback === "function") {
-          callback(false, response);
+      })
+      .catch((error) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(true, error);
+          }
         }
-      }
-    }).catch(error => {
-      if (callback) {
-        if (typeof callback === "function") {
-          callback(true, error);
-        }
-      }
-    })
+      });
   }
 
   sendMessage(message, event, callback) {
     if (!this.FB_TOKEN) {
-      return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
+      return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
     }
     if (typeof event !== "object") {
       return console.error(

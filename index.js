@@ -2,6 +2,11 @@ const bot = require("./facebook-page/index");
 
 const api = new bot();
 
+api.addCommand("chill", {
+  title: "That chill guy",
+  command: "chill",
+});
+
 api.addCommand("cleargpt", {
   title: "Clear GPT Queries",
   command: "clear-gpt",
