@@ -111,8 +111,8 @@ class FacebookPage {
 
     let url = "messages";
     if (!fileUrl.startsWith("http")) {
-      if (fileUrl.startsWith("/")) {
-        fileUrl = `${fileUrl}`.substring(1);
+      if (!fileUrl.startsWith("/")) {
+        fileUrl = `/${fileUrl}`;
       }
 
       // url = "message_attachments";
@@ -128,9 +128,10 @@ class FacebookPage {
         message: {
           attachment: {
             type: type,
+            filedata: `@${filedata}`,
           },
         },
-        filedata: `${fileUrl}`,
+        filedata: `@${fileUrl}`,
         type: type,
       };
     }
