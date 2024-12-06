@@ -31,4 +31,4 @@ api.setFallback("gpt", {
   title: "GPT",
 });
 
-api.webhookListener();
+api.listen()

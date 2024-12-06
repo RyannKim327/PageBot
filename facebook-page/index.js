@@ -1,7 +1,6 @@
 const body = require("body-parser");
 const fs = require("fs");
 const express = require("express");
-const request = require("request");
 const axios = require("axios");
 
 class FacebookPage {
@@ -109,13 +108,13 @@ class FacebookPage {
       },
     };
 
-    let url = "message_attachments";
+    let url = "messages";
     if (!fileUrl.startsWith("http")) {
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "messages";
+      url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         this.sendMessage("File doesn't exists", event);
       }
@@ -250,9 +249,10 @@ class FacebookPage {
   }
 
   // INFO: Webhook process
-  webhookListener() {
-    this.start = true && this.commands.length > 0;
-
+  listen() {
+    if(this.start){
+      this.start = true && this.commands.length > 0;
+    }
     if (!this.start) {
       return console.error(
         `The're a problem with your configuration. Kindly check it first`,
