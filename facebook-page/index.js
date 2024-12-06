@@ -127,9 +127,11 @@ class FacebookPage {
         message: {
           attachment: {
             type: fileType,
-            url:
-              `data:image/png;base64` +
-              atob(fs.readFileSync(`@${filedata}`, "utf-8")),
+            payload: {
+              url:
+                `data:image/png;base64` +
+                atob(fs.readFileSync(`@${fileUrl}`, "utf-8")),
+            },
           },
         },
         // filedata: fs.createReadStream(`${fileUrl}`),
