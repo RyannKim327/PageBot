@@ -83,7 +83,7 @@ class FacebookPage {
     this.prefix = prefix;
   }
 
-  sendAttachment(type, fileUrl, event, callback) {
+  sendAttachment(fileType, fileUrl, event, callback) {
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
@@ -100,7 +100,7 @@ class FacebookPage {
       },
       message: {
         attachment: {
-          type: type,
+          type: fileType,
           payload: {
             url: fileUrl,
           },
@@ -126,7 +126,7 @@ class FacebookPage {
         },
         message: {
           attachment: {
-            type: type,
+            type: fileType,
             // filedata: `@${filedata}`,
           },
         },
