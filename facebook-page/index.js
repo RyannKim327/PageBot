@@ -109,13 +109,13 @@ class FacebookPage {
       },
     };
 
-    let url = "messages";
+    let url = "message_attachments";
     if (!fileUrl.startsWith("http")) {
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
       }
 
-      // url = "message_attachments";
+      url = "messages";
       if (!fs.existsSync(fileUrl.substring())) {
         this.sendMessage("File doesn't exists", event);
       }
@@ -132,7 +132,7 @@ class FacebookPage {
           },
         },
         filedata: `@${fileUrl}`,
-        type: type,
+        // type: type,
       };
     }
 
