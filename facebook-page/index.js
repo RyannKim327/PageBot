@@ -114,7 +114,7 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "message_attachments";
+      // url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
@@ -127,10 +127,12 @@ class FacebookPage {
         message: {
           attachment: {
             type: fileType,
-            // filedata: `@${filedata}`,
+            url:
+              `data:image/png;base64` +
+              atob(fs.readFileSync(`@${filedata}`, "utf-8")),
           },
         },
-        filedata: fs.createReadStream(`${fileUrl}`),
+        // filedata: fs.createReadStream(`${fileUrl}`),
         // type: type,
       };
     }
