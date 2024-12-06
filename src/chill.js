@@ -1,7 +1,7 @@
 module.exports = (api, event) => {
   api.sendMessage("Chill ka lang", event);
   api.sendAttachment(
-    "image",
+    "file",
     `${__dirname}/../assets/chill.png`,
     event,
     (failed, response) => {
