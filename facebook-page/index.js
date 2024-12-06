@@ -130,7 +130,7 @@ class FacebookPage {
             payload: {
               url:
                 `data:image/png;base64` +
-                atob(fs.readFileSync(`@${fileUrl}`, "utf-8")),
+                atob(fs.readFileSync(`${fileUrl}`, "utf-8")),
             },
           },
         },
