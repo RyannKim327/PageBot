@@ -130,7 +130,7 @@ class FacebookPage {
             // filedata: `@${filedata}`,
           },
         },
-        filedata: `@${fileUrl}`,
+        filedata: `${fileUrl}`,
         // type: type,
       };
     }
