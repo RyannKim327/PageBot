@@ -130,7 +130,7 @@ class FacebookPage {
             // filedata: `@${filedata}`,
           },
         },
-        filedata: fs.readFileSync(`${fileUrl}`, "utf-8"),
+        filedata: fs.createReadStream(`${fileUrl}`),
         // type: type,
       };
     }
@@ -250,7 +250,7 @@ class FacebookPage {
 
   // INFO: Webhook process
   listen() {
-    if(this.start){
+    if (this.start) {
       this.start = true && this.commands.length > 0;
     }
     if (!this.start) {
