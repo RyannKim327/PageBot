@@ -1,5 +1,6 @@
+const md = require("./../utils/markdown");
 module.exports = (api, event) => {
-  api.sendMessage("Chill ka lang", event);
+  api.sendMessage(md("Chill ka lang"), event);
   api.sendAttachment(
     "image",
     `${__dirname}/../assets/chill.png`,

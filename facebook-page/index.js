@@ -20,9 +20,10 @@ class FacebookPage {
       image: "image/png",
       video: "video/mp4",
     };
+    this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
@@ -114,7 +115,7 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      // url = "message_attachments";
+      url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
@@ -127,14 +128,9 @@ class FacebookPage {
         message: {
           attachment: {
             type: fileType,
-            payload: {
-              url:
-                `data:image/png;base64` +
-                atob(fs.readFileSync(`${fileUrl}`, "utf-8")),
-            },
           },
         },
-        // filedata: fs.createReadStream(`${fileUrl}`),
+        filedata: `@${fileUrl}`,
         // type: type,
       };
     }
