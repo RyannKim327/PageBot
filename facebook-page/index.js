@@ -102,9 +102,6 @@ class FacebookPage {
       message: {
         attachment: {
           type: fileType,
-          payload: {
-            url: fileUrl,
-          },
         },
       },
     };
@@ -115,24 +112,14 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "message_attachments";
+      url = "message_attachment";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
 
-      // console.log(fileUrl);
-      data = {
-        recipient: {
-          id: event.sender.id,
-        },
-        message: {
-          attachment: {
-            type: fileType,
-          },
-        },
-        filedata: `@${fileUrl}`,
-        // type: type,
-      };
+      data.filedata = `@${fileUrl}`;
+    } else {
+      data.message.attachment.payload.url = fileUrl;
     }
 
     axios
