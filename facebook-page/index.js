@@ -102,6 +102,9 @@ class FacebookPage {
       message: {
         attachment: {
           type: fileType,
+          payload: {
+            is_reusable: true,
+          },
         },
       },
     };
@@ -112,12 +115,11 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "message_attachment";
+      url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-
-      data.filedata = `@${fileUrl}`;
+      data.filedata = `@${fileUrl}`.replace(__dirname, "");
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
