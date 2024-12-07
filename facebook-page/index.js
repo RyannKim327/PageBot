@@ -7,8 +7,8 @@ class FacebookPage {
   constructor() {
     this.FB_TOKEN = process.env.FB_TOKEN;
     this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
-    this.app = express();
-    this.app.use(body.json());
+    this.__app = express();
+    this.__app.use(body.json());
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
@@ -119,7 +119,7 @@ class FacebookPage {
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      data.filedata = `@${fileUrl}`.replace(__dirname, "");
+      data.filedata = `@${fileUrl}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
@@ -248,9 +248,11 @@ class FacebookPage {
       );
     }
 
-    const app = this.app;
+    const app = this.__app;
     app.get("/", (req, res) => {
-      res.send("The main webpage was started.");
+      res.send(
+        "The main webpage was started. Please verify your token by calling it with a webhook on facebook developer's page",
+      );
     });
 
     app.get("/webhook", (req, res) => {
@@ -284,7 +286,7 @@ class FacebookPage {
       }
     });
 
-    this.app.listen(this.__port, () => {
+    app.listen(this.__port, () => {
       console.log("The service is now started");
     });
   }
