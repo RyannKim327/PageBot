@@ -119,8 +119,8 @@ class FacebookPage {
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      const f = fileUrl.split("..")[1];
-      data.filedata = `@/..${f}`;
+      const f = fileUrl.split("src/..");
+      data.filedata = `@/${f[1]}/${f[2]}`;
       const ex = fileUrl.split(".");
       const extension = ex[ex.length - 1];
       const types = {
@@ -155,7 +155,7 @@ class FacebookPage {
       };
       const file = fs.readFileSync(fileUrl);
       // data.message.attachment.payload.url = `data:${types[extension]};base64,${file.toString("base64")}`;
-      data.filetyle = types[extension];
+      data.type = types[extension];
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
