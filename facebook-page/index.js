@@ -133,41 +133,7 @@ class FacebookPage {
         file = fileUrl.split("temp/")[1];
         folder = "temp";
       }
-      // const f = fileUrl.split("/src/..");
-      // data.filedata = `@${fileUrl}`;
-      // const ex = fileUrl.split(".");
-      // const extension = ex[ex.length - 1];
-      // const types = {
-      //   png: "image/png",
-      //   jpg: "image/jpeg",
-      //   jpeg: "image/jpeg",
-      //   gif: "image/gif",
-      //   svg: "image/svg+xml",
-      //   webp: "image/webp",
-      //   bmp: "image/bmp",
-      //   ico: "image/x-icon",
-      //   mp3: "audio/mpeg",
-      //   wav: "audio/wav",
-      //   ogg: "audio/ogg",
-      //   aac: "audio/aac",
-      //   flac: "audio/flac",
-      //   mp4: "video/mp4",
-      //   avi: "video/x-msvideo",
-      //   mkv: "video/x-matroska",
-      //   mov: "video/quicktime",
-      //   wmv: "video/x-ms-wmv",
-      //   txt: "text/plain",
-      //   csv: "text/csv",
-      //   html: "text/html",
-      //   css: "text/css",
-      //   js: "application/javascript",
-      //   json: "application/json",
-      //   xml: "application/xml",
-      //   pdf: "application/pdf",
-      //   zip: "application/zip",
-      //   rar: "application/x-rar-compressed",
-      // };
-      // data.type = types[extension];
+
       data.message.attachment.payload.url = `https://${this.hostname}/${folder}/${file}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
