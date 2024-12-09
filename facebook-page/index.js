@@ -23,7 +23,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -115,11 +115,45 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "message_attachments";
+      // url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      data.filedata = `@${fileUrl}`;
+      // data.filedata = `@${fileUrl}`;
+      const ex = fileUrl.split(".");
+      const extension = ex[ex.length - 1];
+      const types = {
+        png: "image/png",
+        jpg: "image/jpeg",
+        jpeg: "image/jpeg",
+        gif: "image/gif",
+        svg: "image/svg+xml",
+        webp: "image/webp",
+        bmp: "image/bmp",
+        ico: "image/x-icon",
+        mp3: "audio/mpeg",
+        wav: "audio/wav",
+        ogg: "audio/ogg",
+        aac: "audio/aac",
+        flac: "audio/flac",
+        mp4: "video/mp4",
+        avi: "video/x-msvideo",
+        mkv: "video/x-matroska",
+        mov: "video/quicktime",
+        wmv: "video/x-ms-wmv",
+        txt: "text/plain",
+        csv: "text/csv",
+        html: "text/html",
+        css: "text/css",
+        js: "application/javascript",
+        json: "application/json",
+        xml: "application/xml",
+        pdf: "application/pdf",
+        zip: "application/zip",
+        rar: "application/x-rar-compressed",
+      };
+      const file = fs.readFileSync(fileUrl);
+      data.message.attachment.payload.url = `data:${types[extension]};base64,${file.toString("base64")}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
     }

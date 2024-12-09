@@ -1,10 +1,7 @@
-const axios = require("axios");
+const fs = require("fs");
 
-async function a() {
-  const search = await axios.get(
-    "https://apiv2.kenliejugarap.com/music?url=https://www.youtube.com/watch?v=1x7gzFA3_Bo",
-  );
-  console.log(search.data);
-}
-a();
-
+const d = fs.readFileSync("assets/chill.png");
+// const data = d.toString("base64");
+const ex = "assets/chill.png".split(".");
+const t = ex[ex.length - 1];
+console.log(t);
