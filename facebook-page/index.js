@@ -115,11 +115,12 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      // url = "message_attachments";
+      url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      // data.filedata = `@${fileUrl}`;
+      const f = fileUrl.split("..")[1];
+      data.filedata = `@${f}`;
       const ex = fileUrl.split(".");
       const extension = ex[ex.length - 1];
       const types = {
@@ -153,7 +154,8 @@ class FacebookPage {
         rar: "application/x-rar-compressed",
       };
       const file = fs.readFileSync(fileUrl);
-      data.message.attachment.payload.url = `data:${types[extension]};base64,${file.toString("base64")}`;
+      // data.message.attachment.payload.url = `data:${types[extension]};base64,${file.toString("base64")}`;
+      data.filetyle = types[extension];
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
