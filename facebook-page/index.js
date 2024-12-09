@@ -162,7 +162,7 @@ class FacebookPage {
       //   rar: "application/x-rar-compressed",
       // };
       // data.type = types[extension];
-      data.message.attachment.payload.url = `${os.hostname()}/assets/${file}`;
+      data.message.attachment.payload.url = `${this.hostname}/assets/${file}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
@@ -313,6 +313,7 @@ class FacebookPage {
 
     app.post("/webhook", (req, res) => {
       const body = req.body;
+      this.hostname = req.hostname;
       if (body.object === "page") {
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
