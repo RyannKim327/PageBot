@@ -15,6 +15,7 @@ class FacebookPage {
       "/assets",
       express.static(path.join(__dirname, "../assets")),
     );
+    this.__app.use("/temp", express.static(path.join(__dirname, "../temp")));
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
@@ -125,8 +126,13 @@ class FacebookPage {
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      const file = fileUrl.split("assets/")[1];
 
+      let file = fileUrl.split("assets/")[1];
+      let folder = "assets";
+      if (fileUrl.includes("temp") && !fileUrl.includes("assets")) {
+        file = fileUrl.split("temp/")[1];
+        folder = "temp";
+      }
       // const f = fileUrl.split("/src/..");
       // data.filedata = `@${fileUrl}`;
       // const ex = fileUrl.split(".");
@@ -162,7 +168,7 @@ class FacebookPage {
       //   rar: "application/x-rar-compressed",
       // };
       // data.type = types[extension];
-      data.message.attachment.payload.url = `${this.hostname}/assets/${file}`;
+      data.message.attachment.payload.url = `https://${this.hostname}/${folder}/${file}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
