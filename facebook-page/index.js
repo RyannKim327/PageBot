@@ -119,8 +119,8 @@ class FacebookPage {
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      const f = fileUrl.split("src/..");
-      data.filedata = `@/${f[0]}${f[1]}`;
+      const f = fileUrl.split("/src/..");
+      data.filedata = `@${f[0]}${f[1]}`;
       const ex = fileUrl.split(".");
       const extension = ex[ex.length - 1];
       const types = {
