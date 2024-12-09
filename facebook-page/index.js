@@ -120,7 +120,7 @@ class FacebookPage {
         return this.sendMessage("File doesn't exists", event);
       }
       const f = fileUrl.split("..")[1];
-      data.filedata = `@${f}`;
+      data.filedata = `@/..${f}`;
       const ex = fileUrl.split(".");
       const extension = ex[ex.length - 1];
       const types = {
