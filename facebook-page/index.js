@@ -2,6 +2,8 @@ const body = require("body-parser");
 const fs = require("fs");
 const express = require("express");
 const axios = require("axios");
+const path = require("path");
+const os = require("os");
 
 class FacebookPage {
   constructor() {
@@ -9,6 +11,10 @@ class FacebookPage {
     this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
     this.__app = express();
     this.__app.use(body.json());
+    this.__app.use(
+      "/assets",
+      express.static(path.join(__dirname, "../assets")),
+    );
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
@@ -115,47 +121,48 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      url = "message_attachments";
+      // url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
-      const f = fileUrl.split("/src/..");
-      data.filedata = `@${f[0]}${f[1]}`;
-      const ex = fileUrl.split(".");
-      const extension = ex[ex.length - 1];
-      const types = {
-        png: "image/png",
-        jpg: "image/jpeg",
-        jpeg: "image/jpeg",
-        gif: "image/gif",
-        svg: "image/svg+xml",
-        webp: "image/webp",
-        bmp: "image/bmp",
-        ico: "image/x-icon",
-        mp3: "audio/mpeg",
-        wav: "audio/wav",
-        ogg: "audio/ogg",
-        aac: "audio/aac",
-        flac: "audio/flac",
-        mp4: "video/mp4",
-        avi: "video/x-msvideo",
-        mkv: "video/x-matroska",
-        mov: "video/quicktime",
-        wmv: "video/x-ms-wmv",
-        txt: "text/plain",
-        csv: "text/csv",
-        html: "text/html",
-        css: "text/css",
-        js: "application/javascript",
-        json: "application/json",
-        xml: "application/xml",
-        pdf: "application/pdf",
-        zip: "application/zip",
-        rar: "application/x-rar-compressed",
-      };
-      const file = fs.readFileSync(fileUrl);
-      // data.message.attachment.payload.url = `data:${types[extension]};base64,${file.toString("base64")}`;
-      data.type = types[extension];
+      const file = fileUrl.split("assets/")[1];
+
+      // const f = fileUrl.split("/src/..");
+      // data.filedata = `@${fileUrl}`;
+      // const ex = fileUrl.split(".");
+      // const extension = ex[ex.length - 1];
+      // const types = {
+      //   png: "image/png",
+      //   jpg: "image/jpeg",
+      //   jpeg: "image/jpeg",
+      //   gif: "image/gif",
+      //   svg: "image/svg+xml",
+      //   webp: "image/webp",
+      //   bmp: "image/bmp",
+      //   ico: "image/x-icon",
+      //   mp3: "audio/mpeg",
+      //   wav: "audio/wav",
+      //   ogg: "audio/ogg",
+      //   aac: "audio/aac",
+      //   flac: "audio/flac",
+      //   mp4: "video/mp4",
+      //   avi: "video/x-msvideo",
+      //   mkv: "video/x-matroska",
+      //   mov: "video/quicktime",
+      //   wmv: "video/x-ms-wmv",
+      //   txt: "text/plain",
+      //   csv: "text/csv",
+      //   html: "text/html",
+      //   css: "text/css",
+      //   js: "application/javascript",
+      //   json: "application/json",
+      //   xml: "application/xml",
+      //   pdf: "application/pdf",
+      //   zip: "application/zip",
+      //   rar: "application/x-rar-compressed",
+      // };
+      // data.type = types[extension];
+      data.message.attachment.payload.url = `${os.hostname()}/assets/${file}`;
     } else {
       data.message.attachment.payload.url = fileUrl;
     }
