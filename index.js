@@ -24,7 +24,7 @@ api.addCommand("music", {
 
 api.addCommand("sms", {
   title: "Free Text",
-  command: "sms ([\\d]+): ([\\w\\W]+)",
+  command: "text ([\\d]+) ([\\w\\W]+)",
 });
 
 api.setFallback("gpt", {

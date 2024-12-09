@@ -5,7 +5,7 @@ module.exports = async (api, event, regex) => {
   console.log(msg);
   console.log(regex);
   const { data } = await axios.get(
-    `https://https://api.kenliejugarap.com/freesmslbc/?number=${msg[1]}&message=${msg[2]}`,
+    `https://api.kenliejugarap.com/freesmslbc/?number=${msg[1]}&message=${msg[2]}`,
   );
   if (data.success) {
     api.sendMessage(
