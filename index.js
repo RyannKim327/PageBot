@@ -27,8 +27,13 @@ api.addCommand("sms", {
   command: "text ([\\d]+) ([\\w\\W]+)",
 });
 
+api.addCommand("bible", {
+  title: "Biblegateway verse",
+  command: "verse ([\\w\\W]+)",
+});
+
 api.setFallback("gpt", {
   title: "GPT",
 });
 
-api.listen()
+api.listen();
