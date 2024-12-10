@@ -9,6 +9,7 @@ module.exports = async (api, event, regex) => {
   console.log(bible);
   api.sendMessage(
     `${bible[0].book}\n\n${bible[0].verse}`,
+    event,
     (failed, response) => {},
   );
 };
