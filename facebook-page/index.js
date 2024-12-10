@@ -3,7 +3,6 @@ const fs = require("fs");
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
-const os = require("os");
 
 class FacebookPage {
   constructor() {
@@ -66,6 +65,7 @@ class FacebookPage {
     this.commands.push(command);
   }
 
+  // TODO: To create a catch if there is no command to be executed
   setFallback(script, command) {
     if (typeof script !== "string") {
       this.start = false;
@@ -265,12 +265,14 @@ class FacebookPage {
 
     const app = this.__app;
     app.get("/", (req, res) => {
+      this.hostname = req.hostname;
       res.send(
         "The main webpage was started. Please verify your token by calling it with a webhook on facebook developer's page",
       );
     });
 
     app.get("/webhook", (req, res) => {
+      this.hostname = req.hostname;
       const mode = req.query["hub.mode"];
       const token = req.query["hub.verify_token"];
       const challenge = req.query["hub.challenge"];
