@@ -214,7 +214,7 @@ class FacebookPage {
     if (msgs.length >= 375) {
       const words = 250;
       for (let m = 0; m < msgs.length % words; m++) {
-        const msg_ = msgs.splice(m * words, words);
+        const msg_ = msgs.slice(m * words, words);
         sendMsg(msg_);
       }
     } else {
