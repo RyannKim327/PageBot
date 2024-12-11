@@ -182,7 +182,7 @@ class FacebookPage {
         .post(
           `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
           {
-            message: msg,
+            message: { text: str },
             recipient: {
               id: event.sender.id,
             },
@@ -211,6 +211,15 @@ class FacebookPage {
     }
 
     let msgs = msg.split(" ");
+    if (msgs.length >= 750) {
+      const words = 500;
+      for (let m = 0; m < msgs.length % words; m++) {
+        const msg_ = msgs.splice(m * words, words);
+        sendMsg(msg_);
+      }
+    } else {
+      sendMsg(msg);
+    }
   }
 
   // INFO: Private Functions
