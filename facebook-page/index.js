@@ -211,8 +211,8 @@ class FacebookPage {
     }
 
     let msgs = msg.split(" ");
-    if (msgs.length >= 750) {
-      const words = 500;
+    if (msgs.length >= 375) {
+      const words = 250;
       for (let m = 0; m < msgs.length % words; m++) {
         const msg_ = msgs.splice(m * words, words);
         sendMsg(msg_);
