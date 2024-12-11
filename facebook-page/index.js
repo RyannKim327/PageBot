@@ -213,7 +213,7 @@ class FacebookPage {
     let msgs = msg.split(" ");
     if (msgs.length >= 375) {
       const words = 250;
-      for (let m = 0; m < Math.cell(msgs.length / words); m++) {
+      for (let m = 0; m < Math.ceil(msgs.length / words); m++) {
         const msg_ = msgs.slice(m * words, (m + 1) * words);
         sendMsg(msg_);
       }
