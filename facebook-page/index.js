@@ -211,8 +211,8 @@ class FacebookPage {
     }
 
     let msgs = msg.split(" ");
-    if (msgs.length >= 375) {
-      const words = 300;
+    if (msgs.length >= 300) {
+      const words = 250;
       let m = 0;
       const x = () => {
         if (m < Math.ceil(msgs.length / words)) {
