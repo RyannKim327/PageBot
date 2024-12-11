@@ -213,10 +213,16 @@ class FacebookPage {
     let msgs = msg.split(" ");
     if (msgs.length >= 375) {
       const words = 250;
-      for (let m = 0; m < Math.ceil(msgs.length / words); m++) {
-        const msg_ = msgs.slice(m * words, (m + 1) * words);
-        sendMsg(msg_.join(" "));
-      }
+      let m = 0;
+      const x = () => {
+        if (m < Math.ceil(msgs.length / words)) {
+          const msg_ = msgs.slice(m * words, (m + 1) * words);
+          sendMsg(msg_.join(" "));
+          m++;
+          x();
+        }
+      };
+      x();
     } else {
       sendMsg(msg);
     }
