@@ -171,35 +171,46 @@ class FacebookPage {
     }
 
     let msg = message;
-
-    if (typeof message === "string") {
-      msg = { text: message };
+    if (typeof message === "object") {
+      if (message.text) {
+        msg = message.text;
+      }
     }
 
-    axios
-      .post(
-        `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
-        {
-          message: msg,
-          recipient: {
-            id: event.sender.id,
+    const sendMsg = (str) => {
+      axios
+        .post(
+          `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
+          {
+            message: msg,
+            recipient: {
+              id: event.sender.id,
+            },
           },
-        },
-      )
-      .then((response) => {
-        if (callback) {
-          if (typeof callback === "function") {
-            callback(false, response);
+        )
+        .then((response) => {
+          if (callback) {
+            if (typeof callback === "function") {
+              callback(false, response);
+            }
           }
-        }
-      })
-      .catch((error) => {
-        if (callback) {
-          if (typeof callback === "function") {
-            callback(true, error);
+        })
+        .catch((error) => {
+          if (callback) {
+            if (typeof callback === "function") {
+              callback(true, error);
+            }
           }
-        }
-      });
+        });
+    };
+
+    if (typeof msg !== "string") {
+      return console.error(
+        `Send Message [ERR]: Message must be in string format`,
+      );
+    }
+
+    let msgs = msg.split(" ");
   }
 
   // INFO: Private Functions
