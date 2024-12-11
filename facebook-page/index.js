@@ -215,7 +215,7 @@ class FacebookPage {
       const words = 250;
       for (let m = 0; m < Math.ceil(msgs.length / words); m++) {
         const msg_ = msgs.slice(m * words, (m + 1) * words);
-        sendMsg(msg_);
+        sendMsg(msg_.join(" "));
       }
     } else {
       sendMsg(msg);
