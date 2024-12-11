@@ -219,7 +219,9 @@ class FacebookPage {
           const msg_ = msgs.slice(m * words, (m + 1) * words);
           sendMsg(msg_.join(" "));
           m++;
-          x();
+          setTimeout(() => {
+            x();
+          }, 1500);
         }
       };
       x();
