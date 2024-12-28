@@ -265,20 +265,19 @@ class FacebookPage {
       if (_a > _b) return 1
       return 0
     })
-    let message = `Hello, I am the automated service of Hello World named AI Haibara. I'm using the prefix: "${this.prefix}"
-    Without quotati0on mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`
+    let message = `Hello, I am the automated service of Hello World named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`
     let i = 1
     for (let c of this.commands) {
       if (c.title && c.command) {
         let maintenance = ""
         if (c.maintenance) {
-          maintenance = "Under Maintenance"
+          maintenance = "[Under Maintenance]"
         }
-        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" [${maintenance}]`
+        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" ${maintenance}`
         if (c.description) {
-          msg += `\n${c.description}`
+          msg += `\n  ~ ${c.description}`
         } else {
-          msg += "\nNo description provided"
+          msg += "\n  ~ No description provided"
         }
         message += `${msg}\n\n`
         i++
@@ -286,7 +285,7 @@ class FacebookPage {
     }
     if (this.fallback) {
       if (this.fallback.title) {
-        message += `If the command didn't exists, or not match, there's something what we call a fallback where is as ${this.fallback.title}`
+        message += `If the command didn't exists, or not match, there's something what we call a fallback where it is called as ${this.fallback.title}`
       }
     }
     this.sendMessage(message, event)
