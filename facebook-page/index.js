@@ -110,13 +110,15 @@ class FacebookPage {
         attachment: {
           type: fileType,
           payload: {
+            url: fileUrl,
             is_reusable: true,
-          },
-        },
-      },
+          }
+        }
+      }
     };
 
     let url = "messages";
+
     if (!fileUrl.startsWith("http")) {
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
@@ -135,8 +137,6 @@ class FacebookPage {
       }
 
       data.message.attachment.payload.url = `https://${this.hostname}/${folder}/${file}`;
-    } else {
-      data.message.attachment.payload.url = fileUrl;
     }
 
     axios

@@ -1,5 +1,4 @@
 const axios = require("axios");
-
 const fs = require("fs");
 
 module.exports = async (api, event, prefix) => {
@@ -21,6 +20,7 @@ module.exports = async (api, event, prefix) => {
     data[senderID] = msgs;
     fs.writeFileSync("data/gpt.json", JSON.stringify(data), "utf-8");
   }
+
   const msg = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
   if (!Object.keys(msg).includes(senderID)) {
     const msgs = [
@@ -55,7 +55,6 @@ module.exports = async (api, event, prefix) => {
       max_tokens: 4000,
     },
   );
-  console.log(data.choices[0]["message"]["content"]);
   api.sendMessage(
     data.choices[0]["message"]["content"],
     event,
