@@ -284,100 +284,100 @@ class FacebookPage {
         i++
       }
     }
-    if (this.fallback)
+    if (this.fallback) {
       if (this.fallback.title) {
         message += `If the command didn't exists, or not match, there's something what we call a fallback where is as ${this.fallback.title}`
       }
-  }
+    }
     this.sendMessage(message, event)
   }
 
-#processhandler(event) {
-  let done = false;
-  const commands = this.commands;
-  let c = 0;
-  const execute = () => {
-    let command = commands[c];
-    const _regex = this.#regex(command.command);
-    if (_regex.test(event.message.text) && !done) {
-      const script = require(`./../src/${command.script}`);
-      done = true;
-      script(this, event, _regex);
-    } else if (!done && c < commands.length - 1) {
-      c++;
+  #processhandler(event) {
+    let done = false;
+    const commands = this.commands;
+    let c = 0;
+    const execute = () => {
+      let command = commands[c];
+      const _regex = this.#regex(command.command);
+      if (_regex.test(event.message.text) && !done) {
+        const script = require(`./../src/${command.script}`);
+        done = true;
+        script(this, event, _regex);
+      } else if (!done && c < commands.length - 1) {
+        c++;
+        execute();
+      }
+    };
+    const regex = this.#regex("help")
+    if (regex.test(event.message.text)) {
+      this.#help(event)
+      done = true
+    } else {
       execute();
-    }
-  };
-  const regex = this.#regex("help")
-  if (regex.test(event.message.text)) {
-    this.#help(event)
-    done = true
-  } else {
-    execute();
 
-    if (this.fallback !== null && typeof this.fallback === "object" && !done) {
-      const script = require(`./../src/${this.fallback.script}`);
-      script(this, event, this.prefix);
-    }
-  }
-}
-
-// INFO: Webhook process
-listen() {
-  if (this.start) {
-    this.start = true && this.commands.length > 0;
-  }
-  if (!this.start) {
-    return console.error(
-      `The're a problem with your configuration. Kindly check it first`,
-    );
-  }
-
-  const app = this.__app;
-  app.get("/", (req, res) => {
-    this.hostname = req.hostname;
-    res.send(
-      "The main webpage was started. Please verify your token by calling it with a webhook on facebook developer's page",
-    );
-  });
-
-  app.get("/webhook", (req, res) => {
-    this.hostname = req.hostname;
-    const mode = req.query["hub.mode"];
-    const token = req.query["hub.verify_token"];
-    const challenge = req.query["hub.challenge"];
-    if (token && mode) {
-      if (mode === "subscribe" && token === this.KEY_TOKEN) {
-        res.status(200).send(challenge);
-      } else {
-        res.status(403);
+      if (this.fallback !== null && typeof this.fallback === "object" && !done) {
+        const script = require(`./../src/${this.fallback.script}`);
+        script(this, event, this.prefix);
       }
     }
-  });
+  }
 
-  app.post("/webhook", (req, res) => {
-    const body = req.body;
-    this.hostname = req.hostname;
-    if (body.object === "page") {
-      body.entry.forEach((entry) => {
-        entry.messaging.forEach((event) => {
-          if (event.message) {
-            if (event.message.text.startsWith(this.prefix)) {
-              this.#processhandler(event);
-            }
-          } else {
-            this.#postback(event);
-          }
-        });
-      });
-      res.status(200).send("EVENT_RECEIVED");
+  // INFO: Webhook process
+  listen() {
+    if (this.start) {
+      this.start = true && this.commands.length > 0;
     }
-  });
+    if (!this.start) {
+      return console.error(
+        `The're a problem with your configuration. Kindly check it first`,
+      );
+    }
 
-  app.listen(this.__port, () => {
-    console.log("The service is now started");
-  });
-}
+    const app = this.__app;
+    app.get("/", (req, res) => {
+      this.hostname = req.hostname;
+      res.send(
+        "The main webpage was started. Please verify your token by calling it with a webhook on facebook developer's page",
+      );
+    });
+
+    app.get("/webhook", (req, res) => {
+      this.hostname = req.hostname;
+      const mode = req.query["hub.mode"];
+      const token = req.query["hub.verify_token"];
+      const challenge = req.query["hub.challenge"];
+      if (token && mode) {
+        if (mode === "subscribe" && token === this.KEY_TOKEN) {
+          res.status(200).send(challenge);
+        } else {
+          res.status(403);
+        }
+      }
+    });
+
+    app.post("/webhook", (req, res) => {
+      const body = req.body;
+      this.hostname = req.hostname;
+      if (body.object === "page") {
+        body.entry.forEach((entry) => {
+          entry.messaging.forEach((event) => {
+            if (event.message) {
+              if (event.message.text.startsWith(this.prefix)) {
+                this.#processhandler(event);
+              }
+            } else {
+              this.#postback(event);
+            }
+          });
+        });
+        res.status(200).send("EVENT_RECEIVED");
+      }
+    });
+
+    app.listen(this.__port, () => {
+      console.log("The service is now started");
+    });
+  }
 }
 
 module.exports = FacebookPage;
