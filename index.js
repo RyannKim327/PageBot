@@ -2,6 +2,8 @@ const bot = require("./facebook-page/index");
 
 const api = new bot();
 
+api.setPrefix(":")
+
 api.addCommand("chill", {
   title: "That chill guy",
   command: "chill",
