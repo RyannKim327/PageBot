@@ -10,11 +10,11 @@ module.exports = async (api, event, prefix) => {
       {
         role: "user",
         content:
-          "Pretend to be the girlfriend of Ryann Kim Sesgundo named Nix. Ask my name first before we start any communication",
+          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication",
       },
       {
         role: "system",
-        content: "Hello, my name is Nix, may I ask your name?",
+        content: "Hello, my name is AI Haibara, you may call me AI, may I ask your name?",
       },
     ];
     const data = {};
@@ -27,7 +27,7 @@ module.exports = async (api, event, prefix) => {
       {
         role: "user",
         content:
-          "Pretend to be the girlfriend of Ryann Kim Sesgundo named Nix. Ask my name first before we start any communication",
+          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication"
       },
       {
         role: "system",
