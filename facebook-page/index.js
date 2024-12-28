@@ -29,7 +29,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
@@ -257,6 +257,31 @@ class FacebookPage {
     }
   }
 
+  #help(event) {
+    this.commands.sort((a, b) => {
+      const _a = JSON.stringify(Object.values(a).sort())
+      const _b = JSON.stringify(Object.values(b).sort())
+      if (_a < _b) return -1
+      if (_a > _b) return 1
+      return 0
+    })
+    let message = "Hello, I am the automated service of Hello World named AI Haibara. Here are my services, so feel free to use if needed."
+    let i = 1
+    for (let c of this.commands) {
+      if (c.title && c.command) {
+        let msg = `${i}. Command name: ${c.title} "${this.prefix}${c.command}"`
+        if (c.description) {
+          msg += c.description
+        } else {
+          msg += "No description provided"
+        }
+        message += `${msg}\n\n`
+        i++
+      }
+    }
+    this.sendMessage(message, event)
+  }
+
   #processhandler(event) {
     let done = false;
     const commands = this.commands;
@@ -273,7 +298,13 @@ class FacebookPage {
         execute();
       }
     };
-    execute();
+    const regex = this.#regex("help")
+    if (regex.test(event.message.text)) {
+      this.#help(event)
+      done = false
+    } else {
+      execute();
+    }
     if (this.fallback !== null && typeof this.fallback === "object" && !done) {
       const script = require(`./../src/${this.fallback.script}`);
       script(this, event, this.prefix);
