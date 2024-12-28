@@ -37,7 +37,7 @@ api.addCommand("music", {
 api.addCommand("sms", {
   title: "Free Text",
   description: "You may send your messages by just messaging it to us",
-  command: "text ([\\d]+) ([\\w\\W]+)",,
+  command: "text ([\\d]+) ([\\w\\W]+)",
   maintenance: true
 });
 

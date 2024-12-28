@@ -270,7 +270,11 @@ class FacebookPage {
     let i = 1
     for (let c of this.commands) {
       if (c.title && c.command) {
-        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}"`
+        let maintenance = ""
+        if (c.maintenance) {
+          maintenance = "Under Maintenance"
+        }
+        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" [${maintenance}]`
         if (c.description) {
           msg += `\n${c.description}`
         } else {
