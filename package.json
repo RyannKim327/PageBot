@@ -16,6 +16,6 @@
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
-    "ultimate-guitar": "^1.0.5"
+    "ultimate-guitar": "^1.0.6"
   }
 }
