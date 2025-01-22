@@ -8,7 +8,7 @@ module.exports = async (api, event, regex) => {
   const chords = result.responses;
 
   api.sendMessage(
-    `Song Name: ${chords.song_name}\nArtist: ${chords.artist_name}\n\n${chords.chords}`,
+    `Song Name: ${data.song_name}\nArtist: ${data.artist_name}\n\n${chords.chords}`,
     event,
   );
 };
