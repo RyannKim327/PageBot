@@ -19,7 +19,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
-    this.version = "v23.0";
+    this.version = "v21.0";
     this.fallback = null;
     this.types = {
       audio: "audio/mpeg",
@@ -143,6 +143,12 @@ class FacebookPage {
       .post(
         `https://graph.facebook.com/${this.version}/me/${url}?access_token=${this.FB_TOKEN}`,
         data,
+        {
+          headers: {
+            Authorization: `Bearer ${this.FB_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+        },
       )
       .then((response) => {
         if (callback) {
@@ -187,6 +193,12 @@ class FacebookPage {
             message: { text: str },
             recipient: {
               id: event.sender.id,
+            },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${this.FB_TOKEN}`,
+              "Content-Type": "application/json",
             },
           },
         )
