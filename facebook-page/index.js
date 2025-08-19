@@ -170,6 +170,8 @@ class FacebookPage {
       );
     }
 
+    console.log("Message Test");
+
     let msg = message;
     if (typeof message === "object") {
       if (message.text) {
@@ -361,6 +363,7 @@ class FacebookPage {
     app.post("/webhook", (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
+      console.log("Fetch");
       if (body.object === "page") {
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
