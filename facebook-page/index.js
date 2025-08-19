@@ -20,7 +20,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
-    this.version = "v21.0";
+    this.version = "v22.0";
     this.fallback = null;
     this.types = {
       audio: "audio/mpeg",
