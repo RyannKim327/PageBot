@@ -1,15 +1,16 @@
-const body = require("body-parser");
 const fs = require("fs");
 const express = require("express");
 const axios = require("axios");
 const path = require("path");
+const bodyParser = require("body-parser");
 
 class FacebookPage {
   constructor() {
     this.FB_TOKEN = process.env.FB_TOKEN;
     this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
     this.__app = express();
-    this.__app.use(body.json());
+    this.__app.use(bodyParser.json());
+    this.__app.use(express.json());
     this.__app.use(
       "/assets",
       express.static(path.join(__dirname, "../assets")),
@@ -373,7 +374,7 @@ class FacebookPage {
       }
     });
 
-    app.post("/webhook", (req, res) => {
+    app.post("/webhook", bodyParser, (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
       console.log("Fetch");
