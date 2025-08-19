@@ -19,7 +19,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
-    this.version = "v21.0";
+    this.version = "v22.0";
     this.fallback = null;
     this.types = {
       audio: "audio/mpeg",
@@ -112,9 +112,9 @@ class FacebookPage {
           payload: {
             url: fileUrl,
             is_reusable: true,
-          }
-        }
-      }
+          },
+        },
+      },
     };
 
     let url = "messages";
@@ -259,36 +259,36 @@ class FacebookPage {
 
   #help(event) {
     this.commands.sort((a, b) => {
-      const _a = JSON.stringify(Object.values(a).sort())
-      const _b = JSON.stringify(Object.values(b).sort())
-      if (_a < _b) return -1
-      if (_a > _b) return 1
-      return 0
-    })
-    let message = `Hello, I am the automated service of Hello World named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`
-    let i = 1
+      const _a = JSON.stringify(Object.values(a).sort());
+      const _b = JSON.stringify(Object.values(b).sort());
+      if (_a < _b) return -1;
+      if (_a > _b) return 1;
+      return 0;
+    });
+    let message = `Hello, I am the automated service of Hello World named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`;
+    let i = 1;
     for (let c of this.commands) {
       if (c.title && c.command) {
-        let maintenance = ""
+        let maintenance = "";
         if (c.maintenance) {
-          maintenance = "[Under Maintenance]"
+          maintenance = "[Under Maintenance]";
         }
-        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" ${maintenance}`
+        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" ${maintenance}`;
         if (c.description) {
-          msg += `\n  ~ ${c.description}`
+          msg += `\n  ~ ${c.description}`;
         } else {
-          msg += "\n  ~ No description provided"
+          msg += "\n  ~ No description provided";
         }
-        message += `${msg}\n\n`
-        i++
+        message += `${msg}\n\n`;
+        i++;
       }
     }
     if (this.fallback) {
       if (this.fallback.title) {
-        message += `If the command didn't exists, or not match, there's something what we call a fallback where it is called as ${this.fallback.title}`
+        message += `If the command didn't exists, or not match, there's something what we call a fallback where it is called as ${this.fallback.title}`;
       }
     }
-    this.sendMessage(message, event)
+    this.sendMessage(message, event);
   }
 
   #processhandler(event) {
@@ -307,14 +307,18 @@ class FacebookPage {
         execute();
       }
     };
-    const regex = this.#regex("help")
+    const regex = this.#regex("help");
     if (regex.test(event.message.text)) {
-      this.#help(event)
-      done = true
+      this.#help(event);
+      done = true;
     } else {
       execute();
 
-      if (this.fallback !== null && typeof this.fallback === "object" && !done) {
+      if (
+        this.fallback !== null &&
+        typeof this.fallback === "object" &&
+        !done
+      ) {
         const script = require(`./../src/${this.fallback.script}`);
         script(this, event, this.prefix);
       }
