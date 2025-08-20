@@ -7,11 +7,11 @@ module.exports = async (api, event, regex) => {
   api.sendMessage(`Searching: ${body[1]}`, event);
 
   const search = await axios.get(
-    `https://apiv2.kenliejugarap.com/ytsearch?title=${body[1]}`,
+    `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
   );
   if (search.data) {
     const { data } = await axios.get(
-      `https://apiv2.kenliejugarap.com/music?url=${search.data.videos[0].url}`,
+      `https://kaiz-apis.gleeze.com/api/ytmp3-v2?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
     );
 
     api.sendMessage(

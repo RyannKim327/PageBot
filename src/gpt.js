@@ -13,7 +13,8 @@ module.exports = async (api, event, prefix) => {
       },
       {
         role: "system",
-        content: "Hello, my name is AI Haibara, you may call me AI, may I ask your name?",
+        content:
+          "Hello, my name is AI Haibara, you may call me AI, may I ask your name?",
       },
     ];
     const data = {};
@@ -27,7 +28,7 @@ module.exports = async (api, event, prefix) => {
       {
         role: "user",
         content:
-          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication"
+          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication",
       },
       {
         role: "system",
@@ -43,27 +44,16 @@ module.exports = async (api, event, prefix) => {
   });
 
   const { data } = await axios.post(
-    "https://gpt24-ecru.vercel.app/api/openai/v1/chat/completions",
+    "https://imissyougpt.onrender.com/api/chat",
     {
       messages: msg[senderID],
-      stream: false,
-      model: "gpt-4o-mini",
-      temperature: 0.5,
-      presence_penalty: 0,
-      frequency_penalty: 0,
-      top_p: 1,
-      max_tokens: 4000,
     },
   );
-  api.sendMessage(
-    data.choices[0]["message"]["content"],
-    event,
-    (failed, response) => {
-      msg[senderID].push({
-        role: "system",
-        content: data.choices[0]["message"]["content"],
-      });
-      fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
-    },
-  );
+  api.sendMessage(data.response, event, (failed, response) => {
+    msg[senderID].push({
+      role: "system",
+      content: data.response,
+    });
+    fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
+  });
 };

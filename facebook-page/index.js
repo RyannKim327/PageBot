@@ -274,7 +274,7 @@ class FacebookPage {
       if (_a > _b) return 1;
       return 0;
     });
-    let message = `Hello, I am the automated service of Hello World named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`;
+    let message = `Hello, I am the automated service of MPOP Reverse II named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`;
     let i = 1;
     for (let c of this.commands) {
       if (c.title && c.command) {
