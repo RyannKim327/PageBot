@@ -379,8 +379,8 @@ class FacebookPage {
               if (event.message.text.startsWith(this.prefix)) {
                 this.#processhandler(event);
               }
-            } else {
-              this.#postback(event);
+              // } else {
+              //   this.#postback(event);
             }
           });
         });
