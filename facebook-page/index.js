@@ -20,7 +20,7 @@ class FacebookPage {
     this.prefix = "/";
     this.commands = [];
     this.start = true;
-    this.version = "v22.0";
+    this.version = "v23.0";
     this.fallback = null;
     this.types = {
       audio: "audio/mpeg",
@@ -196,12 +196,6 @@ class FacebookPage {
               id: event.sender.id,
             },
           },
-          {
-            headers: {
-              Authorization: `Bearer ${this.FB_TOKEN}`,
-              "Content-Type": "application/json",
-            },
-          },
         )
         .then((response) => {
           if (callback) {
@@ -374,7 +368,7 @@ class FacebookPage {
       }
     });
 
-    app.post("/webhook", bodyParser, (req, res) => {
+    app.post("/webhook", (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
       console.log("Fetch");
