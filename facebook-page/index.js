@@ -381,8 +381,8 @@ class FacebookPage {
                   this.#processhandler(event);
                 }
               }
-              // } else {
-              //   this.#postback(event);
+            } else {
+              // this.#postback(event);
             }
           });
         });
