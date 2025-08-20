@@ -376,8 +376,10 @@ class FacebookPage {
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
             if (event.message) {
-              if (event.message.text.startsWith(this.prefix)) {
-                this.#processhandler(event);
+              if (event.message.text) {
+                if (event.message.text.startsWith(this.prefix)) {
+                  this.#processhandler(event);
+                }
               }
               // } else {
               //   this.#postback(event);
