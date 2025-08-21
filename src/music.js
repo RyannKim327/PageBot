@@ -20,7 +20,7 @@ module.exports = async (api, event, regex) => {
       () => {
         api.sendAttachment(
           "audio",
-          data.response,
+          data.download_url,
           event,
           (failed, response) => {
             console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
