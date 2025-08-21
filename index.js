@@ -31,7 +31,7 @@ api.addCommand("imagine", {
 
 api.addCommand("music", {
   title: "Music Command",
-  description: "This command is under maintenance",
+  description: "A command that send music from youtube source.",
   command: "music ([\\w\\W]+)",
 });
 
