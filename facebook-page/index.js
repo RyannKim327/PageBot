@@ -280,7 +280,7 @@ class FacebookPage {
     let message = `Hello, I am the automated service of MPOP Reverse II named AI Haibara. I'm using the prefix: "${this.prefix}" Without quotation mark.\n\n Here are my commands and services, so feel free to use if needed.\n\n`;
     let i = 1;
     for (let c of this.commands) {
-      if (c.title && c.command) {
+      if (c.title && c.command && !c.hidden) {
         let command = c.command.replace(/\([^)]*\)/gi, "[args]");
         let maintenance = "";
         if (c.maintenance) {

@@ -49,6 +49,12 @@ api.addCommand("bible", {
   command: "verse ([\\w\\W]+)",
 });
 
+api.addCommand("answer", {
+  title: "Answer",
+  command: "flag{([\\w\\W]+)}",
+  hidden: true,
+});
+
 api.setFallback("gpt", {
   title: "GPT 4-o",
 });
