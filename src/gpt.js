@@ -49,11 +49,14 @@ module.exports = async (api, event, prefix) => {
       messages: msg[senderID],
     },
   );
-  api.sendMessage(data.response, event, (failed, response) => {
+  api.sendMessage(data.text, event, (failed, response) => {
     msg[senderID].push({
       role: "system",
-      content: data.response,
+      content: data.propmt ?? data.response,
     });
     fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
   });
+  if (data.image) {
+    api.sendAttachment("image", data.image, event, (failed, response) => {});
+  }
 };
