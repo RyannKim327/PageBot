@@ -278,7 +278,7 @@ class FacebookPage {
     let i = 1;
     for (let c of this.commands) {
       if (c.title && c.command) {
-        let command = c.command.replace(/\([\w\W]+\)/gi, "[args]");
+        let command = c.command.replace(/\([^)]*\)/gi, "[args]");
         let maintenance = "";
         if (c.maintenance) {
           maintenance = "[Under Maintenance]";
