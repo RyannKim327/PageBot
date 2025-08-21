@@ -30,7 +30,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -278,11 +278,12 @@ class FacebookPage {
     let i = 1;
     for (let c of this.commands) {
       if (c.title && c.command) {
+        let command = c.command.replace(/\([\w\W]+\)/gi, "[args]");
         let maintenance = "";
         if (c.maintenance) {
           maintenance = "[Under Maintenance]";
         }
-        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${c.command}" ${maintenance}`;
+        let msg = `${i}. Command name: ${c.title}\nCommand: "${this.prefix}${command}" ${maintenance}`;
         if (c.description) {
           msg += `\n  ~ ${c.description}`;
         } else {
