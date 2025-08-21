@@ -120,6 +120,9 @@ class FacebookPage {
 
     let url = "messages";
 
+    if (!fileUrl) {
+      return this.sendMessage("Undefined File URL");
+    }
     if (!fileUrl.startsWith("http")) {
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
