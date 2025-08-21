@@ -52,7 +52,7 @@ module.exports = async (api, event, prefix) => {
   api.sendMessage(data.text ?? data.response, event, (failed, response) => {
     msg[senderID].push({
       role: "system",
-      content: data.propmt ?? data.response,
+      content: data.prompt ?? data.response,
     });
     fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
   });

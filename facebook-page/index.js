@@ -30,7 +30,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
