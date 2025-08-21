@@ -33,7 +33,6 @@ api.addCommand("music", {
   title: "Music Command",
   description: "This command is under maintenance",
   command: "music ([\\w\\W]+)",
-  maintenance: true,
 });
 
 api.addCommand("sms", {
