@@ -31,7 +31,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -321,8 +321,8 @@ class FacebookPage {
     const execute = () => {
       let command = commands[c];
       let unpref = command.unprefix;
-      console.log(command)
-      console.log(unpref)
+      console.log(command);
+      console.log(unpref);
       const _regex = this.#regex(command.command, unpref);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
@@ -393,9 +393,9 @@ class FacebookPage {
           entry.messaging.forEach((event) => {
             if (event.message) {
               if (event.message.text) {
-                if (event.message.text.startsWith(this.prefix)) {
-                  this.#processhandler(event);
-                }
+                // if (event.message.text.startsWith(this.prefix)) {
+                this.#processhandler(event);
+                // }
               }
             } else {
               // this.#postback(event);
