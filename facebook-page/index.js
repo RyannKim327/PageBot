@@ -265,14 +265,14 @@ class FacebookPage {
       }
     }
     if (typeof command === "string") {
+      if (unpref) {
+        return new RegExp(command, "i");
+      }
+
       let prefix = this.prefix;
       const prefixes = ["/", "\\", "$", "^"];
       if (prefixes.includes(prefix)) {
         prefix = `\\${prefix}`;
-      }
-
-      if (unpref) {
-        return new RegExp(command, "i");
       }
 
       return new RegExp(`${prefix}${command}`, "i");
