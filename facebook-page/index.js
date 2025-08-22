@@ -258,7 +258,7 @@ class FacebookPage {
     );
   }
 
-  #regex(command, unpref = false) {
+  #regex(command, unpref) {
     if (typeof command !== "string") {
       if (command.command) {
         command = command.command;
@@ -320,7 +320,7 @@ class FacebookPage {
     let c = 0;
     const execute = () => {
       let command = commands[c];
-      const _regex = this.#regex(command.command, command.unprefix);
+      const _regex = this.#regex(command.command, command.unprefix ?? false);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
