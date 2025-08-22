@@ -272,7 +272,7 @@ class FacebookPage {
       }
 
       if (unpref) {
-        prefix = "";
+        return new RegExp(command, "i");
       }
 
       return new RegExp(`${prefix}${command}`, "i");
@@ -320,7 +320,8 @@ class FacebookPage {
     let c = 0;
     const execute = () => {
       let command = commands[c];
-      const _regex = this.#regex(command.command, command.unprefix ?? false);
+      let unpref = command.unprefix;
+      const _regex = this.#regex(command.command, unpref);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
