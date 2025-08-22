@@ -266,7 +266,7 @@ class FacebookPage {
     }
     if (typeof command === "string") {
       if (unpref) {
-        return new RegExp(command, "i");
+        return new RegExp(`^${command}`, "i");
       }
 
       let prefix = this.prefix;
@@ -275,7 +275,7 @@ class FacebookPage {
         prefix = `\\${prefix}`;
       }
 
-      return new RegExp(`${prefix}${command}`, "i");
+      return new RegExp(`^${prefix}${command}`, "i");
     }
   }
 
@@ -342,6 +342,7 @@ class FacebookPage {
       execute();
 
       if (
+        event.message.text.startsWith(this.prefix) &&
         this.fallback !== null &&
         typeof this.fallback === "object" &&
         !done
