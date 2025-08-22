@@ -52,6 +52,7 @@ api.addCommand("answer", {
   title: "Answer",
   command: "flag{([\\w\\W]+)}",
   hidden: true,
+  unprefix: true,
 });
 
 api.setFallback("gpt", {

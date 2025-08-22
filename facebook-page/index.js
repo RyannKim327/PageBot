@@ -8,6 +8,7 @@ class FacebookPage {
   constructor() {
     this.FB_TOKEN = process.env.FB_TOKEN;
     this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
+    this.webhook = "/webhook";
     this.__app = express();
     this.__app.use(bodyParser.json());
     this.__app.use(express.json());
@@ -30,7 +31,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -90,6 +91,13 @@ class FacebookPage {
 
   setPrefix(prefix) {
     this.prefix = prefix;
+  }
+
+  setWebhook(webhook) {
+    if (!webhook.startsWith("/")) {
+      webhook = `/${webhook}`;
+    }
+    this.webhook;
   }
 
   sendAttachment(fileType, fileUrl, event, callback) {
@@ -180,8 +188,6 @@ class FacebookPage {
       );
     }
 
-    console.log("Message Test");
-
     let msg = message;
     if (typeof message === "object") {
       if (message.text) {
@@ -252,7 +258,7 @@ class FacebookPage {
     );
   }
 
-  #regex(command) {
+  #regex(command, unpref = false) {
     if (typeof command !== "string") {
       if (command.command) {
         command = command.command;
@@ -263,6 +269,10 @@ class FacebookPage {
       const prefixes = ["/", "\\", "$", "^"];
       if (prefixes.includes(prefix)) {
         prefix = `\\${prefix}`;
+      }
+
+      if (unpref) {
+        prefix = "";
       }
 
       return new RegExp(`${prefix}${command}`, "i");
@@ -310,7 +320,7 @@ class FacebookPage {
     let c = 0;
     const execute = () => {
       let command = commands[c];
-      const _regex = this.#regex(command.command);
+      const _regex = this.#regex(command.command, command.unprefix);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
@@ -320,6 +330,7 @@ class FacebookPage {
         execute();
       }
     };
+
     const regex = this.#regex("help");
     if (regex.test(event.message.text)) {
       this.#help(event);
@@ -357,12 +368,11 @@ class FacebookPage {
       );
     });
 
-    app.get("/webhook", (req, res) => {
+    app.get(this.webhook, (req, res) => {
       this.hostname = req.hostname;
       const mode = req.query["hub.mode"];
       const token = req.query["hub.verify_token"];
       const challenge = req.query["hub.challenge"];
-      console.log("GET Fetch");
       if (token && mode) {
         if (mode === "subscribe" && token === this.KEY_TOKEN) {
           res.status(200).send(challenge);
@@ -372,10 +382,9 @@ class FacebookPage {
       }
     });
 
-    app.post("/webhook", (req, res) => {
+    app.post(this.webhook, (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
-      console.log("Fetch");
       if (body.object === "page") {
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
