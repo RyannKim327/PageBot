@@ -50,7 +50,7 @@ api.addCommand("bible", {
 
 api.addCommand("answer", {
   title: "Answer",
-  command: "flag{([\\w\\W]+)}",
+  command: "flag_{([\\w\\W]+)}",
   hidden: true,
   unprefix: true,
 });
