@@ -36,7 +36,7 @@ class FacebookPage {
     this.admin = [];
 
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
@@ -397,7 +397,7 @@ class FacebookPage {
       );
     });
 
-    app.get(this.webhook, (req, res) => {
+    app.get(this.__webhook, (req, res) => {
       // TODO: To call this webhook, please go to https://developers.facebook.com/apps/your_app_id/messenger/messenger_api_settings/
       // Please note that you also read their terms and conditions to prevent failures
       this.hostname = req.hostname;
@@ -413,7 +413,7 @@ class FacebookPage {
       }
     });
 
-    app.post(this.webhook, (req, res) => {
+    app.post(this.__webhook, (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
       if (body.object === "page") {
