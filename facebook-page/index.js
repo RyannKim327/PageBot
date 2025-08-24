@@ -465,9 +465,7 @@ class FacebookPage {
     const app = this.__app;
     app.get("/", (req, res) => {
       this.hostname = req.hostname;
-      res.send(
-        "The main webpage was started. Please verify your token by calling it with a webhook on facebook developer's page",
-      );
+      res.sendFile(`${__dirname}/web/index.html`);
     });
 
     app.get(this.__webhook, (req, res) => {
