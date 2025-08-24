@@ -2,6 +2,7 @@ const axios = require("axios");
 
 module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex);
+  console.log(body[1]);
   api.sendMessage("Generated QR Code", event, (failed, response) => {});
   api.sendAttachment(
     "image",

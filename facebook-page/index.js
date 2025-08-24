@@ -8,15 +8,20 @@ class FacebookPage {
   constructor() {
     this.FB_TOKEN = process.env.FB_TOKEN;
     this.KEY_TOKEN = process.env.KEY_TOKEN || "pagebot";
-    this.webhook = "/webhook";
+    this.__webhook = "/webhook";
+    this.__assets = "/assets";
+    this.__temp = "/temp";
     this.__app = express();
     this.__app.use(bodyParser.json());
     this.__app.use(express.json());
     this.__app.use(
-      "/assets",
-      express.static(path.join(__dirname, "../assets")),
+      this.__assets,
+      express.static(path.join(__dirname, `..${this.__assets}`)),
     );
-    this.__app.use("/temp", express.static(path.join(__dirname, "../temp")));
+    this.__app.use(
+      this.__temp,
+      express.static(path.join(__dirname, `..${this.__temp}`)),
+    );
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
@@ -30,12 +35,12 @@ class FacebookPage {
     };
     this.admin = [];
 
-    if (fs.existsSync(`${__dirname}/../temp/`)) {
-      fs.rm(`${__dirname}/../temp/`, { recursive: true }, (e) => {});
+    if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
-      fs.mkdirSync(`${__dirname}/../temp`);
+      fs.mkdirSync(`${__dirname}/..${this.__temp}`);
     }, 150);
   }
 
@@ -97,7 +102,21 @@ class FacebookPage {
     if (!webhook.startsWith("/")) {
       webhook = `/${webhook}`;
     }
-    this.webhook;
+    this.__webhook = webhook;
+  }
+
+  setAssetsFolder(assets) {
+    if (!assets.startsWith("/")) {
+      assets = `/${assets}`;
+    }
+    this.__assets = assets;
+  }
+
+  setTemporaryFolder(temp) {
+    if (!temp.startsWith("/")) {
+      temp = `/${temp}`;
+    }
+    this.__temp = temp;
   }
 
   sendAttachment(fileType, fileUrl, event, callback) {
@@ -132,19 +151,22 @@ class FacebookPage {
       return this.sendMessage("Undefined File URL");
     }
     if (!fileUrl.startsWith("http")) {
+      // TODO: Trigger the condition for local storage such as temp and assets
       if (!fileUrl.startsWith("/")) {
         fileUrl = `/${fileUrl}`;
       }
 
-      // url = "message_attachments";
       if (!fs.existsSync(fileUrl.substring())) {
         return this.sendMessage("File doesn't exists", event);
       }
 
-      let file = fileUrl.split("assets/")[1];
-      let folder = "assets";
-      if (fileUrl.includes("temp") && !fileUrl.includes("assets")) {
-        file = fileUrl.split("temp/")[1];
+      let file = fileUrl.split(`${this.__assets.substring(1)}/`)[1];
+      let folder = this.__assets.substring(1);
+      if (
+        fileUrl.includes(this.__temp) &&
+        !fileUrl.includes(this.__assets.substring(1))
+      ) {
+        file = fileUrl.split(`${this.__temp.substring(1)}/`)[1];
         folder = "temp";
       }
 
@@ -179,9 +201,12 @@ class FacebookPage {
   }
 
   sendMessage(message, event, callback) {
+    // TODO: Verify FB TOKEN existence
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
     }
+
+    // TODO: Verify if the event is an object/JSON
     if (typeof event !== "object") {
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
@@ -259,6 +284,7 @@ class FacebookPage {
   }
 
   #regex(command, unpref) {
+    // TODO: To convert normal text into regex file
     if (typeof command !== "string") {
       if (command.command) {
         command = command.command;
@@ -280,6 +306,7 @@ class FacebookPage {
   }
 
   #help(event) {
+    // TODO: A built-in command that triggers once the help command executed
     this.commands.sort((a, b) => {
       const _a = JSON.stringify(Object.values(a).sort());
       const _b = JSON.stringify(Object.values(b).sort());
@@ -321,8 +348,6 @@ class FacebookPage {
     const execute = () => {
       let command = commands[c];
       let unpref = command.unprefix;
-      console.log(command);
-      console.log(unpref);
       const _regex = this.#regex(command.command, unpref);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
@@ -373,6 +398,8 @@ class FacebookPage {
     });
 
     app.get(this.webhook, (req, res) => {
+      // TODO: To call this webhook, please go to https://developers.facebook.com/apps/your_app_id/messenger/messenger_api_settings/
+      // Please note that you also read their terms and conditions to prevent failures
       this.hostname = req.hostname;
       const mode = req.query["hub.mode"];
       const token = req.query["hub.verify_token"];
