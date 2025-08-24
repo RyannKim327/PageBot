@@ -1,6 +1,4 @@
 const axios = require("axios");
-const fs = require("fs");
-const http = require("https");
 
 module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex);
@@ -13,6 +11,13 @@ module.exports = async (api, event, regex) => {
     const { data } = await axios.get(
       `https://kaiz-apis.gleeze.com/api/ytmp3-v2?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
     );
+
+    if (data.error) {
+      return api.sendMessage(
+        "System error, please try again after 5 minutes, sorry.",
+        event,
+      );
+    }
 
     api.sendMessage(
       `Here's your request entitled: ${data.title}`,

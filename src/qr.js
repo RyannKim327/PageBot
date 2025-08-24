@@ -8,9 +8,6 @@ module.exports = async (api, event, regex) => {
     "image",
     `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(body[1])}`,
     event,
-    (failed, response) => {
-      console.log(failed);
-      console.log(response);
-    },
+    (failed, response) => {},
   );
 };
