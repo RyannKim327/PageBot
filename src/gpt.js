@@ -3,13 +3,13 @@ const fs = require("fs");
 
 module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
+  const AI = api.getAssistant();
   if (!fs.existsSync(`${__dirname}/../data/gpt.json`)) {
     fs.createWriteStream(`${__dirname}/../data/gpt.json`);
     const msgs = [
       {
         role: "user",
-        content:
-          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication",
+        content: `Pretend to be the girlfriend of Ryann Kim Sesgundo named ${AI}. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication`,
       },
       {
         role: "system",
@@ -27,12 +27,11 @@ module.exports = async (api, event, prefix) => {
     const msgs = [
       {
         role: "user",
-        content:
-          "Pretend to be the girlfriend of Ryann Kim Sesgundo named AI Haibara. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication",
+        content: `Pretend to be the girlfriend of Ryann Kim Sesgundo named ${AI}. Ask my name first and don't answer the question if I didn't tell my name, before we start any communication`,
       },
       {
         role: "system",
-        content: "Hello, my name is Nix, may I ask your name?",
+        content: `Hello, my name is ${AI}, may I ask your name?`,
       },
     ];
     msg[senderID] = msgs;
@@ -57,6 +56,6 @@ module.exports = async (api, event, prefix) => {
     fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
   });
   if (data.image) {
-    api.sendAttachment("image", data.image, event, (failed, response) => {});
+    api.sendAttachment("image", data.image, event, (failed, response) => { });
   }
 };

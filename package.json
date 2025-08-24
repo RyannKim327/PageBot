@@ -15,7 +15,6 @@
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
-    "https": "^1.0.0",
-    "ultimate-guitar": "^2.0.1-ts"
+    "ultimate-guitar": "^2.0.4"
   }
 }
