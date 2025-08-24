@@ -6,6 +6,7 @@ module.exports = async (api, event, regex) => {
   api.sendAttachment(
     "image",
     `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${body[1]}`,
+    event,
     (failed, response) => {},
   );
 };
