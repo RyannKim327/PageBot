@@ -33,10 +33,10 @@ class FacebookPage {
       image: "image/png",
       video: "video/mp4",
     };
-    this.admin = [];
+    this.__admins = [];
 
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -45,6 +45,11 @@ class FacebookPage {
   }
 
   // INFO: Public functions
+
+  addAdmin(adminID) {
+    this.__admins.push(adminID);
+  }
+
   addCommand(script, command) {
     let file = `${process.cwd()}/src/${script}`;
     if (!script.endsWith(".js")) {
@@ -256,6 +261,74 @@ class FacebookPage {
     let msgs = msg.split(" ");
     if (msgs.length >= 300) {
       const words = 250;
+      let m = 0;
+      const x = () => {
+        if (m < Math.ceil(msgs.length / words)) {
+          const msg_ = msgs.slice(m * words, (m + 1) * words);
+          sendMsg(msg_.join(" "));
+          m++;
+          setTimeout(() => {
+            x();
+          }, 1500);
+        }
+      };
+      x();
+    } else {
+      sendMsg(msg);
+    }
+  }
+
+  sendToAdmin(message, callback) {
+    // TODO: Verify FB TOKEN existence
+    if (!this.FB_TOKEN) {
+      return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
+    }
+
+    let msg = message;
+    if (typeof message === "object") {
+      if (message.text) {
+        msg = message.text;
+      }
+    }
+
+    const sendMsg = (str) => {
+      for (let admin of this.__admins) {
+        axios
+          .post(
+            `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
+            {
+              message: { text: str },
+              recipient: {
+                id: admin,
+              },
+            },
+          )
+          .then((response) => {
+            if (callback) {
+              if (typeof callback === "function") {
+                callback(false, response);
+              }
+            }
+          })
+          .catch((error) => {
+            if (callback) {
+              if (typeof callback === "function") {
+                callback(true, error);
+              }
+            }
+          });
+      }
+    };
+
+    if (typeof msg !== "string") {
+      return console.error(
+        `Send Message [ERR]: Message must be in string format`,
+      );
+    }
+
+    let msgs = msg.split(" ");
+    if (msgs.length >= 300) {
+      const words = 300;
       let m = 0;
       const x = () => {
         if (m < Math.ceil(msgs.length / words)) {

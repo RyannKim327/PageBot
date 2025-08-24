@@ -66,4 +66,6 @@ api.setFallback("gpt", {
   title: "GPT 4-o",
 });
 
+api.addAdmin(61572478455619);
+
 api.listen();
