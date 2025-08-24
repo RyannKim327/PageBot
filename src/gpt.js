@@ -43,7 +43,7 @@ module.exports = async (api, event, prefix) => {
   });
 
   const { data } = await axios.post(
-    "https://imissyougpt.onrender.com/api/chat",
+    "https://just-gpt.onrender.com/api/chat",
     {
       messages: msg[senderID],
     },
