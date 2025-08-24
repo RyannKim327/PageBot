@@ -48,6 +48,12 @@ api.addCommand("bible", {
   command: "verse ([\\w\\W]+)",
 });
 
+api.addCommand("qr", {
+  title: "QR Code Generator",
+  description: "Create a QR Code from the given data",
+  command: "qr ([\\w\\W]+)",
+});
+
 api.addCommand("answer", {
   title: "Answer",
   command: "flag_{([\\w\\W]+)}",
