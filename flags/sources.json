@@ -1,23 +1,29 @@
 {
-  "aselfencryptioncreatedforallnewbieslikeme": {
-    "title": "Hunting Ninong",
-    "description": "There's no special with this one but to look what kind ninong it is, basically looking an account/organization based on this code to be decoded by a caesar cipher. You may get the flag in some of the repository inside, so goodluck.",
+  "this_is_a_challenge_for_all_oudjsa": {
+    "title": "2 + 16 = ?",
+    "description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
     "hints": [
-      "Did you see my ninong? He's gone again this Christmas",
-      "Use the idea of Rotation and Balance",
-      "Did you see yourself under a sun?",
-      "What's that right after you?",
-      "Naruto's most used jutsu after all",
-      "If you got me, encrypt me and look for my account."
+      "First is the digits that can understand by the computer, or basically a computer language",
+      "It is also called as bits",
+      "One of most used encryption algorithm similar to a name of a six-sided polygon"
     ],
-    "format": "some_random_message",
-    "link": ""
+    "code": "30 31 31 30 30 31 31 30 20 30 31 31 30 31 31 30 30 20 30 31 31 30 30 30 30 31 20 30 31 31 30 30 31 31 31 20 30 31 31 31 31 30 31 31 20 30 31 30 30 30 30 31 30 20 30 31 31 30 31 30 30 31 20 30 31 31 31 30 31 30 30 20 30 31 31 31 30 30 31 31 20 30 31 30 31 31 31 31 31 20 30 31 31 30 30 30 30 31 20 30 31 31 30 31 31 31 30 20 30 31 31 30 30 31 30 30 20 30 31 30 31 31 31 31 31 20 30 31 30 30 31 31 31 30 20 30 31 31 30 31 30 30 31 20 30 31 31 30 30 30 31 30 20 30 31 31 30 30 30 31 30 20 30 31 31 30 31 31 30 30 20 30 31 31 30 30 31 30 31 20 30 31 31 31 30 30 31 31 20 30 31 30 31 31 31 31 31 20 30 30 31 31 30 30 30 30 20 30 31 31 31 31 30 30 30 20 30 31 30 30 30 30 30 31 20 30 30 31 31 30 30 30 30 20 30 31 31 31 31 30 30 30 20 30 30 31 31 30 30 30 31 20 30 30 31 31 30 30 30 30 20 30 31 31 31 31 31 30 31",
+    "format": "some_random_message"
   },
-  "ninonq_nasaan_n@_ang_pangak0_mo": {
+  "bits_and_bibbles_0xa0x10": {
+    "title": "A back and forth rotation",
+    "description": "",
+    "hints": [],
+    "link": [
+      "https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing",
+      "https://www.facebook.com/TheKeyLang.newbie/videos/1324230165768246/"
+    ]
+  },
+  "aselfencryptioncreatedforallnewbieslikeme": {
     "title": "4th great ninja war",
     "description": "Actually wala akong idea hahaha",
     "hints": [],
-    "link": "",
+    "link": [""],
     "format": "some_random_message"
   },
   "dgfsdgffffd": {
@@ -29,33 +35,34 @@
       "I hope she will like the song I wrote"
     ],
     "format": "thisistheflagsampleused",
-    "link": ""
+    "link": [""]
   },
   "sflgfegjefg": {
     "title": "Sage of the six paths",
     "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
     "hints": [],
     "format": "",
-    "link": ""
+    "link": [""]
   },
-  "fwer387nme.vfe": {
+  "fwer387nmevfe": {
     "title": "Dattebayo Multiverse",
     "description": "I don't know either",
     "hints": [],
     "format": "",
-    "link": ""
+    "link": [""]
   },
   "fsdghidfhgwier": {
     "title": "A ghosted gold",
     "description": "",
     "hints": [],
     "format": "",
-    "link": ""
+    "link": [""]
   },
   "eihfhweiurhfnwerghffff": {
-    "title": "",
-    "description": "",
-    "hints": []
+    "title": "Lorem ipsum dolor sit amet",
+    "description": "I've got a message with this text inside, I don't know what to do, can you help me to understand this? By the way, I tried to look for some resources and I saw this something suspecious, maybe you can use this as a hint.",
+    "hints": ["One of Ibiki Morino's quotations"],
+    "link": ["https://loremipsum.io/"]
   },
   "ghewyhfnw3rfhc": {
     "title": "A decade of Knowledge and Wisdom",

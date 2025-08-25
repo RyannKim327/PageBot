@@ -1,15 +1,17 @@
-const axios = require("axios");
-
+const fs = require("fs");
 module.exports = async (api, event, regex) => {
-  const body = event.message.text.match(regex)[1];
-  // const { data } = await axios.get();
-  if (body === "This_is_a_challenge_for_all_oudjsa") {
+  const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));
+  const body = event.message.text.match(regex)[1].toLowerCase();
+  if (codes[body]) {
+    const c = codes[body];
+    const link = c.link.join("\n");
+    const code = c.code;
+
     api.sendMessage(
-      "Congratiolations, you've got it. Now here's the challenge #2 link: https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing. Also please watch the video: https://www.facebook.com/TheKeyLang.newbie/videos/1324230165768246/ for full idea of this challenge.",
+      `You've got it, congratiolations.\n\n Your next challenge is: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\n${link ? "Link: " + link : "Code: " + code}\nFlag Format: flag{${c.flag ?? "thisisthefalagformat"}}`,
       event,
-      (failed, response) => { },
     );
   } else {
-    api.sendMessage("Sorry, wrong flag", event, (failed, response) => { });
+    api.sendMessage("Wrong flag, please try again", event);
   }
 };
