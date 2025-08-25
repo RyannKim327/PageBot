@@ -5,7 +5,7 @@ module.exports = async (api, event, regex) => {
   if (codes[body]) {
     const c = codes[body];
     api.sendMessage(
-      `You've got it, congratiolations.\n\n Your next challenge is: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\nLink: ${c.link}\nFlag Format: flag${c.flag}`,
+      `You've got it, congratiolations.\n\n Your next challenge is: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\nLink: ${c.link}\nFlag Format: flag{${c.flag ?? "thisisthefalagformat"}}`,
       event,
     );
   } else {
