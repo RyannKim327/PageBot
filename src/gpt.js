@@ -13,8 +13,7 @@ module.exports = async (api, event, prefix) => {
       },
       {
         role: "system",
-        content:
-          "Hello, my name is AI Haibara, you may call me AI, may I ask your name?",
+        content: `Hello, my name is ${AI}, you may call me AI, may I ask your name?`,
       },
     ];
     const data = {};
@@ -42,12 +41,9 @@ module.exports = async (api, event, prefix) => {
     content: event.message.text.substring(prefix.length),
   });
 
-  const { data } = await axios.post(
-    "https://just-gpt.onrender.com/api/chat",
-    {
-      messages: msg[senderID],
-    },
-  );
+  const { data } = await axios.post("https://just-gpt.onrender.com/api/chat", {
+    messages: msg[senderID],
+  });
   api.sendMessage(data.text ?? data.response, event, (failed, response) => {
     msg[senderID].push({
       role: "system",
