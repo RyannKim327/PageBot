@@ -4,7 +4,7 @@ module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex)[1].toLowerCase();
   if (codes[body]) {
     const c = codes[body];
-    const link = c.link ? c.link.join("\n") : [];
+    const link = c.link ? c.link.join("\n") : false;
     const code = c.code ?? "";
 
     api.sendMessage(
