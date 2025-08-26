@@ -8,7 +8,7 @@ module.exports = async (api, event, regex) => {
     const code = c.code;
 
     api.sendMessage(
-      `You've got it, congratiolations.\n\n Your next challenge is: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\n${link ? "Link: " + link : "Code: " + code}\nFlag Format: flag{${c.format ?? "thisisthefalagformat"}}`,
+      `You've got it, congratiolations.\n\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\n${link ? "Link: " + link : "Code: " + code}\nFlag Format: flag{${c.format ?? "thisisthefalagformat"}}`,
       event,
     );
   } else {

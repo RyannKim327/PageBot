@@ -1,78 +1,110 @@
 {
-  "this_is_a_challenge_for_all_oudjsa": {
-    "title": "2 + 16 = ?",
-    "description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
-    "hints": [
-      "First is the digits that can understand by the computer, or basically a computer language",
-      "It is also called as bits",
-      "One of most used encryption algorithm similar to a name of a six-sided polygon"
-    ],
-    "link": ["https://pastebin.com/eRx486pj"],
-    "format": "some_random_message"
-  },
-  "bits_and_nibbles_0xa0x10": {
-    "title": "A back and forth rotation",
-    "description": "This was a self program encryption, it was created but not intended to you to suffer.",
-    "hints": [
-      "Do you know the history game? Where the past become the base.",
-      "Which one is greater the base or the next?",
-      "Related to finances? Really?"
-    ],
-    "link": [
-      "https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing",
-      "https://www.facebook.com/TheKeyLang.newbie/videos/1324230165768246/"
-    ]
-  },
-  "aselfencryptioncreatedforallnewbieslikeme": {
-    "title": "His name is right after the late Tammuz",
-    "description": "We have someone who is a dictator and once control and overrule a nation.",
-    "hints": ["He was an emperor and become a powerful among all."],
-    "link": [""],
-    "format": "some_random_message"
-  },
-  "julius_caesar_reigns_the_roman_empire_for_4_years": {
-    "title": "The art of a composer",
-    "description": "Let's make try to know what does the composer wants to say.",
-    "hints": [
-      "I wrote a song in my old 3310",
-      "T9?",
-      "I hope she will like the song I wrote",
-      "All spaces must be in underscore"
-    ],
-    "format": "this_is_the_flag_sample_used",
-    "link": [""]
-  },
-  "this_is_a_music_of_my_life_and_past": {
-    "title": "Sage of the six paths",
-    "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
-    "hints": [],
-    "format": "",
-    "link": [""]
-  },
-  "no_one_can_understand_ones_pain_unless_you_share_the_same_pain": {
-    "title": "Dattebayo Multiverse",
-    "description": "I don't know either",
-    "hints": [],
-    "format": "",
-    "link": [""]
-  },
-  "fsdghidfhgwier": {
-    "title": "A ghosted gold",
-    "description": "",
-    "hints": [],
-    "format": "",
-    "link": [""]
-  },
-  "eihfhweiurhfnwerghffff": {
-    "title": "Lorem ipsum dolor sit amet",
-    "description": "I've got a message with this text inside, I don't know what to do, can you help me to understand this? By the way, I tried to look for some resources and I saw this something suspecious, maybe you can use this as a hint.",
-    "hints": ["One of Ibiki Morino's quotations"],
-    "link": ["https://loremipsum.io/"]
-  },
-  "ghewyhfnw3rfhc": {
-    "title": "A decade of Knowledge and Wisdom",
-    "description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
-    "hints": [],
-    "format": ""
-  }
+	"this_is_a_challenge_for_all_oudjsa": {
+		"current": "second",
+		"title": "2 + 16 = ?",
+		"description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
+		"hints": [
+			"First is the digits that can understand by the computer, or basically a computer language",
+			"It is also called as bits",
+			"One of most used encryption algorithm similar to a name of a six-sided polygon"
+		],
+		"link": [
+			"https://pastebin.com/eRx486pj"
+		],
+		"format": "some_random_message"
+	},
+	"bits_and_nibbles_0xa0x10": {
+		"current": "third",
+		"title": "A back and forth rotation",
+		"description": "This was a self program encryption, it was created but not intended to you to suffer.",
+		"hints": [
+			"Do you know the history game? Where the past become the base.",
+			"Which one is greater the base or the next?",
+			"Related to finances? Really?"
+		],
+		"link": [
+			"https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing",
+			"https://www.facebook.com/TheKeyLang.newbie/videos/1324230165768246/"
+		]
+	},
+	"aselfencryptioncreatedforallnewbieslikeme": {
+		"current": "fourth",
+		"title": "His name is right after the late Tammuz",
+		"description": "We have someone who is a dictator and once control and overrule a nation.",
+		"hints": [
+			"He was an emperor and become a powerful among all."
+		],
+		"link": [
+			""
+		],
+		"format": "some_random_message"
+	},
+	"julius_caesar_reigns_the_roman_empire_for_4_years": {
+		"current": "fifth",
+		"title": "The art of a composer",
+		"description": "Let's make try to know what does the composer wants to say.",
+		"hints": [
+			"I wrote a song in my old 3310",
+			"T9?",
+			"I hope she will like the song I wrote",
+			"All spaces must be in underscore"
+		],
+		"format": "this_is_the_flag_sample_used",
+		"link": [
+			""
+		]
+	},
+	"this_is_a_music_of_my_life_and_past": {
+		"current": "sixth",
+		"title": "Sage of the six paths",
+		"description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
+		"hints": [],
+		"format": "",
+		"link": [
+			""
+		]
+	},
+	"no_one_can_understand_ones_pain_unless_you_share_the_same_pain": {
+		"current": "seventh",
+		"title": "Saturn's Ring",
+		"description": "I don't know either",
+		"hints": [],
+		"format": "",
+		"link": [
+			""
+		]
+	},
+	"fsdghidfhgwier": {
+		"current": "eighth",
+		"title": "A ghosted gold",
+		"description": "",
+		"hints": [],
+		"format": "",
+		"link": [
+			""
+		]
+	},
+	"eihfhweiurhfnwerghffff": {
+		"current": "ninth",
+		"title": "A cat?",
+		"description": "I stalked a suspecious conversation and I saw a random text together with a picture of cat and maze.",
+		"hints": [
+			"Route Cipher? What was that?",
+			"I thought it was Muthym Cipher",
+			"What is the purpose of cat? Is that really a clue?",
+			"What was the challenge number of this?",
+			"Root or Routh?",
+			"Why was box become square in different angle?"
+		],
+		"link": [
+			"https://loremipsum.io/"
+		]
+	},
+	"ghewyhfnw3rfhc": {
+		"current": "tenth",
+		"title": "The rebirth of Knowledge and Wisdom",
+		"description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
+		"hints": [],
+		"format": ""
+	}
 }
