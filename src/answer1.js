@@ -1,7 +1,10 @@
 const fs = require("fs");
 module.exports = async (api, event, regex) => {
   const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));
-  const body = event.message.text.match(regex)[1].toLowerCase();
+  const body = event.message.text
+    .match(regex)[1]
+    .toLowerCase()
+    .replace(/\s/gi, "_");
   if (codes[body]) {
     const c = codes[body];
     const link = c.link ? c.link.join("\n") : false;
