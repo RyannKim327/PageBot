@@ -147,6 +147,7 @@ class FacebookPage {
         id: event.sender.id,
       },
       message: {
+        text: "test Message",
         attachment: {
           type: fileType,
           payload: {
@@ -231,33 +232,6 @@ class FacebookPage {
         msg = message.text;
       }
     }
-
-    // const sendMsg = (str) => {
-    //   axios
-    //     .post(
-    //       `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
-    //       {
-    //         message: { text: str },
-    //         recipient: {
-    //           id: event.sender.id,
-    //         },
-    //       },
-    //     )
-    //     .then((response) => {
-    //       if (callback) {
-    //         if (typeof callback === "function") {
-    //           callback(null, response);
-    //         }
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       if (callback) {
-    //         if (typeof callback === "function") {
-    //           callback(error, null);
-    //         }
-    //       }
-    //     });
-    // };
 
     if (typeof msg !== "string") {
       return console.error(
@@ -442,6 +416,9 @@ class FacebookPage {
   }
 
   #sendMessage(text, event, callback) {
+    if (!this.FB_TOKEN) {
+      return console.error(`Error: undefined FB TOKEN`);
+    }
     if (typeof text !== "string") {
       return console.error(`Error: text must be string`);
     }
