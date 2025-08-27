@@ -1,46 +1,58 @@
 <!doctype html>
+<html>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-    	*{
-    	margin: 0;
-    padding: 0;
-    }
-			body {
-			 height: 100dvh;
-width: 100dvw;
-background-size: cover;
-display: flex;
-flex-wrap: wrap;
-label {
-	font-size: .1rem;
-	
-	}
-}
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: darkgray;
+        background-image: url("assets/agustus.jpg");
+        height: 100dvh;
+        width: 100dvw;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 100% 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-color: transparent;
+        background-clip: text;
+        -moz-background-clip: text;
+        text-align: justify;
+        -webkit-background-clip: text;
+        label {
+          font-size: 0.25rem;
+          color: transparent;
+        }
+      }
     </style>
   </head>
-  <body>
-  	
-</body>
-<script>
-	const fake = "flag{ang_mamatay_nang_dahil_sayo_bayangpilipinas}"
-	const real = "flag{a_long_peace_that_gegjeiwuriuehf_hope_for_last}"
-	const total = 500
-	const position = Math.floor(Math.random() * total)
-	let i = 0
-	function runner() {
-if(i <= total){
-	if(i === position){
-document.write(`<label style="font-size: .25rem;>${real}</label> `)
-}else{
-		document.write(`<label style="font-size: .25rem">${fake}</label> `)
-		}
-		i++
-		setTimeout(() =>{
-		runner()}, 0.1)
-}
-		}
-		runner()
-	</script>
+  <body></body>
+  <script>
+    const fake = "flag{ang_mamatay_nang_dahil_sayo_bayang_pilipinas_1} ";
+    const real = "flag{a_long_peace_that_gegjeiwuriuehf_hope_for_last} ";
+    const total = 1000;
+    const position = Math.floor(Math.random() * total - 1);
+    let i = 0;
+    function runner() {
+      if (i <= total + 1) {
+        if (i == position) {
+          document.body.innerHTML += `<label>${real}</label>`;
+        } else {
+          document.body.innerHTML += `<label>${fake}</label>`;
+        }
+        i++;
+        setTimeout(() => {
+          runner();
+        }, 0.1);
+      }
+    }
+    runner();
+  </script>
 </html>
