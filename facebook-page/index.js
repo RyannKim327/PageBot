@@ -160,7 +160,7 @@ class FacebookPage {
     let url = "messages";
 
     if (!fileUrl) {
-      return this.sendMessage("Undefined File URL");
+      return this.#sendMessage("Undefined File URL", event);
     }
     if (!fileUrl.startsWith("http")) {
       // TODO: Trigger the condition for local storage such as temp and assets
@@ -168,12 +168,13 @@ class FacebookPage {
         fileUrl = `/${fileUrl}`;
       }
 
-      if (!fs.existsSync(fileUrl.substring())) {
+      if (!fs.existsSync(fileUrl)) {
         return this.sendMessage("File doesn't exists", event);
       }
 
       let file = fileUrl.split(`${this.__assets.substring(1)}/`)[1];
       let folder = this.__assets.substring(1);
+
       if (
         fileUrl.includes(this.__temp) &&
         !fileUrl.includes(this.__assets.substring(1))
@@ -199,14 +200,14 @@ class FacebookPage {
       .then((response) => {
         if (callback) {
           if (typeof callback === "function") {
-            callback(false, response);
+            callback(null, response);
           }
         }
       })
       .catch((error) => {
         if (callback) {
           if (typeof callback === "function") {
-            callback(true, error);
+            callback(error, null);
           }
         }
       });
