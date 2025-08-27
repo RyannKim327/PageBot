@@ -16,7 +16,10 @@ module.exports = async (api, event, regex) => {
     );
     api.sendToAdmin(
       `Facebook user: ${event.sender.id} solved: ${c.past}`,
-      (failed, response) => {},
+      (failed, response) => {
+        console.log(`Error: ${failed}`);
+        console.log(`Response: ${response}`);
+      },
     );
   } else {
     api.sendMessage("Wrong flag, please try again", event);

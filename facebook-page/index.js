@@ -299,8 +299,9 @@ class FacebookPage {
       }
     }
 
-    const sendMsg = (str) => {
-      for (let admin of this.__admins) {
+    const sendMsg = async (str) => {
+      console.log("Sending");
+      for await (let admin of this.__admins) {
         axios
           .post(
             `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
