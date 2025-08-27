@@ -48,14 +48,14 @@ api.addCommand("bible", {
   command: "verse ([\\w\\W]+)",
 });
 
-api.addCommand("answer1", {
+api.addCommand("answer", {
   title: "Answer Challenge 1",
   command: "flag_{([\\w\\W]+)}",
   hidden: true,
   unprefix: true,
 });
 
-api.addCommand("answer2", {
+api.addCommand("answer", {
   title: "Answer Challenge 2",
   command: "flag{([\\w\\W]+)}",
   hidden: true,
@@ -63,7 +63,7 @@ api.addCommand("answer2", {
 });
 
 api.setFallback("gpt", {
-  title: "GPT 4-o",
+  title: "GPT 4o",
 });
 
 api.addAdmin(61572478455619);

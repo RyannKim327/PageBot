@@ -1,6 +1,7 @@
 {
 	"this_is_a_challenge_for_all_oudjsa": {
 		"current": "second",
+		"past": "first",
 		"title": "2 + 16 = ?",
 		"description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
 		"hints": [
@@ -15,6 +16,7 @@
 	},
 	"bits_and_nibbles_0xa0x10": {
 		"current": "third",
+		"past": "second",
 		"title": "A back and forth rotation",
 		"description": "This was a self program encryption, it was created but not intended to you to suffer.",
 		"hints": [
@@ -29,6 +31,7 @@
 	},
 	"aselfencryptioncreatedforallnewbieslikeme": {
 		"current": "fourth",
+		"past": "third",
 		"title": "His name is right after the late Tammuz",
 		"description": "We have someone who is a dictator and once control and overrule a nation.",
 		"hints": [
@@ -41,6 +44,7 @@
 	},
 	"julius_caesar_reigns_the_roman_empire_for_4_years": {
 		"current": "fifth",
+		"past": "fourth",
 		"title": "The art of a composer",
 		"description": "Let's make try to know what does the composer wants to say.",
 		"hints": [
@@ -56,6 +60,7 @@
 	},
 	"this_is_a_music_of_my_life_and_past": {
 		"current": "sixth",
+		"past": "fifth",
 		"title": "Sage of the six paths",
 		"description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
 		"hints": [],
@@ -66,6 +71,7 @@
 	},
 	"no_one_can_understand_ones_pain_unless_you_share_the_same_pain": {
 		"current": "seventh",
+		"past": "sixth",
 		"title": "Saturn's Ring",
 		"description": "I don't know either",
 		"hints": [],
@@ -76,6 +82,7 @@
 	},
 	"fsdghidfhgwier": {
 		"current": "eighth",
+		"past": "seventh",
 		"title": "A ghosted gold",
 		"description": "",
 		"hints": [],
@@ -86,6 +93,7 @@
 	},
 	"eihfhweiurhfnwerghffff": {
 		"current": "ninth",
+		"past": "eighth",
 		"title": "A cat?",
 		"description": "I stalked a suspecious conversation and I saw a random text together with a picture of cat and maze.",
 		"hints": [
@@ -102,6 +110,7 @@
 	},
 	"ghewyhfnw3rfhc": {
 		"current": "tenth",
+		"past": "ninth",
 		"title": "The rebirth of Knowledge and Wisdom",
 		"description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
 		"hints": [],
