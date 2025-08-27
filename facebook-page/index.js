@@ -449,7 +449,7 @@ class FacebookPage {
       .post(
         `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
         {
-          message: { text: str },
+          message: { text: text },
           recipient: {
             id: event.sender.id,
           },
