@@ -281,7 +281,7 @@ class FacebookPage {
       };
       x();
     } else {
-      sendMsg(msg, event, callback);
+      this.#sendMessage(msg, event, callback);
     }
   }
 
