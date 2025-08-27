@@ -232,32 +232,32 @@ class FacebookPage {
       }
     }
 
-    const sendMsg = (str) => {
-      axios
-        .post(
-          `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
-          {
-            message: { text: str },
-            recipient: {
-              id: event.sender.id,
-            },
-          },
-        )
-        .then((response) => {
-          if (callback) {
-            if (typeof callback === "function") {
-              callback(null, response);
-            }
-          }
-        })
-        .catch((error) => {
-          if (callback) {
-            if (typeof callback === "function") {
-              callback(error, null);
-            }
-          }
-        });
-    };
+    // const sendMsg = (str) => {
+    //   axios
+    //     .post(
+    //       `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
+    //       {
+    //         message: { text: str },
+    //         recipient: {
+    //           id: event.sender.id,
+    //         },
+    //       },
+    //     )
+    //     .then((response) => {
+    //       if (callback) {
+    //         if (typeof callback === "function") {
+    //           callback(null, response);
+    //         }
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       if (callback) {
+    //         if (typeof callback === "function") {
+    //           callback(error, null);
+    //         }
+    //       }
+    //     });
+    // };
 
     if (typeof msg !== "string") {
       return console.error(
@@ -272,7 +272,7 @@ class FacebookPage {
       const x = () => {
         if (m < Math.ceil(msgs.length / words)) {
           const msg_ = msgs.slice(m * words, (m + 1) * words);
-          sendMsg(msg_.join(" "));
+          this.#sendMessage(msg_.join(" "), event, callback);
           m++;
           setTimeout(() => {
             x();
@@ -281,7 +281,7 @@ class FacebookPage {
       };
       x();
     } else {
-      sendMsg(msg);
+      sendMsg(msg, event, callback);
     }
   }
 
@@ -299,34 +299,14 @@ class FacebookPage {
       }
     }
 
-    const sendMsg = async (str) => {
-      console.log("Sending");
+    const sendMsg = async (text) => {
       for await (let admin of this.__admins) {
-        console.log(admin);
-        axios
-          .post(
-            `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
-            {
-              message: { text: str },
-              recipient: {
-                id: admin,
-              },
-            },
-          )
-          .then((response) => {
-            if (callback) {
-              if (typeof callback === "function") {
-                callback(null, response);
-              }
-            }
-          })
-          .catch((error) => {
-            if (callback) {
-              if (typeof callback === "function") {
-                callback(error, null);
-              }
-            }
-          });
+        const event = {
+          sender: {
+            id: admin,
+          },
+        };
+        this.#sendMessage(text, event, callback);
       }
     };
 
@@ -459,6 +439,36 @@ class FacebookPage {
         script(this, event, this.prefix);
       }
     }
+  }
+
+  #sendMessage(text, event, callback) {
+    if (typeof text !== "string") {
+      return console.error(`Error: text must be string`);
+    }
+    axios
+      .post(
+        `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
+        {
+          message: { text: str },
+          recipient: {
+            id: event.sender.id,
+          },
+        },
+      )
+      .then((response) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(null, response);
+          }
+        }
+      })
+      .catch((error) => {
+        if (callback) {
+          if (typeof callback === "function") {
+            callback(error, null);
+          }
+        }
+      });
   }
 
   // INFO: Webhook process
