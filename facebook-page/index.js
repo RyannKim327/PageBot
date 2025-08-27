@@ -147,7 +147,6 @@ class FacebookPage {
         id: event.sender.id,
       },
       message: {
-        text: "test Message",
         attachment: {
           type: fileType,
           payload: {
