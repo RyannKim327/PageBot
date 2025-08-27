@@ -302,6 +302,7 @@ class FacebookPage {
     const sendMsg = async (str) => {
       console.log("Sending");
       for await (let admin of this.__admins) {
+        console.log(admin);
         axios
           .post(
             `https://graph.facebook.com/${this.version}/me/messages?access_token=${this.FB_TOKEN}`,
