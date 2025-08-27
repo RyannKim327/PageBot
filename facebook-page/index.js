@@ -246,14 +246,14 @@ class FacebookPage {
         .then((response) => {
           if (callback) {
             if (typeof callback === "function") {
-              callback(false, response);
+              callback(null, response);
             }
           }
         })
         .catch((error) => {
           if (callback) {
             if (typeof callback === "function") {
-              callback(true, error);
+              callback(error, null);
             }
           }
         });
@@ -316,14 +316,14 @@ class FacebookPage {
           .then((response) => {
             if (callback) {
               if (typeof callback === "function") {
-                callback(false, response);
+                callback(null, response);
               }
             }
           })
           .catch((error) => {
             if (callback) {
               if (typeof callback === "function") {
-                callback(true, error);
+                callback(error, null);
               }
             }
           });
