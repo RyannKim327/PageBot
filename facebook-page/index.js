@@ -133,10 +133,16 @@ class FacebookPage {
 
   sendAttachment(fileType, fileUrl, event, callback) {
     if (!this.FB_TOKEN) {
+      if (typeof callback === "function") {
+        return callback("ERR: Undefined FB_TOKEN", null);
+      }
       return console.error(`TOKEN [ERR]: Undefined FB_TOKEN`);
     }
 
     if (typeof event !== "object") {
+      if (typeof callback === "function") {
+        return callback("ERR: The event muyst be an Object or JSON type", null);
+      }
       return console.error(
         "ERROR [event type]: The event must be in Object or JSON type",
       );
@@ -160,6 +166,9 @@ class FacebookPage {
     let url = "messages";
 
     if (!fileUrl) {
+      if (typeof callback === "function") {
+        return callback("ERR: Undefined File URL", null);
+      }
       return this.#sendMessage("Undefined File URL", event);
     }
     if (!fileUrl.startsWith("http")) {
@@ -169,6 +178,9 @@ class FacebookPage {
       }
 
       if (!fs.existsSync(fileUrl)) {
+        if (typeof callback === "function") {
+          return callback("ERR: File doesn't exists", null);
+        }
         return this.sendMessage("File doesn't exists", event);
       }
 
@@ -216,13 +228,19 @@ class FacebookPage {
   sendMessage(message, event, callback) {
     // TODO: Verify FB TOKEN existence
     if (!this.FB_TOKEN) {
+      if (typeof callback === "function") {
+        return callback("ERR: Undefined FB_TOKEN", null);
+      }
       return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
     }
 
     // TODO: Verify if the event is an object/JSON
     if (typeof event !== "object") {
+      if (typeof callback === "function") {
+        return callback("ERR: The event must be an Object or JSON type", null);
+      }
       return console.error(
-        "ERROR [event type]: The event must be in Object or JSON type",
+        "ERROR [event type]: The event must be an Object or JSON type",
       );
     }
 
@@ -234,6 +252,9 @@ class FacebookPage {
     }
 
     if (typeof msg !== "string") {
+      if (typeof callback === "function") {
+        return callback("ERR: Text must be string", null);
+      }
       return console.error(
         `Send Message [ERR]: Message must be in string format`,
       );
@@ -261,9 +282,11 @@ class FacebookPage {
 
   sendToAdmin(message, callback) {
     // TODO: Verify FB TOKEN existence
-    console.log("Sending to admin");
     if (!this.FB_TOKEN) {
-      return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
+      if (typeof callback === "function") {
+        return callback("ERR: Invalid FB_TOKEN", null);
+      }
+      return console.error(`ERR: Undefined FB_TOKEN`);
     }
 
     let msg = message;
@@ -285,6 +308,12 @@ class FacebookPage {
     };
 
     if (typeof msg !== "string") {
+      if (typeof callback === "function") {
+        return callback(
+          "ERR [Send Message]: Message must be in string format",
+          null,
+        );
+      }
       return console.error(
         `Send Message [ERR]: Message must be in string format`,
       );
@@ -417,9 +446,15 @@ class FacebookPage {
 
   #sendMessage(text, event, callback) {
     if (!this.FB_TOKEN) {
+      if (typeof callback === "function") {
+        return callback("ERR: Undefined FB_TOKEN", null);
+      }
       return console.error(`Error: undefined FB TOKEN`);
     }
     if (typeof text !== "string") {
+      if (typeof callback === "function") {
+        return callback("ERR: Text must be string", null);
+      }
       return console.error(`Error: text must be string`);
     }
     axios
