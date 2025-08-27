@@ -35,7 +35,7 @@ class FacebookPage {
     this.__admins = [];
 
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -92,7 +92,7 @@ class FacebookPage {
     }
     if (!command) {
       this.start = false;
-      return console, error("FALLBACK [ERR]: Command must be exists");
+      return (console, error("FALLBACK [ERR]: Command must be exists"));
     }
     if (typeof command !== "object") {
       this.start = false;
@@ -287,6 +287,7 @@ class FacebookPage {
 
   sendToAdmin(message, callback) {
     // TODO: Verify FB TOKEN existence
+    console.log("Sending to admin");
     if (!this.FB_TOKEN) {
       return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
     }

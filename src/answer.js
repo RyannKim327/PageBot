@@ -14,7 +14,10 @@ module.exports = async (api, event, regex) => {
       `You've got it, congratiolations.\n\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\n${link ? "Link: " + link : "Code: " + code}\nFlag Format: flag{${c.format ?? "thisisthefalagformat"}}`,
       event,
     );
-    api.sendToAdmin(`Facebook user: ${event.sender.id} solved: ${c.past}`);
+    api.sendToAdmin(
+      `Facebook user: ${event.sender.id} solved: ${c.past}`,
+      (failed, response) => {},
+    );
   } else {
     api.sendMessage("Wrong flag, please try again", event);
   }
