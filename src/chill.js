@@ -6,13 +6,5 @@ module.exports = (api, event) => {
     if (error) console.error(error);
     console.log(response);
   });
-  api.sendAttachment(
-    "image",
-    `${__dirname}/../assets/chill.png`,
-    event,
-    (failed, response) => {
-      if (failed) console.log(failed);
-      console.log(response);
-    },
-  );
+  api.sendAttachment("image", `${__dirname}/../assets/chill.png`, event);
 };
