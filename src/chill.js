@@ -11,8 +11,8 @@ module.exports = (api, event) => {
     `${__dirname}/../assets/chill.png`,
     event,
     (failed, response) => {
-      console.log(failed);
-      console.log(JSON.stringify(response));
+      if (failed) console.log(failed);
+      console.log(response);
     },
   );
 };
