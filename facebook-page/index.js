@@ -21,10 +21,6 @@ class FacebookPage {
       this.__temp,
       express.static(path.join(__dirname, `..${this.__temp}`)),
     );
-    this.__app.use(
-      "/web-assets",
-      express.static(path.join(__dirname, "web/web-assets")),
-    );
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
@@ -38,6 +34,7 @@ class FacebookPage {
     };
     this.__admins = [];
 
+    // TODO: To auto clear the temporary files for unexpected close
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
       fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
     }
@@ -77,6 +74,13 @@ class FacebookPage {
     }
     command["script"] = script;
     this.commands.push(command);
+  }
+
+  addPublicFolder(folder) {
+    this.__app.use(
+      `/${folder}`,
+      express.static(path.join(__dirname, `../${folder}`)),
+    );
   }
 
   getAssistant() {
@@ -488,7 +492,7 @@ class FacebookPage {
   }
 
   // INFO: Webhook process
-  listen() {
+  listen(callback) {
     if (this.start) {
       this.start = true && this.commands.length > 0;
     }
@@ -499,13 +503,14 @@ class FacebookPage {
     }
 
     const app = this.__app;
+
+    if (typeof callback === "function") {
+      callback(app);
+    }
+
     app.get("/", (req, res) => {
       this.hostname = req.hostname;
       res.sendFile(`${__dirname}/web/index.html`);
-    });
-
-    app.get("/a-leaders-portrait", (req, res) => {
-      res.sendFile(`${__dirname}/web/iforgotyourname.html`);
     });
 
     app.get(this.__webhook, (req, res) => {

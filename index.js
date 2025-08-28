@@ -68,4 +68,10 @@ api.setFallback("gpt", {
 
 api.addAdmin(61572478455619);
 
-api.listen();
+api.addPublicFolder("web/web-assets");
+
+api.listen((app) => {
+  app.get("/a-leaders-portrait", (req, res) => {
+    res.sendFile(`${__dirname}/web/iforgotyourname.html`);
+  });
+});
