@@ -91,24 +91,25 @@
     "hints": [
       "He was marked as the beginnig of ****'s Golden Age",
       "Pax Romana",
-      "It last for 200 years of peace."
+      "It last for 200 years of peace.",
+      "Power + Peace + Wealth"
     ],
     "format": "",
     "link": [
-      ""
+      "https://pagebot-03t9.onrender.com/challenge-8"
     ]
   },
-  "flag{augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
+  "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
     "past": "eighth",
     "title": "A cat?",
-    "description": "I stalked a suspecious conversation and I saw a random text together with a picture of cat and maze.",
+    "description": "I stalked a suspicious conversation and I saw a random text together with a picture of cat and maze.",
     "hints": [
       "Route Cipher? What was that?",
       "I thought it was Muthym Cipher",
       "What is the purpose of cat? Is that really a clue?",
       "What was the challenge number of this?",
-      "Root or Routh?",
+      "Root or Route?",
       "Why was box become square in different angle?"
     ],
     "link": [
