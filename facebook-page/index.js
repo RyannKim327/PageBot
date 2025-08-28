@@ -308,7 +308,7 @@ class FacebookPage {
       for await (let admin of this.__admins) {
         const event = {
           sender: {
-            id: admin,
+            id: `${admin}`,
           },
         };
         this.#sendMessage(text, event, callback);
