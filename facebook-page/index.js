@@ -39,7 +39,7 @@ class FacebookPage {
     this.__admins = [];
 
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
@@ -96,7 +96,7 @@ class FacebookPage {
     }
     if (!command) {
       this.start = false;
-      return (console, error("FALLBACK [ERR]: Command must be exists"));
+      return console, error("FALLBACK [ERR]: Command must be exists");
     }
     if (typeof command !== "object") {
       this.start = false;
@@ -504,7 +504,7 @@ class FacebookPage {
       res.sendFile(`${__dirname}/web/index.html`);
     });
 
-    app.get("/challenge-8", (req, res) => {
+    app.get("/a-leaders-portrait", (req, res) => {
       res.sendFile(`${__dirname}/web/iforgotyourname.html`);
     });
 
