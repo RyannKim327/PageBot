@@ -10,49 +10,35 @@
         padding: 0;
       }
       body {
-        background-color: darkgray;
-        background-image: url("assets/agustus.jpg");
         height: 100dvh;
         width: 100dvw;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: 100% 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-color: transparent;
-        background-clip: text;
-        -moz-background-clip: text;
-        text-align: justify;
-        -webkit-background-clip: text;
-        label {
-          font-size: 0.25rem;
-          color: transparent;
+        background-color: black;
+
+        #main {
+          background-image: url("assets/agustus.jpg");
+          width: 100%;
+          height: 100%;
+          background-position: 95% 100%;
+          background-attachment: fixed;
+          background-repeat: no-repeat;
+          background-size: cover;
+          font-size: 0.5rem;
+          overflow: auto;
+          word-break: break-all;
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
         }
       }
     </style>
   </head>
-  <body></body>
+  <body>
+    <main id="main"></main>
+  </body>
   <script>
-    const fake = "flag{ang_mamatay_nang_dahil_sayo_bayang_pilipinas_1} ";
-    const real = "flag{a_long_peace_that_gegjeiwuriuehf_hope_for_last} ";
-    const total = 1000;
-    const position = Math.floor(Math.random() * total - 1);
-    let i = 0;
-    function runner() {
-      if (i <= total + 1) {
-        if (i == position) {
-          document.body.innerHTML += `<label>${real}</label>`;
-        } else {
-          document.body.innerHTML += `<label>${fake}</label>`;
-        }
-        i++;
-        setTimeout(() => {
-          runner();
-        }, 0.1);
-      }
-    }
-    runner();
+    eval(
+      atob(
+        "Y29uc3QgZmFrZSA9CiAgICAgICJmbGFne2F1Z3VzdHVzX2NhZXNhcl9oYXNfcG93ZXJfYW5kX3dlYWx0aF9wZWFjZV9mZ3J0aGJiZ3NkZ2JiZnZ9ICI7CiAgICBjb25zdCByZWFsID0KICAgICAgImZsYWd7YXVndXN0dXNfY2Flc2FyX3hfcGF4X3JvbWFuYV93aXRoX3Bvd2VyX2FuZF9nb2xkX2VmZ3J0ZHZmcn0gIjsKICAgIGNvbnN0IHRvdGFsID0gMTAwMDsKICAgIGNvbnN0IHBvc2l0aW9uID0gTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogdG90YWwgLSAxKTsKICAgIGxldCBpID0gMDsKICAgIGZ1bmN0aW9uIHJ1bm5lcigpIHsKICAgICAgY29uc3QgbWFpbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJtYWluIik7CiAgICAgIGlmIChpIDw9IHRvdGFsICsgMSkgewogICAgICAgIGlmIChpID09IHBvc2l0aW9uKSB7CiAgICAgICAgICBtYWluLmlubmVySFRNTCArPSBgJHtyZWFsfWA7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgIG1haW4uaW5uZXJIVE1MICs9IGAke2Zha2V9YDsKICAgICAgICB9CiAgICAgICAgaSsrOwogICAgICAgIHNldFRpbWVvdXQoKCkgPT4gewogICAgICAgICAgcnVubmVyKCk7CiAgICAgICAgfSwgMC4xKTsKICAgICAgfQogICAgfQogICAgcnVubmVyKCk7Cg==",
+      ),
+    );
   </script>
 </html>

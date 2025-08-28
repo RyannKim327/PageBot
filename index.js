@@ -56,7 +56,7 @@ api.addCommand("answer", {
 });
 
 api.addCommand("answer", {
-  title: "Answer Challenge 2",
+  title: "Answer Challenges",
   command: "flag{([\\w\\W]+)}",
   hidden: true,
   unprefix: true,
