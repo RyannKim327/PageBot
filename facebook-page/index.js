@@ -21,6 +21,10 @@ class FacebookPage {
       this.__temp,
       express.static(path.join(__dirname, `..${this.__temp}`)),
     );
+    this.__app.use(
+      "/web-assets",
+      express.static(path.join(__dirname, "web/web-assets")),
+    );
     this.__port = process.env.PORT || 3000;
     this.prefix = "/";
     this.commands = [];
