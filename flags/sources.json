@@ -52,16 +52,18 @@
     "description": "Let's make try to know what does the composer wants to say.",
     "hints": [
       "I am a mute, and I can scream",
-      "What was this place? No light, do I am blind?",
+      "What was this place? Blinking lights? Am I hallucinating?",
       "I hope someone would hear me.",
-      "Knocks and scratches everywhere, aahhhhhhhhhh"
+      "Beeeppppss, aahhhhhhhhhh, so annoying",
+      "Who... I... am...",
+      "What a master piece"
     ],
     "format": "this_is_the_flag_sample_used",
     "link": [
-      ""
+      "https://pagebot-03t9.onrender.com/challenge5"
     ]
   },
-  "every_step_forward_is_progress": {
+  "the_name_i_took_from_a_master_of_mine_is_a_gift_a_gift_enhanced_by_errors_and_mistakes_that_do_not_merely_lean_on_that_small_circle_where_i_was_imprisoned.": {
     "current": "sixth",
     "past": "fifth",
     "title": "Sage of the six paths",
@@ -83,7 +85,7 @@
       ""
     ]
   },
-  "a_fate_of_a_titan_not_to_surpass_his_power": {
+  "a_fate_of_a_titan_not_to_surpass_his_power_but_he_failed_qwefwe2": {
     "current": "eighth",
     "past": "seventh",
     "title": "A ghosted gold",
@@ -112,18 +114,23 @@
       "What is the purpose of cat? Is that really a clue?",
       "What was the challenge number of this?",
       "Root or Route?",
-      "Why was box become square in different angle?"
+      "Why was box become square in different angle?",
+      "What a zigzag."
     ],
     "link": [
-      "https://loremipsum.io/"
-    ]
+      "https://crypto.interactive-maths.com/route-cipher.html"
+    ],
+    "code": "ACSERDCDNCAJHVVHOOUTDVWWINWTIFNNHSTESJESIIK",
+    "format": "thisisthesampleresponse"
   },
-  "ghewyhfnw3rfhc": {
+  "acutecatissjdfjehvnervwnsdvwhichisidontknow": {
     "current": "tenth",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
     "description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
-    "hints": [],
+    "hints": [
+      "For this challenge, I didn't provide any hints or clue, it is time for you to discover and use all knowledge you've learn from the past challenges."
+    ],
     "format": ""
   }
 }

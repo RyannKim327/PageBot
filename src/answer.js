@@ -11,7 +11,7 @@ module.exports = async (api, event, regex) => {
     const code = c.code;
 
     api.sendMessage(
-      `You've got it, congratiolations.\n\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\nHints: ${c.hints.join("\n")}\n${link ? "Link: " + link : "Code: " + code}\nFlag Format: flag{${c.format ?? "thisisthefalagformat"}}\nNote: If you found your flag has spaces, please change those spaces to underscore. Thanks`,
+      `You've got it, congratiolations, you completed the ${c.past} challenge\n\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\n${c.hints ? "Hints: " + c.hints.join("\n") : "No hint provided for this challenge."}\n${link ? "Link: " + link : ""}\n${code ? "Code: " + code : ""}\nFlag Format: flag{${c.format ?? "thisisthefalagformat"}}\nNote: If you found your flag has spaces, please change those spaces to underscore. Thanks`,
       event,
     );
     // setTimeout(() => {

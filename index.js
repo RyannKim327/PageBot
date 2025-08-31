@@ -66,12 +66,15 @@ api.setFallback("gpt", {
   title: "GPT 4o",
 });
 
-api.addAdmin(61572478455619);
+api.addAdmin("61572478455619");
 
 api.addPublicFolder("web/web-assets");
 
 api.listen((app) => {
   app.get("/a-leaders-portrait", (req, res) => {
     res.sendFile(`${__dirname}/web/iforgotyourname.html`);
+  });
+  app.get("/challenge5", (req, res) => {
+    res.download(`${__dirname}/assets/challenge-5.wav`);
   });
 });
