@@ -76,7 +76,10 @@ api.listen((app) => {
   app.get("/a-leaders-portrait", (req, res) => {
     res.sendFile(`${__dirname}/web/iforgotyourname.html`);
   });
-  app.get("/challenge5", (req, res) => {
+  app.get("/wrgw4regtwegvse", (req, res) => {
     res.download(`${__dirname}/assets/challenge-5.wav`);
+  });
+  app.get("/sfhasdfefwe", (req, res) => {
+    res.download(`${__dirname}/assets/challenge6.jpg`);
   });
 });
