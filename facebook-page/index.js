@@ -357,7 +357,7 @@ class FacebookPage {
     );
   }
 
-  #regex(command, unpref) {
+  #regex(command, unpref, any) {
     // TODO: To convert normal text into regex file
     if (typeof command !== "string") {
       if (command.command) {
@@ -365,8 +365,12 @@ class FacebookPage {
       }
     }
     if (typeof command === "string") {
+      let start = "^";
+      if (any) {
+        start = "";
+      }
       if (unpref) {
-        return new RegExp(`^${command}`, "i");
+        return new RegExp(`${start}${command}`, "i");
       }
 
       let prefix = this.prefix;
@@ -375,7 +379,7 @@ class FacebookPage {
         prefix = `\\${prefix}`;
       }
 
-      return new RegExp(`^${prefix}${command}`, "i");
+      return new RegExp(`${start}${prefix}${command}`, "i");
     }
   }
 
@@ -422,7 +426,8 @@ class FacebookPage {
     const execute = () => {
       let command = commands[c];
       let unpref = command.unprefix;
-      const _regex = this.#regex(command.command, unpref);
+      let any = command.any ?? false;
+      const _regex = this.#regex(command.command, unpref, any);
       if (_regex.test(event.message.text) && !done) {
         const script = require(`./../src/${command.script}`);
         done = true;
