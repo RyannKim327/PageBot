@@ -7,11 +7,11 @@ module.exports = async (api, event, regex) => {
     .replace(/\s/gi, "_");
   if (codes[body]) {
     const c = codes[body];
-    const link = c.link.join("\n");
+    const link = c.link.join("\n * ");
     const code = c.code;
 
     api.sendMessage(
-      `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\n\n${c.hints ? "Hints:\n *" + c.hints.join("\n *") + "\n\n" : "No hint provided for this challenge."}${link ? "Link: " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: If you found your flag has spaces, please change those spaces to underscore. Thanks`,
+      `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title}\n~ ${c.description}\n\n${c.hints ? "Hints:\n * " + c.hints.join("\n * ") + "\n\n" : "No hint provided for this challenge.\n\n"}${link ? "Link:\n * " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: If you found your flag has spaces, please change those spaces to underscore. Thanks`,
       event,
     );
     // setTimeout(() => {
