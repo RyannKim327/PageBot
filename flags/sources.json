@@ -1,6 +1,7 @@
 {
   "this_is_a_challenge_for_all_oudjsa": {
     "current": "second",
+    "difficulty": "Very Easy",
     "past": "first",
     "title": "2 + 16 = ?",
     "description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
@@ -14,6 +15,7 @@
   },
   "bits_and_nibbles_0xa0x10": {
     "current": "third",
+    "difficulty": "Very Easy",
     "past": "second",
     "title": "A back and forth rotation",
     "description": "This was a self program encryption, it was created but not intended to you to suffer.",
@@ -30,6 +32,7 @@
   },
   "aselfencryptioncreatedforallnewbieslikeme": {
     "current": "fourth",
+    "difficulty": "Medium",
     "past": "third",
     "title": "His name is right after the late Tammuz",
     "description": "We have someone who is a dictator and once control and overrule a nation.",
@@ -43,11 +46,13 @@
   },
   "julius_caesar_reigns_the_roman_empire_for_4_years": {
     "current": "fifth",
+    "difficulty": "Medium",
     "past": "fourth",
     "title": "The art of a composer",
     "description": "Let's make try to know what does the composer wants to say.",
     "hints": [
       "I am a mute, and I can scream",
+      "And I said, ooh, I'm blinded by the lights",
       "What was this place? Blinking lights? Am I hallucinating?",
       "I hope someone would hear me.",
       "Beeeppppss, aahhhhhhhhhh, so annoying",
@@ -59,15 +64,19 @@
   },
   "the_name_i_took_from_a_master_of_mine_is_a_gift_a_gift_enhanced_by_errors_and_mistakes_that_do_not_merely_lean_on_that_small_circle_where_i_was_imprisoned.": {
     "current": "sixth",
+    "difficulty": "Very Easy",
     "past": "fifth",
     "title": "Sage of the six paths",
     "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
     "hints": [
-      "Nature, Sun and Moon?",
+      "Tree, Sun and Moon?",
       "What's on in that image?",
       "I don't feel good with this one.",
       "Very suspicious image.",
-      "Why was the file size is too big?"
+      "Why was the file size is too big?",
+      "Project Tsukuyomi? For real?",
+      "Beasts of all Jinchuriki in one hand.",
+      "Hagoromo's bright side."
     ],
     "format": "this_is_the_flag_sample_used",
     "link": [
@@ -78,6 +87,7 @@
   },
   "no_one_can_understand_ones_pain_unless_you_share_the_same_adfwerfg3w": {
     "current": "seventh",
+    "difficulty": "Easy (ata)",
     "past": "sixth",
     "title": "Saturn's Ring",
     "description": "I don't know either",
@@ -98,6 +108,7 @@
   },
   "a_fate_of_a_titan_not_to_surpass_his_power_but_he_failed_qwefwe2": {
     "current": "eighth",
+    "difficulty": "Easy",
     "past": "seventh",
     "title": "A ghosted gold",
     "description": "I saw this cool webpage, it is cool as the man in the picture.",
@@ -109,11 +120,11 @@
       "What was that number means? Is that bytes?",
       "Oh, something like a CSS Portrait Art"
     ],
-    "format": "",
     "code": "https://pagebot-03t9.onrender.com/a-leaders-portrait"
   },
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
+    "difficulty": "Medium",
     "past": "eighth",
     "title": "A cat?",
     "description": "I stalked a suspicious conversation and I saw a random text together with a picture of cat and maze.",
@@ -124,7 +135,8 @@
       "What was the challenge number of this?",
       "Root or Route?",
       "Why was box become square in different angle?",
-      "What a zigzag.",
+      "What a zigzag. Like a phone pattern?",
+      "I stand, but not in a straight way.",
       "Remove · for output."
     ],
     "link": [
@@ -135,11 +147,13 @@
   },
   "acutecatissjdfjehvnerhgvwnsdvwhichisidontknow": {
     "current": "tenth",
+    "difficulty": "Extreme",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
     "description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
     "hints": [
-      "For this challenge, I didn't provide any hints or clue, it is time for you to discover and use all knowledge you've learn from the past challenges."
+      "For this challenge, I didn't provide any hints or clue, it is time for you to discover and use all knowledge you've learn from the past challenges.",
+      "This would be a compilation of your experience. If you know how to do the others, then you can do this one easier."
     ],
     "format": ""
   }
