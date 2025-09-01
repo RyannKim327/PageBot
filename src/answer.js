@@ -7,7 +7,7 @@ module.exports = async (api, event, regex) => {
     .replace(/\s/gi, "_");
   if (codes[body]) {
     const c = codes[body];
-    const link = c.link.join("\n * ");
+    const link = c.link ? c.link.join("\n * ") : "";
     const code = c.code;
 
     api.sendMessage(
