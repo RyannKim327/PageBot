@@ -9,9 +9,10 @@ module.exports = async (api, event, regex) => {
     const c = codes[body];
     const link = c.link ? c.link.join("\n * ") : "";
     const code = c.code ? c.code : "";
+    const category = c.category ? `Category: ${c.category}\n` : "";
 
     api.sendMessage(
-      `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title} [${c.difficulty ?? "Basic"} level of difficulty]\n~ ${c.description}\n\n${c.hints ? "Hints:\n * " + c.hints.join("\n * ") + "\n\n" : "No hint provided for this challenge.\n\n"}${link ? "Link:\n * " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: Some hints may not apply to decode, but to give you idea what the flag is. Also if you found your flag has spaces, please change those spaces to underscore. Thanks`,
+      `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title} [${c.difficulty ?? "Basic"} level of difficulty]\n${category} ~ ${c.description}\n\n${c.hints ? "Hints:\n * " + c.hints.join("\n * ") + "\n\n" : "No hint provided for this challenge.\n\n"}${link ? "Link:\n * " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: Some hints may not apply to decode, but to give you idea what the flag is. Also if you found your flag has spaces, please change those spaces to underscore. Thanks`,
       event,
     );
     // setTimeout(() => {

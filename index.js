@@ -76,10 +76,13 @@ api.listen((app) => {
   app.get("/a-leaders-portrait", (req, res) => {
     res.sendFile(`${__dirname}/web/iforgotyourname.html`);
   });
+  app.get("/sgtthfsdf", (req, res) => {
+    res.download(`${__dirname}/assets/challenge4.jpg`);
+  });
   app.get("/wrgw4regtwegvse", (req, res) => {
-    res.download(`${__dirname}/assets/challenge-5.wav`);
+    res.download(`${__dirname}/assets/challenge5.wav`);
   });
   app.get("/sfhasdfefwe", (req, res) => {
-    res.download(`${__dirname}/assets/challenge6.jpg`);
+    res.download(`${__dirname}/assets/challenge6.zip`);
   });
 });

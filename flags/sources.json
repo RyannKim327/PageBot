@@ -3,6 +3,7 @@
     "current": "second",
     "difficulty": "Very Easy",
     "past": "first",
+    "category": "Cryptography",
     "title": "2 + 16 = ?",
     "description": "Another numerical formation that composed of two-layered encryption, this was easier one than the other one.",
     "hints": [
@@ -15,7 +16,8 @@
   },
   "bits_and_nibbles_0xa0x10": {
     "current": "third",
-    "difficulty": "Very Easy",
+    "difficulty": "Easy",
+    "category": "Cryptography",
     "past": "second",
     "title": "A back and forth rotation",
     "description": "This was a self program encryption, it was created but not intended to you to suffer.",
@@ -28,25 +30,35 @@
     "link": [
       "https://www.facebook.com/TheKeyLang.newbie/videos/1324230165768246/"
     ],
-    "code": "https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing"
+    "code": "https://drive.google.com/file/d/1dRwD_-qxKJOwI6xVSgqNgPmnyF6Puqfx/view?usp=sharing",
+    "format": "thisisthesampleresponse"
   },
   "aselfencryptioncreatedforallnewbieslikeme": {
     "current": "fourth",
     "difficulty": "Medium",
+    "category": "Steganography",
     "past": "third",
     "title": "His name is right after the late Tammuz",
     "description": "We have someone who is a dictator and once control and overrule a nation.",
     "hints": [
       "He was an emperor and become a powerful among all.",
       "Is he the one who created that cipher?",
-      "He handle too many war one of it is the Invasion of Britain"
+      "He handle too many war one of it is the Invasion of Britain",
+      "What's on in that image?",
+      "I don't feel good with this one.",
+      "Very suspicious image.",
+      "Why was the file size is too big?"
     ],
-    "link": [],
+    "link": [
+      "https://www.ijraset.com/research-paper/text-image-and-audio-steganography"
+    ],
+    "code": "https://pagebot-03t9.onrender.com/sgtthfsdf",
     "format": "some_random_message"
   },
   "julius_caesar_reigns_the_roman_empire_for_4_years": {
     "current": "fifth",
     "difficulty": "Medium",
+    "category": "Cryptography/Steganography",
     "past": "fourth",
     "title": "The art of a composer",
     "description": "Let's make try to know what does the composer wants to say.",
@@ -59,35 +71,39 @@
       "Who... I... am...",
       "What a master piece"
     ],
+    "link": [
+      "https://exo.substack.com/p/the-exo-guide-to-data-cloaking",
+      "https://www.ijraset.com/research-paper/text-image-and-audio-steganography"
+    ],
     "format": "this_is_the_flag_sample_used",
     "code": "https://pagebot-03t9.onrender.com/wrgw4regtwegvse"
   },
   "the_name_i_took_from_a_master_of_mine_is_a_gift_a_gift_enhanced_by_errors_and_mistakes_that_do_not_merely_lean_on_that_small_circle_where_i_was_imprisoned.": {
     "current": "sixth",
     "difficulty": "Very Easy",
+    "category": "Steganography",
     "past": "fifth",
     "title": "Sage of the six paths",
     "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
     "hints": [
       "Tree, Sun and Moon?",
-      "What's on in that image?",
-      "I don't feel good with this one.",
-      "Very suspicious image.",
-      "Why was the file size is too big?",
       "Project Tsukuyomi? For real?",
       "Beasts of all Jinchuriki in one hand.",
-      "Hagoromo's bright side."
+      "Hagoromo's bright side.",
+      "You may restore a division but using addition.",
+      "Facebook's current company name?"
     ],
     "format": "this_is_the_flag_sample_used",
     "link": [
-      "https://exo.substack.com/p/the-exo-guide-to-data-cloaking",
-      "https://www.ijraset.com/research-paper/text-image-and-audio-steganography"
+      "https://www.techtarget.com/whatis/definition/image-metadata",
+      "https://www.ibm.com/think/topics/metadata"
     ],
     "code": "https://pagebot-03t9.onrender.com/sfhasdfefwe"
   },
   "no_one_can_understand_ones_pain_unless_you_share_the_same_adfwerfg3w": {
     "current": "seventh",
     "difficulty": "Easy (ata)",
+    "category": "Unknown",
     "past": "sixth",
     "title": "Saturn's Ring",
     "description": "I don't know either",
@@ -99,7 +115,7 @@
       "Is that really six or seven?",
       ""
     ],
-    "format": "",
+    "format": "this_is_the_flag_sample_used",
     "link": [
       "https://science.nasa.gov/saturn/facts/",
       "https://catholicstand.com/betraying-christ-with-a-kiss/"
@@ -109,6 +125,7 @@
   "a_fate_of_a_titan_not_to_surpass_his_power_but_he_failed_qwefwe2": {
     "current": "eighth",
     "difficulty": "Easy",
+    "category": "Cryptography/Steganography",
     "past": "seventh",
     "title": "A ghosted gold",
     "description": "I saw this cool webpage, it is cool as the man in the picture.",
@@ -125,6 +142,7 @@
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
     "difficulty": "Medium",
+    "category": "Cryptography",
     "past": "eighth",
     "title": "A cat?",
     "description": "I stalked a suspicious conversation and I saw a random text together with a picture of cat and maze.",
@@ -148,6 +166,7 @@
   "acutecatissjdfjehvnerhgvwnsdvwhichisidontknow": {
     "current": "tenth",
     "difficulty": "Extreme",
+    "category": "Hybrid",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
     "description": "It is just a riddle, I know you may answer it but it has a twist, you need to look for a riddle according to a riddle, and once you've found the answer, you may answer it.",
