@@ -85,4 +85,7 @@ api.listen((app) => {
   app.get("/sfhasdfefwe", (req, res) => {
     res.download(`${__dirname}/assets/challenge6.zip`);
   });
+  app.get("/wgfwefweoo", (req, res) => {
+    res.download(`${__dirname}/assets/challenge7.mp4`);
+  });
 });
