@@ -23,7 +23,7 @@ const get = async () => {
 
 const post = async (_data) => {
 	if (typeof _data !== "string") {
-		_data = JSON.stringify(data);
+		_data = JSON.stringify(_data);
 	}
 
 	const { data } = await axios.post(
@@ -43,6 +43,7 @@ const post = async (_data) => {
 			},
 		},
 	);
+	return data;
 };
 
 module.exports = {

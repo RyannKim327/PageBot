@@ -33,8 +33,9 @@ module.exports = async (api, event, regex) => {
     //     },
     //   );
     // }, 1500);
-    await post(info);
+    const x = await post(info);
     console.log("Done");
+    console.log(x);
   } else {
     api.sendMessage("Wrong flag, please try again", event);
   }
