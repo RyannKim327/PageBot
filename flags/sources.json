@@ -2,6 +2,7 @@
   "this_is_a_challenge_for_all_oudjsa": {
     "current": "second",
     "difficulty": "Very Easy",
+    "estimated": 3,
     "past": "first",
     "category": "Cryptography",
     "title": "2 + 16 = ?",
@@ -17,6 +18,7 @@
   "bits_and_nibbles_0xa0x10": {
     "current": "third",
     "difficulty": "Easy",
+    "estimated": 7,
     "category": "Cryptography/Reverse Engineering(optional)",
     "past": "second",
     "title": "A back and forth rotation",
@@ -36,6 +38,7 @@
   "aselfencryptioncreatedforallnewbieslikeme": {
     "current": "fourth",
     "difficulty": "Medium",
+    "estimated": 10,
     "category": "Steganography",
     "past": "third",
     "title": "His name is right after the late Tammuz",
@@ -58,6 +61,7 @@
   "julius_caesar_reigns_the_roman_empire_for_4_years": {
     "current": "fifth",
     "difficulty": "Very Easy",
+    "estimated": 2,
     "category": "Cryptography/Steganography",
     "past": "fourth",
     "title": "The art of a composer",
@@ -81,6 +85,7 @@
   "the_name_i_took_from_a_master_of_mine_is_a_gift_a_gift_enhanced_by_errors_and_mistakes_that_do_not_merely_lean_on_that_small_circle_where_i_was_imprisoned.": {
     "current": "sixth",
     "difficulty": "Medium",
+    "estimated": 13,
     "category": "Cryptography/Steganography",
     "past": "fifth",
     "title": "Sage of the six paths",
@@ -104,6 +109,7 @@
   "no_one_can_understand_ones_pain_unless_you_share_the_same_adfwerfg3w": {
     "current": "seventh",
     "difficulty": "Super Easy",
+    "estimated": 7,
     "category": "Steganography",
     "past": "sixth",
     "title": "Saturn's Ring",
@@ -126,6 +132,7 @@
   "a_fate_of_a_titan_not_to_surpass_his_power_but_he_failed_qwefwe2": {
     "current": "eighth",
     "difficulty": "Easy (ata)",
+    "estimated": 4,
     "category": "Cryptography/Steganography",
     "past": "seventh",
     "title": "A ghosted gold",
@@ -143,6 +150,7 @@
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
     "difficulty": "Medium",
+    "estimated": 9,
     "category": "Cryptography",
     "past": "eighth",
     "title": "A cat?",
@@ -165,6 +173,7 @@
   "acutecatissjdfjehvnerhgvwnsdvwhichisidontknow": {
     "current": "tenth",
     "difficulty": "Extreme",
+    "estimated": 100,
     "category": "Hybrid",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
