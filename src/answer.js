@@ -1,12 +1,23 @@
 const fs = require("fs");
+const { get } = require("../utils/gist");
 module.exports = async (api, event, regex) => {
   const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));
   const body = event.message.text
     .match(regex)[1]
     .toLowerCase()
     .replace(/\s/gi, "_");
+  const info = await get();
+  if (!info[event.sender.id]) {
+    info[event.sender.id] = 1;
+  }
   if (codes[body]) {
     const c = codes[body];
+    if (info[event.sender.id] < c.x) {
+      return api.sendMessage(
+        `You are not yet permitted to solve this challenge anyway.`,
+        event,
+      );
+    }
     const link = c.link ? c.link.join("\n * ") : "";
     const code = c.code ? c.code : "";
     const category = c.category ? `Category: ${c.category}\n` : "";
@@ -25,6 +36,8 @@ module.exports = async (api, event, regex) => {
     //     },
     //   );
     // }, 1500);
+    await post(info);
+    console.log("Done");
   } else {
     api.sendMessage("Wrong flag, please try again", event);
   }

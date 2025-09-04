@@ -1,6 +1,7 @@
 {
   "this_is_a_challenge_for_all_oudjsa": {
     "current": "second",
+    "x": 1,
     "difficulty": "Very Easy",
     "estimated": 3,
     "past": "first",
@@ -17,6 +18,7 @@
   },
   "bits_and_nibbles_0xa0x10": {
     "current": "third",
+    "x": 2,
     "difficulty": "Easy",
     "estimated": 7,
     "category": "Cryptography/Reverse Engineering(optional)",
@@ -37,6 +39,7 @@
   },
   "aselfencryptioncreatedforallnewbieslikeme": {
     "current": "fourth",
+    "x": 3,
     "difficulty": "Medium",
     "estimated": 10,
     "category": "Steganography",
@@ -60,6 +63,7 @@
   },
   "julius_caesar_reigns_the_roman_empire_for_4_years": {
     "current": "fifth",
+    "x": 4,
     "difficulty": "Very Easy",
     "estimated": 2,
     "category": "Cryptography/Steganography",
@@ -84,6 +88,7 @@
   },
   "the_name_i_took_from_a_master_of_mine_is_a_gift_a_gift_enhanced_by_errors_and_mistakes_that_do_not_merely_lean_on_that_small_circle_where_i_was_imprisoned.": {
     "current": "sixth",
+    "x": 5,
     "difficulty": "Medium",
     "estimated": 13,
     "category": "Cryptography/Steganography",
@@ -108,6 +113,7 @@
   },
   "no_one_can_understand_ones_pain_unless_you_share_the_same_adfwerfg3w": {
     "current": "seventh",
+    "x": 6,
     "difficulty": "Super Easy",
     "estimated": 7,
     "category": "Steganography",
@@ -131,6 +137,7 @@
   },
   "a_fate_of_a_titan_not_to_surpass_his_power_but_he_failed_qwefwe2": {
     "current": "eighth",
+    "x": 7,
     "difficulty": "Easy (ata)",
     "estimated": 4,
     "category": "Cryptography/Steganography",
@@ -149,6 +156,7 @@
   },
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
+    "x": 8,
     "difficulty": "Medium",
     "estimated": 9,
     "category": "Cryptography",
@@ -172,6 +180,7 @@
   },
   "acutecatissjdfjehvnerhgvwnsdvwhichisidontknow": {
     "current": "tenth",
+    "x": 9,
     "difficulty": "Extreme",
     "estimated": 100,
     "category": "Hybrid",

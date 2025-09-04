@@ -1,0 +1,51 @@
+const axios = require("axios");
+
+const TOKEN = process.env.GIST_TOKEN;
+const GIST = process.env.GIST_ID;
+const FILE = process.env.FILE;
+
+const url = `https://api.github.com/gists/${GIST}`;
+
+const get = async () => {
+	const { data } = await axios.get(url, {
+		headers: {
+			Authorization: `Bearer ${TOKEN}`,
+			Accept: "application/vnd.github+json",
+			"X-Github-Api-Version": "2022-11-28",
+		},
+	});
+	if (!data.files[FILE]) {
+		return console.log("Error, unknown file");
+	}
+	const file = data.files[FILE];
+	return JSON.parse(file.content);
+};
+
+const post = async (_data) => {
+	if (typeof _data !== "string") {
+		_data = JSON.stringify(data);
+	}
+
+	const { data } = await axios.post(
+		url,
+		{
+			files: {
+				[FILE]: {
+					content: _data,
+				},
+			},
+		},
+		{
+			headers: {
+				Authorization: `Bearer ${TOKEN}`,
+				Accept: "application/vnd.github+json",
+				"X-Github-Api-Version": "2022-11-28",
+			},
+		},
+	);
+};
+
+module.exports = {
+	get,
+	post,
+};
