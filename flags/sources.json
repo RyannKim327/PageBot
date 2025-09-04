@@ -91,7 +91,8 @@
       "Beasts of all Jinchuriki in one hand.",
       "Hagoromo's bright side.",
       "You may restore a division but using addition.",
-      "Facebook's current company name?"
+      "Facebook's current company name?",
+      "Its all about how it hurts"
     ],
     "format": "this_is_the_flag_sample_used",
     "link": [
@@ -157,9 +158,7 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": [
-      "https://crypto.interactive-maths.com/route-cipher.html"
-    ],
+    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
