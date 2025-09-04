@@ -7,16 +7,13 @@ module.exports = async (api, event, regex) => {
     .toLowerCase()
     .replace(/\s/gi, "_");
   const info = await get();
-  if (!info[event.sender.id]) {
-    info[event.sender.id] = 1;
+  if (!info.contestants[event.sender.id]) {
+    info.contestants[event.sender.id] = 1;
   }
   if (codes[body]) {
     const c = codes[body];
-    if (info[event.sender.id] < c.x) {
-      return api.sendMessage(
-        `You are not yet permitted to solve this challenge anyway.`,
-        event,
-      );
+    if (info.contestants[event.sender.id] < c.x) {
+      return api.sendMessage("Wrong flag, please try again", event);
     }
     const link = c.link ? c.link.join("\n * ") : "";
     const code = c.code ? c.code : "";
