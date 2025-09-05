@@ -1,3 +1,10 @@
+/*
+ * INFO:
+ * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
+ * 
+ * INFO: This file uses gist to handle data in json format.
+ */
+
 const axios = require("axios");
 
 const TOKEN = process.env.GIST_TOKEN;
