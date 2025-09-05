@@ -1,7 +1,7 @@
 /*
  * INFO:
  * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
- * 
+ *
  * INFO: This file includes all the possible control in to the system.
  * It must handles the commands for command list and also the fallback
  * and other related functions and control.
@@ -77,7 +77,7 @@ api.setFallback("gpt", {
   title: "GPT 4o",
 });
 
-api.addAdmin("61572478455619");
+api.addAdmin("24611616828475926");
 
 api.addPublicFolder("web/web-assets");
 
