@@ -46,7 +46,7 @@
     "category": "Steganography",
     "past": "third",
     "title": "His name is right after the late Tammuz",
-    "description": "We have someone who is a dictator and once control and overrule a nation.",
+    "description": "A picture of dictator send this to my email, and I don't really know what it is. Can you help me to guess out what does it means?",
     "hints": [
       "He was an emperor and become a powerful among all.",
       "Is he the one who created that cipher?",
@@ -70,7 +70,7 @@
     "category": "Cryptography/Steganography",
     "past": "fourth",
     "title": "The art of a composer",
-    "description": "Let's make try to know what does the composer wants to say.",
+    "description": "A composer created a so-called masterpiece, but I can't understand either. His fans aren't been impressed, since the audio is something randomly created.",
     "hints": [
       "I am a mute, and I can scream",
       "And I said, ooh, I'm blinded by the lights",
@@ -95,15 +95,16 @@
     "category": "Cryptography/Steganography",
     "past": "fifth",
     "title": "Sage of the six paths",
-    "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge",
+    "description": "Since I finished naruto and naruto shippuden, this is another inspired naruto themed challenge. The challenge is something like a puzzle built with random things. You may figure it out one you know how do they hide the flag.",
     "hints": [
       "Tree, Sun and Moon?",
       "Project Tsukuyomi? For real?",
       "Beasts of all Jinchuriki in one hand.",
-      "Hagoromo's bright side.",
+      "Its about Jiraiya's students",
       "You may restore a division but using addition.",
       "Facebook's current company name?",
-      "Its all about how it hurts"
+      "Its all about how it hurts",
+      "Never tell this to anyone, can I?"
     ],
     "format": "this_is_the_flag_sample_used",
     "link": [
@@ -112,7 +113,7 @@
     ],
     "code": "https://pagebot-03t9.onrender.com/sfhasdfefwe"
   },
-  "no_one_can_understand_ones_pain_unless_you_share_the_same_adfwerfg3w": {
+  "silence_is_a_kind_of_pain_it_can_sdfgetrvr_destroy_you_or_even_help_you_ferfecdasd": {
     "current": "seventh",
     "x": 6,
     "difficulty": "Super Easy",
@@ -120,7 +121,7 @@
     "category": "Steganography",
     "past": "sixth",
     "title": "Saturn's Ring",
-    "description": "I don't know either",
+    "description": "Someone knows that I look saturn more special rather than other planet. But I don't know someone who knows my one of most favorite planet.",
     "hints": [
       "Don't listen to your deceitful heart.",
       "Sometimes love can be betrayal.",
@@ -144,7 +145,7 @@
     "category": "Cryptography/Steganography",
     "past": "seventh",
     "title": "A ghosted gold",
-    "description": "I saw this cool webpage, it is cool as the man in the picture.",
+    "description": "Way back 2022, I really want to create my own CSS Typography, can you rate my work?",
     "hints": [
       "He was marked as the beginnig of ****'s Golden Age",
       "Pax Romana",
@@ -163,7 +164,7 @@
     "category": "Cryptography",
     "past": "eighth",
     "title": "A cat?",
-    "description": "I stalked a suspicious conversation and I saw a random text together with a picture of cat and maze.",
+    "description": "I stalked a suspicious conversation and I saw a random text together with a picture of cat and maze with pattern of И.",
     "hints": [
       "Route Cipher? What was that?",
       "I thought it was Muthym Cipher",
@@ -175,7 +176,9 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
+    "link": [
+      "https://crypto.interactive-maths.com/route-cipher.html"
+    ],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
