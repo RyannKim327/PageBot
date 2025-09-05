@@ -23,7 +23,7 @@ const get = async () => {
 
 const post = async (_data) => {
 	if (typeof _data !== "string") {
-		_data = JSON.stringify(_data);
+		_data = JSON.stringify(_data, null, 2);
 	}
 
 	const { data } = await axios.post(
