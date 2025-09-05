@@ -1,3 +1,12 @@
+/*
+ * INFO:
+ * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
+ * 
+ * INFO: This file includes all the possible control in to the system.
+ * It must handles the commands for command list and also the fallback
+ * and other related functions and control.
+ */
+
 const bot = require("./facebook-page/index");
 
 const api = new bot();

@@ -1,3 +1,15 @@
+/*
+ * INFO:
+ * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
+ * 
+ * INFO: Purpose
+ * This file is the core of all process within the project.
+ * It was designed to OOP to control and manage a single data
+ * to prevent multiple calls if ever that there's changes
+ * within the information of the project. This was also
+ * used to clean up something and to practice propper OOP format.
+*/
+
 const fs = require("fs");
 const express = require("express");
 const axios = require("axios");
