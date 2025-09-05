@@ -8,7 +8,7 @@ module.exports = async (api, event, regex) => {
     .replace(/\s/gi, "_");
   const info = await get();
   if (!info.contestants[event.sender.id]) {
-    info.contestants[event.sender.id] = 0;
+    info.contestants[event.sender.id] = 1;
   }
   if (codes[body]) {
     const c = codes[body];
