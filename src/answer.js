@@ -12,7 +12,7 @@ module.exports = async (api, event, regex) => {
   }
   if (codes[body]) {
     const c = codes[body];
-    if (info.contestants[event.sender.id] < c.x) {
+    if (info.contestants[event.sender.id] !== c.x) {
       return api.sendMessage("Wrong flag, please try again", event);
     }
     const link = c.link ? c.link.join("\n * ") : "";
