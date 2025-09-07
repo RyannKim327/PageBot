@@ -97,4 +97,21 @@ api.listen((app) => {
   app.get("/wgfwefweoo", (req, res) => {
     res.download(`${__dirname}/assets/challenge7.mp4`);
   });
+  app.get("/dfgvevsdf", (req, res) => {
+    res.status(204).end();
+  });
+  app.get("/challenge10", (req, res) => {
+    res.setHeader(
+      "token",
+      "Bakit mo pa hahanapin kung pwede namang hindi di ba?",
+    );
+    res.setHeader(
+      "X-Content-Cache",
+      "aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcTM0RHZnVUo=",
+    );
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
+    res.send(
+      "<h3>If you cheat, then you can't solve this one. This was the most difficult challenge created in this entire series. Good Luck</h3>",
+    );
+  });
 });
