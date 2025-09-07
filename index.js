@@ -97,7 +97,9 @@ api.listen((app) => {
   app.get("/wgfwefweoo", (req, res) => {
     res.download(`${__dirname}/assets/challenge7.mp4`);
   });
-  app.get("/dfgvevsdf", (req, res) => {});
+  app.get("/dfgvevsdf", (req, res) => {
+    res.status(204).end();
+  });
   app.get("/challenge10", (req, res) => {
     res.setHeader(
       "token",
