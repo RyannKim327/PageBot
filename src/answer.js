@@ -15,7 +15,7 @@ module.exports = async (api, event, regex) => {
     const due = new Date(`${c.due} 23:59`);
     const now = new Date();
     const passList = Array.isArray(c.pass) ? c.pass : [];
-    const time = `${now.getMonth() + 1}-${now.getDay()}-${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+    const time = `${now.getMonth() + 1}-${now.getDate()}-${now.getFullYear()} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
 
     // TODO: Flag invalidity
     if (info.contestants[event.sender.id] !== c.x) {
