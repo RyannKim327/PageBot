@@ -12,15 +12,19 @@ module.exports = async (api, event, regex) => {
   }
   if (codes[body]) {
     const c = codes[body];
+    const due = new Date(`${c.due} 23:59`);
     const now = new Date();
-    const passList = Array.isArray(c.pass) ? c.pass : []
+    const passList = Array.isArray(c.pass) ? c.pass : [];
+    const time = `${now.getMonth() + 1}-${now.getDay()}-${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
 
+    // TODO: Flag invalidity
     if (info.contestants[event.sender.id] !== c.x) {
       return api.sendMessage("Wrong flag, please try again", event);
     }
-    
-    if (now >= c.due && !passList.includes(event.sender.id)) {
-      api.sendToAdmin(`${event.sender.id}: Past the due date ${now}`);
+
+    // TODO: Time expirations
+    if (now.getTime() >= due.getTime() && !passList.includes(event.sender.id)) {
+      api.sendToAdmin(`${event.sender.id}: Past the due date ${time}`);
       return api.sendMessage(
         "You're past the due date of the challenge. Please contact the developer for this, or send us your reasons why you didn't do the challenge on time.",
         event,
@@ -43,8 +47,6 @@ module.exports = async (api, event, regex) => {
     );
 
     const x = await post(info);
-    console.log("Done");
-    console.log(x);
   } else {
     api.sendMessage("Wrong flag, please try again", event);
   }
