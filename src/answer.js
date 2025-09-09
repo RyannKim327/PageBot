@@ -12,6 +12,20 @@ module.exports = async (api, event, regex) => {
   }
   if (codes[body]) {
     const c = codes[body];
+    const now = new Date();
+
+    if (!c.pass) {
+      c.pass = [];
+    }
+
+    if (now >= c.due && !c.pass.includes(event.sender.id)) {
+      api.sendToAdmin(`${event.sender.id}: Past the due date ${now}`);
+      return api.sendMessage(
+        "You're past the due date of the challenge. Please contact the developer for this, or send us your reasons why you didn't do the challenge on time.",
+        event,
+      );
+    }
+
     if (info.contestants[event.sender.id] !== c.x) {
       return api.sendMessage("Wrong flag, please try again", event);
     }
