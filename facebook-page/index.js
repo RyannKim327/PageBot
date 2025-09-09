@@ -1,14 +1,14 @@
 /*
- * INFO:
- * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
- * 
- * INFO: Purpose
- * This file is the core of all process within the project.
- * It was designed to OOP to control and manage a single data
- * to prevent multiple calls if ever that there's changes
- * within the information of the project. This was also
- * used to clean up something and to practice propper OOP format.
-*/
+ * Project: FacebookPage Bot Framework
+ * File: facebook-page/index.js
+ * Description: Core module that initializes the Express app, exposes webhook endpoints,
+ *              routes incoming Messenger events to registered commands, and
+ *              provides helpers for sending messages and attachments.
+ * Author: Ryann Kim Sesgundo [MPOP Reverse II]
+ * Copyright: (c) Ryann Kim Sesgundo
+ * Environment: Requires FB_TOKEN; optional KEY_TOKEN, PORT
+ * Notes: This file is the single source of truth for bot wiring and runtime behavior.
+ */
 
 const fs = require("fs");
 const express = require("express");
