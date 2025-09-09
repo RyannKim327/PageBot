@@ -13,12 +13,13 @@ module.exports = async (api, event, regex) => {
   if (codes[body]) {
     const c = codes[body];
     const now = new Date();
+    const passList = Array.isArray(c.pass) ? c.pass : []
 
-    if (!c.pass) {
-      c.pass = [];
+    if (info.contestants[event.sender.id] !== c.x) {
+      return api.sendMessage("Wrong flag, please try again", event);
     }
-
-    if (now >= c.due && !c.pass.includes(event.sender.id)) {
+    
+    if (now >= c.due && !passList.includes(event.sender.id)) {
       api.sendToAdmin(`${event.sender.id}: Past the due date ${now}`);
       return api.sendMessage(
         "You're past the due date of the challenge. Please contact the developer for this, or send us your reasons why you didn't do the challenge on time.",
@@ -26,9 +27,6 @@ module.exports = async (api, event, regex) => {
       );
     }
 
-    if (info.contestants[event.sender.id] !== c.x) {
-      return api.sendMessage("Wrong flag, please try again", event);
-    }
     const link = c.link ? c.link.join("\n * ") : "";
     const code = c.code ? c.code : "";
     const category = c.category ? `Category: ${c.category}\n` : "";
