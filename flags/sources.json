@@ -30,7 +30,7 @@
     "title": "A back and forth rotation",
     "description": "This was a self program encryption, it was created but not intended to you to suffer.",
     "hints": [
-      "Do you know the history game? Where the past become the base.",
+      "Do you know the history game or memory game? Where the past become the base.",
       "Which one is greater the base or the next?",
       "Related to finances? Really?",
       "Base - position = ?",
@@ -194,7 +194,9 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
+    "link": [
+      "https://crypto.interactive-maths.com/route-cipher.html"
+    ],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
