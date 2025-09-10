@@ -7,7 +7,9 @@ module.exports = async (api, event, regex) => {
     .match(regex)[1]
     .toLowerCase()
     .replace(/\s/gi, "_");
-  const info = await get();
+  const info = await get("ctf.json");
+  const account = await get("accounts.json");
+
   if (!info.contestants[event.sender.id]) {
     info.contestants[event.sender.id] = 1;
   }
@@ -36,6 +38,7 @@ module.exports = async (api, event, regex) => {
     const code = c.code ? c.code : "";
     const category = c.category ? `Category: ${c.category}\n` : "";
     let estimated_time = c.estimated ?? 7;
+    const acct = account[event.sender.id] ?? event.sender.id;
 
     api.sendMessage(
       `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title} [${c.difficulty ?? "Basic"} level of difficulty]\nEstimated Time: ${estimated_time} days\n${category} ~ ${c.description}\n\n${c.hints ? "Hints:\n * " + c.hints.join("\n * ") + "\n\n" : "No hint provided for this challenge.\n\n"}${link ? "Link:\n * " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: Some hints may not apply to decode, but to give you idea what the flag is. Also if you found your flag has spaces, please change those spaces to underscore. Thanks`,
@@ -44,10 +47,10 @@ module.exports = async (api, event, regex) => {
     info.contestants[event.sender.id] += 1;
 
     api.sendToAdmin(
-      `The account owner ${event.sender.id} is now solving the ${c.current} challenge`,
+      `The account owner ${acct} is now solving the ${c.current} challenge`,
     );
 
-    const x = await post(info);
+    const x = await post("ctf.json", info);
   } else {
     api.sendMessage("Wrong flag, please try again", event);
   }
