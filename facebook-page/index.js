@@ -527,6 +527,7 @@ class FacebookPage {
 
     app.get("/", (req, res) => {
       this.hostname = req.hostname;
+      res.setHeader("X-Powered-By", "MPOP Reverse II");
       res.sendFile(`${__dirname}/web/index.html`);
     });
 
@@ -534,6 +535,7 @@ class FacebookPage {
       // TODO: To call this webhook, please go to https://developers.facebook.com/apps/your_app_id/messenger/messenger_api_settings/
       // Please note that you also read their terms and conditions to prevent failures
       this.hostname = req.hostname;
+      res.setHeader("X-Powered-By", "MPOP Reverse II");
       const mode = req.query["hub.mode"];
       const token = req.query["hub.verify_token"];
       const challenge = req.query["hub.challenge"];
@@ -551,6 +553,7 @@ class FacebookPage {
     app.post(this.__webhook, (req, res) => {
       const body = req.body;
       this.hostname = req.hostname;
+      res.setHeader("X-Powered-By", "MPOP Reverse II");
       if (body.object === "page") {
         body.entry.forEach((entry) => {
           entry.messaging.forEach((event) => {
