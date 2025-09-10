@@ -1,7 +1,7 @@
 /*
  * INFO:
  * Programmer: Ryann Kim Sesgundo [MPOP Reverse II]
- * 
+ *
  * INFO: This file uses gist to handle data in json format.
  */
 
@@ -21,7 +21,7 @@ const get = async (FILE) => {
 		},
 	});
 	if (!data.files[FILE]) {
-		return console.log("Error, unknown file");
+		return console.log("Error, unknown file or not found");
 	}
 	const file = data.files[FILE];
 	return JSON.parse(file.content);

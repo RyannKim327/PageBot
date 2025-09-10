@@ -75,7 +75,7 @@ api.addCommand("answer", {
 
 api.addCommand("account", {
   title: "Alias",
-  command: "alias ([\\w\\W])",
+  command: "alias ([\\w\\W]+)",
   hidden: true,
   unprefix: true,
 });

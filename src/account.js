@@ -4,7 +4,7 @@ module.exports = async (api, event, regex) => {
 	const accounts = await get("accounts.json");
 	const name = event.message.text(regex)[1];
 
-	if (accounts.sender.id) {
+	if (accounts[event.sender.id]) {
 		return api.sendMessage("You're already registered", event);
 	}
 
