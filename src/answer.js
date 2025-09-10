@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { get, post } = require("../utils/gist");
+const date = require("../utils/date");
 module.exports = async (api, event, regex) => {
   const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));
   const body = event.message.text
@@ -12,8 +13,8 @@ module.exports = async (api, event, regex) => {
   }
   if (codes[body]) {
     const c = codes[body];
-    const due = new Date(`${c.due} 23:59`);
-    const now = new Date();
+    const due = date(`${c.due} 23:59`);
+    const now = date();
     const passList = Array.isArray(c.pass) ? c.pass : [];
     const time = `${now.getMonth() + 1}-${now.getDate()}-${now.getFullYear()} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
 
