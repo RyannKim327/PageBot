@@ -73,6 +73,13 @@ api.addCommand("answer", {
   any: true,
 });
 
+api.addCommand("account", {
+  title: "Alias",
+  command: "alias ([\\w\\W]+)",
+  hidden: true,
+  unprefix: true,
+});
+
 api.setFallback("gpt", {
   title: "GPT 4o",
 });
