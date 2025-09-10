@@ -83,21 +83,27 @@ api.addPublicFolder("web/web-assets");
 
 api.listen((app) => {
   app.get("/a-leaders-portrait", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.sendFile(`${__dirname}/web/iforgotyourname.html`);
   });
   app.get("/sgtthfsdf", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.download(`${__dirname}/assets/challenge4.jpg`);
   });
   app.get("/wrgw4regtwegvse", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.download(`${__dirname}/assets/challenge5.wav`);
   });
   app.get("/sfhasdfefwe", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.download(`${__dirname}/assets/challenge6.zip`);
   });
   app.get("/wgfwefweoo", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.download(`${__dirname}/assets/challenge7.mp4`);
   });
   app.get("/dfgvevsdf", (req, res) => {
+    res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.status(204).end();
   });
   app.get("/challenge10", (req, res) => {
