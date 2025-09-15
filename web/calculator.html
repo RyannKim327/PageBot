@@ -33,17 +33,24 @@
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
           > .field {
+            display: flex;
+            flex-direction: row;
             width: 100%;
             height: 1.75rem;
             background-color: white;
             border-radius: 25px;
             border: 1px solid rgba(200, 200, 200, 0.4);
+            padding: 0 0.5rem;
 
             > input {
               background-color: transparent;
               height: 100%;
               width: 100%;
               padding: 0.25rem;
+            }
+
+            > label {
+              color: black;
             }
           }
           .body {
@@ -72,8 +79,10 @@
     <div>
       <div class="main">
         <h3>Hindi Calculator</h3>
+        <h5>An advance level calculator for all</h5>
         <div class="field">
           <input type="text" id="number" />
+          <label onclick="backspace()"><= </label>
         </div>
         <div class="body">
           <span>7</span>
@@ -100,6 +109,16 @@
     const spans = document.getElementsByTagName("span");
     let equation = "";
     let current = "";
+
+    function backspace() {
+      try {
+        current = current.substring(0, current.length - 1);
+        parseInt(current);
+      } catch (e) {
+        current = "";
+      }
+      document.getElementById("number").value = current;
+    }
 
     function enter_number(text) {
       const operators = "+-*/";
