@@ -123,8 +123,6 @@ api.listen((app) => {
       "aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcTM0RHZnVUo=",
     );
     res.setHeader("X-Powered-By", "MPOP Reverse II");
-    res.send(
-      "<h3>If you cheat, then you can't solve this one. This was the most difficult challenge created in this entire series. Good Luck</h3>",
-    );
+    res.sendFile(`${__dirname}/web/calculator.html`);
   });
 });

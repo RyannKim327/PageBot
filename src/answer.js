@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { get, post } = require("../utils/gist");
 const date = require("../utils/date");
+
 module.exports = async (api, event, regex) => {
   const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));
   const body = event.message.text
