@@ -49,6 +49,7 @@ module.exports = async (api, event, regex) => {
       `You've got it, congratiolations, you completed the ${c.past} challenge\nNow here's your ${c.current} challenge called: ${c.title} [${c.difficulty ?? "Basic"} level of difficulty]\nEstimated Time: ${estimated_time} days\n${category} ~ ${c.description}\n\n${c.hints ? "Hints:\n * " + c.hints.join("\n * ") + "\n\n" : "No hint provided for this challenge.\n\n"}${link ? "Link:\n * " + link + "\n\n" : ""}${code ? "Code to decode: " + code + "\n\n" : ""}Flag Format: flag{${c.format ?? "thisisthefalagformat"}}\n\nNote: Some hints may not apply to decode, but to give you idea what the flag is. Also if you found your flag has spaces, please change those spaces to underscore. Thanks`,
       event,
     );
+    
     info.contestants[event.sender.id] += 1;
 
     api.sendToAdmin(
