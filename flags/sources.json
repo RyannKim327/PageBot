@@ -170,7 +170,8 @@
       "What was that number means? Is that bytes?",
       "Oh, something like a CSS Portrait Art"
     ],
-    "code": "https://pagebot-03t9.onrender.com/a-leaders-portrait"
+    "code": "https://pagebot-03t9.onrender.com/a-leaders-portrait",
+    "format": "this_is_the_flag_sample_used"
   },
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
@@ -216,5 +217,9 @@
       "Get AHEAD is the first step"
     ],
     "format": "this_is_the_flag_sample_used"
+  },
+  "light_breaks_chains_of_ignorance": {
+    "congrats": "Congratiolations for achieving all the 10 challenges in this CTF Series. Please wait for the next announcement of the GAME MASTER, for now, kindly reply to me using this format: 'alias <Your codename>' without any '. Please make sure that no one will going to know you in that name. This was your key to the second series of CTF for second semester.\n\n Truly yours\n   k.guin",
+    "due": "12-29-2025"
   }
 }
