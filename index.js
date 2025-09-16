@@ -121,7 +121,7 @@ api.listen((app) => {
     );
     res.setHeader(
       "X-Content-Cache",
-      "aHR0cHM6Ly9wYXN0ZWJpbi5jb20vcTM0RHZnVUo=",
+      "anVzdCBwbGFjZSBhIHJlZCB3b3JkIGluIHRoZSBib3ggYW5kIHByZXNzID0=",
     );
     res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.sendFile(`${__dirname}/web/calculator.html`);
