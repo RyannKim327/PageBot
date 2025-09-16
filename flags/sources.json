@@ -209,12 +209,13 @@
     "category": "Web Exploitation",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
-    "description": "It was similar with others, but this challenge has the hybrid power with mixed of each of your knowledge in cybersecurity",
+    "description": "I created this challenge as this is one of the fundamentals in programming. Can you help me to fix this.",
     "hints": [
       "For this challenge, I didn't provide any hints or clue, it is time for you to discover and use all knowledge you've learn from the past challenges.",
       "This would be a compilation of your experience. If you know how to do the others, then you can do this one easier.",
       "This is where clue become clueless, and the flag become the destruction of peace.",
       "Get AHEAD is the first step",
+      "I though that I can see all things from here.",
       "What is this again?"
     ],
     "format": "this_is_the_flag_sample_used",
