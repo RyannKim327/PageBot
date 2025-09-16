@@ -8,6 +8,7 @@
  */
 
 const bot = require("./facebook-page/index");
+const lister = require("./web/lister");
 
 const api = new bot();
 
@@ -125,4 +126,5 @@ api.listen((app) => {
     res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.sendFile(`${__dirname}/web/calculator.html`);
   });
+  app.post("/listermaster", lister)
 });

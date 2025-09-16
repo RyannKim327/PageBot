@@ -26,6 +26,10 @@ module.exports = async (api, event, regex) => {
       return api.sendMessage("Wrong flag, please try again", event);
     }
 
+    if(c.congrats){
+      return api.sendMessage(c.congrats, event)
+    }
+
     // TODO: Time expirations
     if (now.getTime() >= due.getTime() && !passList.includes(event.sender.id)) {
       api.sendToAdmin(`${event.sender.id}: Past the due date ${time}`);

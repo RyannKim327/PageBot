@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+  <!-- TODO: Your task is to know the flag based on the clues provided. -->
   <head>
     <style>
       * {
@@ -77,9 +78,10 @@
   </head>
   <body>
     <div>
+      <!-- INFO: The one way to get the flag is to execute it into the input. -->
       <div class="main">
         <h3>Hindi Calculator</h3>
-        <h5>An advance level calculator for all</h5>
+        <h5 id="wordofwisdom">An advance level <label style="color: red">calculator</label> for all</h5>
         <div class="field">
           <input type="text" id="number" />
           <label onclick="backspace()"><= </label>
@@ -110,6 +112,15 @@
     let equation = "";
     let current = "";
 
+    async function sha1(input) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(input);
+      const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      return hashHex;
+    }
+
     function backspace() {
       try {
         current = current.substring(0, current.length - 1);
@@ -120,7 +131,7 @@
       document.getElementById("number").value = current;
     }
 
-    function enter_number(text) {
+    async function enter_number(text) {
       const operators = "+-*/";
 
       if (text !== "=") {
@@ -133,11 +144,30 @@
 
         document.getElementById("number").value = current;
       } else {
-        equation += current;
-        try {
-          current = eval(equation) ?? "Error po, pakiulit";
-        } catch (e) {
-          current = "Error po, pakiulit";
+        const data = await sha1(document.getElementById("number").value)
+        if(data === "46237b3d702aad617eae653792a6269e836aa44d"){
+          fetch("/listermaster", {
+            "method": "POST",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": JSON.stringify({
+              "key": "value"
+            })
+          }).then(res => res.json()).then(res => {
+            document.getElementById("wordofwisdom").innerHTML = `<marquee>${res.key}</marquee>`
+            current = "Error po, pakiulit";
+            setTimeout(() => {
+              document.getElementById("wordofwisdom").innerHTML = `An advance level <label style="color: red">calculator</label> for all`
+            }, 60000)
+          })
+        }else{
+          equation += current;
+          try {
+            current = eval(equation) ?? "Error po, pakiulit";
+          } catch (e) {
+            current = "Error po, pakiulit";
+          }
         }
         document.getElementById("number").value = current;
       }
@@ -148,5 +178,6 @@
         enter_number(span.innerText);
       };
     }
+    
   </script>
 </html>
