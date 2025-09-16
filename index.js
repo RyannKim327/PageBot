@@ -114,7 +114,7 @@ api.listen((app) => {
     res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.status(204).end();
   });
-  app.get("/challenge10", (req, res) => {
+  app.get("/asfwgaefgwsbrt", (req, res) => {
     res.setHeader(
       "token",
       "Bakit mo pa hahanapin kung pwede namang hindi di ba?",
