@@ -16,4 +16,5 @@ module.exports = async (api, event, regex) => {
   accounts[event.sender.id] = name;
   await post("accounts.json", accounts);
   api.sendMessage(`You are registered as ${name}`, event);
+  api.sendToAdmin(`Account registerd: ${event.sender.id} as ${name}`);
 };

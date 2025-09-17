@@ -170,7 +170,8 @@
       "What was that number means? Is that bytes?",
       "Oh, something like a CSS Portrait Art"
     ],
-    "code": "https://pagebot-03t9.onrender.com/a-leaders-portrait"
+    "code": "https://pagebot-03t9.onrender.com/a-leaders-portrait",
+    "format": "this_is_the_flag_sample_used"
   },
   "augustus_caesar_x_pax_romana_with_power_and_gold_efgrtdvfr": {
     "current": "ninth",
@@ -194,7 +195,9 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
+    "link": [
+      "https://crypto.interactive-maths.com/route-cipher.html"
+    ],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
@@ -205,16 +208,23 @@
     "estimated": 21,
     "due": "12-08-2025",
     "pass": [],
-    "category": "Hybrid",
+    "category": "Web Exploitation",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
-    "description": "It was similar with others, but this challenge has the hybrid power with mixed of each of your knowledge in cybersecurity",
+    "description": "I created this challenge as this is one of the fundamentals in programming. Can you help me to fix this.",
     "hints": [
       "For this challenge, I didn't provide any hints or clue, it is time for you to discover and use all knowledge you've learn from the past challenges.",
       "This would be a compilation of your experience. If you know how to do the others, then you can do this one easier.",
       "This is where clue become clueless, and the flag become the destruction of peace.",
-      "Get AHEAD is the first step"
+      "Get AHEAD is the first step",
+      "I though that I can see all things from here.",
+      "What is this again?"
     ],
-    "format": "this_is_the_flag_sample_used"
+    "format": "this_is_the_flag_sample_used",
+    "code": "https://pagebot-03t9.onrender.com/asfwgaefgwsbrt"
+  },
+  "light_breaks_chains_of_ignorance": {
+    "congrats": "Congratiolations for achieving all the 10 challenges in this CTF Series. Please wait for the next announcement of the GAME MASTER, for now, kindly reply to me using this format: 'alias <Your codename>' without any ' and <>. Please make sure that no one will going to know you in that name. This was your key to the second series of CTF for second semester.\n\n Truly yours\n   k.guin",
+    "due": "12-29-2025"
   }
 }
