@@ -1,14 +1,19 @@
 const { get, post } = require("../utils/gist");
 
 module.exports = async (api, event, regex) => {
-	const accounts = await get("accounts.json");
-	const name = event.message.text.match(regex)[1];
+  const accounts = await get("accounts.json");
+  const name = event.message.text.match(regex)[1];
+  const names = accounts.values;
 
-	if (accounts[event.sender.id]) {
-		return api.sendMessage("You're already registered", event);
-	}
+  if (names.includes(name)) {
+    return api.sendMessage("This name is already taken.", event);
+  }
 
-	accounts[event.sender.id] = name;
-	await post("accounts.json", accounts);
-	api.sendMessage(`You are registered as ${name}`, event);
+  if (accounts[event.sender.id]) {
+    return api.sendMessage("You're already registered", event);
+  }
+
+  accounts[event.sender.id] = name;
+  await post("accounts.json", accounts);
+  api.sendMessage(`You are registered as ${name}`, event);
 };
