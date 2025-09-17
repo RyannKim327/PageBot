@@ -2,7 +2,7 @@ const { get, post } = require("../utils/gist");
 
 module.exports = async (api, event, regex) => {
   const accounts = await get("accounts.json");
-  const name = event.message.text.match(regex)[1];
+  const name = event.message.text.match(regex)[1].trim().replace(/\s/gi, "_");
   const names = JSON.stringify(accounts).toLowerCase();
 
   if (names.includes(name.toLowerCase())) {
