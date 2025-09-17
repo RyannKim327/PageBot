@@ -3,9 +3,9 @@ const { get, post } = require("../utils/gist");
 module.exports = async (api, event, regex) => {
   const accounts = await get("accounts.json");
   const name = event.message.text.match(regex)[1];
-  const names = accounts.values;
+  const names = JSON.stringify(accounts).toLowerCase();
 
-  if (names.includes(name)) {
+  if (names.includes(name.toLowerCase())) {
     return api.sendMessage("This name is already taken.", event);
   }
 
