@@ -23,7 +23,7 @@
     "x": 2,
     "difficulty": "Easy",
     "estimated": 7,
-    "due": "09-29-2025",
+    "due": "10-08-2025",
     "pass": [],
     "category": "Cryptography/Reverse Engineering(optional)",
     "past": "second",
@@ -47,7 +47,7 @@
     "x": 3,
     "difficulty": "Medium",
     "estimated": 10,
-    "due": "10-08-2025",
+    "due": "10-18-2025",
     "pass": [],
     "category": "Steganography",
     "past": "third",
@@ -195,9 +195,7 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": [
-      "https://crypto.interactive-maths.com/route-cipher.html"
-    ],
+    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
