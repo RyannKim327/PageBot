@@ -9,7 +9,7 @@ module.exports = async (api, event, regex) => {
   );
   if (search.data) {
     const { data } = await axios.get(
-      jk
+
       // `https://kaiz-apis.gleeze.com/api/ytdown-mp3?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
       `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.data.videoId)}`,
     );
