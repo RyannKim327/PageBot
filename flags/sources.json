@@ -195,7 +195,9 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
+    "link": [
+      "https://crypto.interactive-maths.com/route-cipher.html"
+    ],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
@@ -222,7 +224,7 @@
     "code": "https://pagebot-03t9.onrender.com/asfwgaefgwsbrt"
   },
   "light_breaks_chains_of_ignorance": {
-    "congrats": "Congratiolations for achieving all the 10 challenges in this CTF Series. Please wait for the next announcement of the GAME MASTER, for now, kindly reply to me using this format: 'alias <Your codename>' without any ' and <>. Please make sure that no one will going to know you in that name. This was your key to the second series of CTF for second semester.\n\n Truly yours\n   k.guin",
+    "congrats": "Congratiolations for achieving all the 10 challenges in this CTF Series. Please wait for the next announcement of the GAME MASTER, for now, kindly message this page for the second sem event of this series using this format: 'nickname any_codename' without any '. Please make sure that no one will going to know you in that name. This was your key to the second series of CTF for second semester.\n\n Truly yours\n   ~ k.guin",
     "due": "12-29-2025"
   }
 }
