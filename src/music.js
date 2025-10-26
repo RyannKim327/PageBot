@@ -5,13 +5,13 @@ module.exports = async (api, event, regex) => {
   api.sendMessage(`Searching: ${body[1]}`, event);
 
   const search = await axios.get(
-    `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
-  );
-  if (search.data) {
+    // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
+    `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body[1])}`,
+  ).data.results[0];
+  if (search) {
     const { data } = await axios.get(
-
       // `https://kaiz-apis.gleeze.com/api/ytdown-mp3?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
-      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.data.videoId)}`,
+      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.videoId)}`,
     );
 
     if (data.error) {
