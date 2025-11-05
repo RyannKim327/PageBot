@@ -193,7 +193,9 @@
     "difficulty": "Medium",
     "estimated": 9,
     "due": "11-29-2025",
-    "pass": [],
+    "pass": [
+      "24118452091170648"
+    ],
     "category": "Cryptography",
     "past": "eighth",
     "title": "A cat?",
@@ -221,7 +223,9 @@
     "difficulty": "Killing me Softly",
     "estimated": 21,
     "due": "12-08-2025",
-    "pass": [],
+    "pass": [
+      "24118452091170648"
+    ],
     "category": "Web Exploitation",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
