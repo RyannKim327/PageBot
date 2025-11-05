@@ -33,6 +33,12 @@ api.addCommand("guitar", {
   command: "guitar ([\\w\\W]+)",
 });
 
+api.addCommand("id", {
+  title: "Get ID",
+  description: "This is just to get the user's ID registed to the page",
+  command: "id",
+});
+
 api.addCommand("imagine", {
   title: "Image Generator",
   description: "A image generator",
@@ -126,5 +132,5 @@ api.listen((app) => {
     res.setHeader("X-Powered-By", "MPOP Reverse II");
     res.sendFile(`${__dirname}/web/calculator.html`);
   });
-  app.post("/listermaster", lister)
+  app.post("/listermaster", lister);
 });
