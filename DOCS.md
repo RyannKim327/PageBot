@@ -6,7 +6,7 @@
 ### 📁 **facebook-page/** Directory
 
 This directory contains the core Facebook Messenger bot framework implementation, providing a complete webhook-based chatbot system with modular command architecture.
-
+ 
 ---
 
 ### 📋 **Table of Contents**
