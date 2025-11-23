@@ -5,7 +5,7 @@ module.exports = async (api, event, regex) => {
   let data = await UltimateGuitar.searchSong(body[1]);
   const result = await UltimateGuitar.fetchChords(data);
 
-  const chords = result.responses;
+  const chords = result.response;
 
   api.sendMessage(
     `Song Name: ${data.song_name}\nArtist: ${data.artist_name}\n\n${chords.chords}`,

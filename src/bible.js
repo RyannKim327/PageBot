@@ -6,10 +6,9 @@ module.exports = async (api, event, regex) => {
     data,
     biblegateway.version.ENG_NEW_LIVING_TRANSLATION,
   );
-  console.log(bible);
   api.sendMessage(
-    `${bible[0].book}\n\n${bible[0].verse}`,
+    `${bible.book}\n\n${bible.verse}`,
     event,
-    (failed, response) => {},
+    (failed, response) => { },
   );
 };
