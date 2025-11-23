@@ -7,7 +7,7 @@ module.exports = async (api, event, regex) => {
     biblegateway.version.ENG_NEW_LIVING_TRANSLATION,
   );
   api.sendMessage(
-    `${bible.book}\n\n${bible.verse}`,
+    `${bible.book}\n\n${bible.verses.join("\n")}`,
     event,
     (failed, response) => { },
   );
