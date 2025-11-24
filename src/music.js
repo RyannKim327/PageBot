@@ -1,13 +1,45 @@
 const axios = require("axios");
 
 module.exports = async (api, event, regex) => {
-  const body = event.message.text.match(regex);
-  api.sendMessage(`Searching: ${body[1]}`, event);
+  let body = event.message.text.match(regex)[1];
+  api.sendMessage(`Searching: ${body}`, event);
 
-  const search = await axios.get(
-    // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
-    `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body[1])}`,
-  ).data.results[0];
+  let isLink = false;
+  let videoId = "";
+
+  if (body.includes("youtube.com")) {
+    isLink = true;
+    // TODO: URL Matching
+    const regex = /youtube\.com\/watch\?v=([\w\W]+)/;
+    if (regex.test(body)) {
+      // TODO: Modification
+      const modify = body.match(regex)[1];
+      body = `https://youtube.com/watch?=${modify.split("&")[0]}`;
+      videoId = modify.split("&")[0];
+    }
+  }
+  if (body.includes("youtu.be")) {
+    isLink = true;
+    const regex = /youtu\.be\/([\w\W]+)/;
+    if (regex.test(body)) {
+      const modify = body.match(regex)[1];
+      body = `https://youtube.com/watch?=${modify.split("?")[0]}`;
+      videoId = modify.split("?")[0];
+    }
+  }
+
+  const search = await axios
+    .get(
+      // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
+      `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
+    )
+    .then((r) => {
+      return r.data.results[0];
+    })
+    .catch((e) => {
+      return null;
+    });
+
   if (search) {
     const { data } = await axios.get(
       // `https://kaiz-apis.gleeze.com/api/ytdown-mp3?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
