@@ -27,7 +27,7 @@ module.exports = async (api, event, regex) => {
       videoId = modify.split("?")[0];
     }
   }
-
+try{
   const search = await axios
     .get(
       // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
@@ -77,4 +77,10 @@ module.exports = async (api, event, regex) => {
       event,
     );
   }
+}catch(e){
+  api.sendMessage(
+    "Error",
+    event,
+  );
+}
 };
