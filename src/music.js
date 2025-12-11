@@ -34,6 +34,9 @@ module.exports = async (api, event, regex) => {
       `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
     )
     .then((r) => {
+      if(data.error){
+        return api.sendMessage(`ERR [Music]: ${data.error}`, event);
+      }
       return r.data.results[0];
     })
     .catch((e) => {
