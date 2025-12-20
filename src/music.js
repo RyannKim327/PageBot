@@ -27,13 +27,16 @@ module.exports = async (api, event, regex) => {
       videoId = modify.split("?")[0];
     }
   }
-
+try{
   const search = await axios
     .get(
       // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
       `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
     )
     .then((r) => {
+      if(r.data.error){
+        return api.sendMessage(`ERR [Music]: ${data.error}`, event);
+      }
       return r.data.results[0];
     })
     .catch((e) => {
@@ -74,4 +77,10 @@ module.exports = async (api, event, regex) => {
       event,
     );
   }
+}catch(e){
+  api.sendMessage(
+    "Error",
+    event,
+  );
+}
 };
