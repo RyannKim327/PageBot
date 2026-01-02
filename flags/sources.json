@@ -5,9 +5,7 @@
     "difficulty": "Very Easy",
     "estimated": 3,
     "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "pass": [],
     "past": "first",
     "category": "Cryptography",
     "title": "2 + 16 = ?",
@@ -26,9 +24,7 @@
     "difficulty": "Easy",
     "estimated": 7,
     "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "pass": [],
     "category": "Cryptography/Reverse Engineering(optional)",
     "past": "second",
     "title": "A back and forth rotation",
@@ -51,10 +47,8 @@
     "x": 3,
     "difficulty": "Medium",
     "estimated": 10,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Steganography",
     "past": "third",
     "title": "His name is right after the late Tammuz",
@@ -79,10 +73,8 @@
     "x": 4,
     "difficulty": "Very Easy",
     "estimated": 3,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Cryptography/Steganography",
     "past": "fourth",
     "title": "The art of a composer",
@@ -109,10 +101,8 @@
     "x": 5,
     "difficulty": "Medium",
     "estimated": 13,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Cryptography/Steganography",
     "past": "fifth",
     "title": "Sage of the six paths",
@@ -142,10 +132,8 @@
     "estimated": 7,
     "category": "Steganography",
     "past": "sixth",
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "title": "Saturn's Ring",
     "description": "Someone knows that I look saturn more special rather than other planet. But I don't know someone who knows my one of most favorite planet.",
     "hints": [
@@ -168,10 +156,8 @@
     "x": 7,
     "difficulty": "Easy (ata)",
     "estimated": 4,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Cryptography/Steganography",
     "past": "seventh",
     "title": "A ghosted gold",
@@ -192,10 +178,8 @@
     "x": 8,
     "difficulty": "Medium",
     "estimated": 9,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Cryptography",
     "past": "eighth",
     "title": "A cat?",
@@ -211,9 +195,7 @@
       "I stand, but not in a straight way.",
       "Remove · for output."
     ],
-    "link": [
-      "https://crypto.interactive-maths.com/route-cipher.html"
-    ],
+    "link": ["https://crypto.interactive-maths.com/route-cipher.html"],
     "code": "acsernhstcajhhsiikutdvgdcdntifnvvhooesjewwinw",
     "format": "thisisthesampleresponse"
   },
@@ -222,10 +204,8 @@
     "x": 9,
     "difficulty": "Killing me Softly",
     "estimated": 21,
-    "due": "12-19-2025",
-    "pass": [
-      "24118452091170648"
-    ],
+    "due": "01-31-2026",
+    "pass": [],
     "category": "Web Exploitation",
     "past": "ninth",
     "title": "The rebirth of Knowledge and Wisdom",
@@ -243,6 +223,6 @@
   },
   "light_breaks_chains_of_ignorance": {
     "congrats": "Congratiolations for achieving all the 10 challenges in this CTF Series. Please wait for the next announcement of the GAME MASTER, for now, kindly message this page (https://m.me/itp.cybersec) for the second sem event of this series using this format: 'nickname any_codename' without any '. Please make sure that no one will going to know you in that name. This was your key to the second series of CTF for second semester.\n\n Truly yours\n   ~ k.guin",
-    "due": "12-19-2025"
+    "due": "01-31-2026"
   }
 }
