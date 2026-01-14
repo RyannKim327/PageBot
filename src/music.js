@@ -79,7 +79,7 @@ try{
   }
 }catch(e){
   api.sendMessage(
-    "Error",
+    `ERR [Music catch]: ${e.message}`,
     event,
   );
 }
