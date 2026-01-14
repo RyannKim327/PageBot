@@ -28,32 +28,35 @@ module.exports = async (api, event, regex) => {
     }
   }
 try{
+  console.log("Calling")
   const search = await axios
-    .get(
-      // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
-      `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
-    )
-    .then((r) => {
-      if(r.data.error){
-        return api.sendMessage(`ERR [Music]: ${data.error}`, event);
-      }
-      let i = 0;
+  .get(
+    // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
+    `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
+  )
+  .then((r) => {
+    if(r.data.error){
+      return api.sendMessage(`ERR [Music]: ${data.error}`, event);
+    }
+    let i = 0;
+    data = r.data.results[i];
+    while (
+      data.videoId !== videoId &&
+      i < r.data.results.length &&
+      isLink
+    ) {
+      console.log("Link Test Activation");
       data = r.data.results[i];
-      while (
-        data.videoId !== videoId &&
-        i < r.data.results.length &&
-        isLink
-      ) {
-        console.log("Link Test Activation");
-        data = r.data.results[i];
-        i++;
-      }
-      return data
-    })
-    .catch((e) => {
-      return null;
-    });
-
+      i++;
+    }
+    return data
+  })
+  .catch((e) => {
+    throw new Error(e)
+    return null;
+  });
+  
+  console.log("Done search")
   if (search) {
     const { data } = await axios.get(
       // `https://kaiz-apis.gleeze.com/api/ytdown-mp3?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
