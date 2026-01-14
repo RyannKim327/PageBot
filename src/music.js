@@ -55,14 +55,13 @@ try{
   })
   .catch((e) => {
     throw new Error(e)
-    return null;
   });
   
   console.log("Done search")
   if (search) {
+    console.log(search)
     const { data } = await axios.get(
-      // `https://kaiz-apis.gleeze.com/api/ytdown-mp3?url=${encodeURIComponent("https://youtube.com/watch?v=" + search.data.videoId)}&apikey=${process.env.KAIZAPI}`,
-      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.videoId)}`,
+      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.videoId)}`
     );
 
     if (data.error) {
