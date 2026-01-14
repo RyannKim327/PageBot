@@ -41,7 +41,7 @@ try{
       return api.sendMessage(`ERR [Music]: ${data.error}`, event);
     }
     let i = 0;
-    data = r.data.results[i];
+    let data = r.data.results[i];
     while (
       data.videoId !== videoId &&
       i < r.data.results.length &&
@@ -60,8 +60,9 @@ try{
   console.log("Done search")
   if (search) {
     console.log(search)
+    const yt_link = `https://youtube.com/watch?v=${search.videoId}`
     const { data } = await axios.get(
-      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${"https://youtube.com/?watch?v=" + search.videoId}`
+      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${yt_link}`
     );
 
     console.log(data)
