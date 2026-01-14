@@ -26,6 +26,13 @@ api.addCommand("cleargpt", {
   command: "clear-gpt",
 });
 
+api.addCommand("feedback", {
+  title: "Service and Automation Feedback",
+  description:
+    "This feedback feature is connected to our portfolio, you may send us your feedback regarding to the seervice of the page's automated responses. I assure the confidentiality of your personal information, as it is included to our terms of service.",
+  command: "feedback ([\\w\\W]+)",
+});
+
 api.addCommand("guitar", {
   title: "Ultimate Guitar Tabs",
   description:

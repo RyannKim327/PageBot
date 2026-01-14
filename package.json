@@ -12,10 +12,12 @@
   "description": "A facebook page bot",
   "dependencies": {
     "axios": "^1.13.2",
+    "axios-cookiejar-support": "^6.0.5",
     "biblegateway-scrape": "^0.1.1",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "tough-cookie": "^6.0.0",
     "ultimate-guitar": "^2.0.4"
   }
 }
