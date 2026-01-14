@@ -27,6 +27,8 @@ module.exports = async (api, event, regex) => {
       videoId = modify.split("?")[0];
     }
   }
+
+  console.log("Initiation")
 try{
   console.log("Calling")
   const search = await axios
