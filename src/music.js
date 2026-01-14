@@ -37,7 +37,18 @@ try{
       if(r.data.error){
         return api.sendMessage(`ERR [Music]: ${data.error}`, event);
       }
-      return r.data.results[0];
+      let i = 0;
+      data = r.data.results[i];
+      while (
+        data.videoId !== videoId &&
+        i < r.data.results.length &&
+        isLink
+      ) {
+        console.log("Link Test Activation");
+        data = r.data.results[i];
+        i++;
+      }
+      return data
     })
     .catch((e) => {
       return null;
