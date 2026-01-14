@@ -63,6 +63,8 @@ try{
     const { data } = await axios.get(
       `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${encodeURIComponent("https://youtube.com?watch?v=" + search.videoId)}`
     );
+    
+    console.log(data)
 
     if (data.error) {
       return api.sendMessage(
