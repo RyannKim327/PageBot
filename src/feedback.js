@@ -1,8 +1,8 @@
 const axios = require("axios");
-const w = require("axios-cookiejar-support");
 const c = require("tough-cookie");
 
 module.exports = async (api, event, regex) => {
+  const w = await import("axios-cookiejar-support");
   const content = event.message.text.match(regex)[1].trim();
 
   const jar = new c.CookieJar();
