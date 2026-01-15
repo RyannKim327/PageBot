@@ -4,6 +4,14 @@
  
 ---
 
+### Template Reference
+
+> **Clear Template Copy**: This project is based on the template available at: https://github.com/RyannKim327/FBPage-Bot-Api
+> 
+> Please refer to the original template repository for additional examples, updates, and community contributions.
+
+---
+
 ### Introduction
 
 > This project was developed and maintained by `Ryann Kim Sesgundo` under the name of `MPOP Reverse II`. As to follow the basic rules and regulations connected to this

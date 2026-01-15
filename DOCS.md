@@ -3,6 +3,12 @@
 
 > Documentation by Qodo.ai
 
+### Template Reference
+
+> **Clear Template Copy**: This project is based on the template available at: https://github.com/RyannKim327/FBPage-Bot-Api
+> 
+> Please refer to the original template repository for additional examples, updates, and community contributions.
+
 ### 📁 **facebook-page/** Directory
 
 This directory contains the core Facebook Messenger bot framework implementation, providing a complete webhook-based chatbot system with modular command architecture.
