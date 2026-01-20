@@ -48,7 +48,7 @@ class FacebookPage {
 
     // TODO: To auto clear the temporary files for unexpected close
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
     }
 
     setTimeout(() => {
@@ -112,7 +112,7 @@ class FacebookPage {
     }
     if (!command) {
       this.start = false;
-      return console, error("FALLBACK [ERR]: Command must be exists");
+      return (console, error("FALLBACK [ERR]: Command must be exists"));
     }
     if (typeof command !== "object") {
       this.start = false;
@@ -251,7 +251,7 @@ class FacebookPage {
       if (typeof callback === "function") {
         return callback("ERR: Undefined FB_TOKEN", null);
       }
-      return console.error(`TOKEN[ERR]: Undefined FB_TOKEN`);
+      return console.error(`Token [ERR]: Undefined FB_TOKEN`);
     }
 
     // TODO: Verify if the event is an object/JSON
@@ -409,6 +409,9 @@ class FacebookPage {
     for (let c of this.commands) {
       if (c.title && c.command && !c.hidden) {
         let command = c.command.replace(/\([^)]*\)/gi, "[args]");
+        if (c.hint) {
+          command = c.hint;
+        }
         let maintenance = "";
         if (c.maintenance) {
           maintenance = "[Under Maintenance]";

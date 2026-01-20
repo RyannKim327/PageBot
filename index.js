@@ -31,6 +31,7 @@ api.addCommand("feedback", {
   description:
     "This feedback feature is connected to our portfolio, you may send us your feedback regarding to the seervice of the page's automated responses. I assure the confidentiality of your personal information, as it is included to our terms of service.",
   command: "feedback ([\\w\\W]+)",
+  hint: "feedback <your message>",
 });
 
 api.addCommand("guitar", {
@@ -69,6 +70,7 @@ api.addCommand("bible", {
   title: "Biblegateway verse",
   description: "You may now have the bible verses into your messenger.",
   command: "verse ([\\w\\W]+)",
+  hint: "verse [book] [chapter]:[verse (optional)]",
 });
 
 api.addCommand("answer", {
