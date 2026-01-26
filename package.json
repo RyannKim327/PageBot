@@ -18,6 +18,6 @@
     "express": "^5.2.1",
     "fs": "^0.0.1-security",
     "tough-cookie": "^6.0.0",
-    "ultimate-guitar": "^2.0.5"
+    "ultimate-guitar": "^2.0.6"
   }
 }
