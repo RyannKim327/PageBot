@@ -4,6 +4,9 @@ const { get } = require("../utils/api");
 module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
   const msg = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
+  if (msg[senderID] === undefined) {
+    msg[senderID] = [];
+  }
   const data = await get(
     `https://pollinations-ai-sigma.vercel.app/?message=${encodeURIComponent(event.message.text.substring(prefix.length))}&user=${encodeURIComponent(event.sender.id)}`,
   );
