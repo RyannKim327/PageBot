@@ -1,5 +1,5 @@
-const axios = require("axios");
 const fs = require("fs");
+const { get } = require("../utils/api");
 
 module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
