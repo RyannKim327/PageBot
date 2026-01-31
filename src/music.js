@@ -41,57 +41,42 @@ module.exports = async (api, event, regex) => {
     if (search.error) {
       throw new Error(search.error);
     }
+    // TODO: To search easily
 
-    const search2 = await axios
-      .get(
-        // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
-        `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
-      )
-      .then((r) => {
-        if (r.data.error) {
-          return api.sendMessage(`ERR [Music]: ${data.error}`, event);
-        }
-        let i = 0;
-        let data = r.data.results[i];
-        while (
-          data.videoId !== videoId &&
-          i < r.data.results.length &&
-          isLink
-        ) {
-          console.log("Link Test Activation");
-          data = r.data.results[i];
-          i++;
-        }
-        return data;
-      })
-      .catch((e) => {
-        throw new Error(e);
-      });
+    let i = 0;
+    if (search.videoId !== videoId || videoId === "") {
+      if (data !== null && i < r.results.length) {
+        videoId = search.results[i];
+        i++;
+      }
+    }
 
     console.log("Done search");
     if (search) {
       console.log(search);
-      const yt_link = `https://youtube.com/watch?v=${search.videoId}`;
-      const { data } = await axios.get(
-        `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${yt_link}`,
+      const yt_link = `https://youtube.com/watch?v=${videoId}`;
+      const music = await get(
+        `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3`,
+        {
+          url: yt_link,
+        },
       );
 
-      console.log(data);
+      console.log(music);
 
-      if (data.error) {
-        return api.sendMessage(
+      if (music.error) {
+        throw new Error(
           "System error, please try again after 5 minutes, sorry.",
-          event,
         );
       }
 
       api.sendMessage(
-        `Here's your request entitled: ${data.title}`,
+        `Here's your request entitled: ${music.title}`,
         event,
         () => {
           api.sendAttachment(
             "audio",
-            data.downloadUrl,
+            music.downloadUrl,
             event,
             (failed, response) => {
               console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
