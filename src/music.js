@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { get } = require("./../utils/api");
 
 module.exports = async (api, event, regex) => {
   let body = event.message.text.match(regex)[1];
@@ -28,77 +29,84 @@ module.exports = async (api, event, regex) => {
     }
   }
 
-  console.log("Initiation")
-try{
-  console.log("Calling")
-  const search = await axios
-  .get(
-    // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
-    `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
-  )
-  .then((r) => {
-    if(r.data.error){
-      return api.sendMessage(`ERR [Music]: ${data.error}`, event);
-    }
-    let i = 0;
-    let data = r.data.results[i];
-    while (
-      data.videoId !== videoId &&
-      i < r.data.results.length &&
-      isLink
-    ) {
-      console.log("Link Test Activation");
-      data = r.data.results[i];
-      i++;
-    }
-    return data
-  })
-  .catch((e) => {
-    throw new Error(e)
-  });
-  
-  console.log("Done search")
-  if (search) {
-    console.log(search)
-    const yt_link = `https://youtube.com/watch?v=${search.videoId}`
-    const { data } = await axios.get(
-      `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${yt_link}`
+  console.log("Initiation");
+  try {
+    console.log("Calling");
+    const search = await get(
+      "https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch",
+      {
+        title: body,
+      },
     );
+    if (search.error) {
+      throw new Error(search.error);
+    }
 
-    console.log(data)
+    const search2 = await axios
+      .get(
+        // `https://kaiz-apis.gleeze.com/api/yt-metadata?title=${encodeURIComponent(body[1])}&apikey=${process.env.KAIZAPI}`,
+        `https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch?title=${encodeURIComponent(body)}`,
+      )
+      .then((r) => {
+        if (r.data.error) {
+          return api.sendMessage(`ERR [Music]: ${data.error}`, event);
+        }
+        let i = 0;
+        let data = r.data.results[i];
+        while (
+          data.videoId !== videoId &&
+          i < r.data.results.length &&
+          isLink
+        ) {
+          console.log("Link Test Activation");
+          data = r.data.results[i];
+          i++;
+        }
+        return data;
+      })
+      .catch((e) => {
+        throw new Error(e);
+      });
 
-    if (data.error) {
-      return api.sendMessage(
-        "System error, please try again after 5 minutes, sorry.",
+    console.log("Done search");
+    if (search) {
+      console.log(search);
+      const yt_link = `https://youtube.com/watch?v=${search.videoId}`;
+      const { data } = await axios.get(
+        `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3?url=${yt_link}`,
+      );
+
+      console.log(data);
+
+      if (data.error) {
+        return api.sendMessage(
+          "System error, please try again after 5 minutes, sorry.",
+          event,
+        );
+      }
+
+      api.sendMessage(
+        `Here's your request entitled: ${data.title}`,
+        event,
+        () => {
+          api.sendAttachment(
+            "audio",
+            data.downloadUrl,
+            event,
+            (failed, response) => {
+              console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
+              console.log("Send");
+            },
+          );
+        },
+      );
+    } else {
+      api.sendMessage(
+        "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
         event,
       );
     }
-
-    api.sendMessage(
-      `Here's your request entitled: ${data.title}`,
-      event,
-      () => {
-        api.sendAttachment(
-          "audio",
-          data.downloadUrl,
-          event,
-          (failed, response) => {
-            console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
-            console.log("Send");
-          },
-        );
-      },
-    );
-  } else {
-    api.sendMessage(
-      "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
-      event,
-    );
+  } catch (e) {
+    api.sendMessage(`ERR [Music catch]: ${e.message}`, event);
   }
-}catch(e){
-  api.sendMessage(
-    `ERR [Music catch]: ${e.message}`,
-    event,
-  );
-}
 };
