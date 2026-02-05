@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { get } = require("../utils/api");
+const { get, post } = require("../utils/api");
 
 module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
@@ -7,7 +7,7 @@ module.exports = async (api, event, prefix) => {
   // if (msg[senderID] === undefined) {
   //   msg[senderID] = [];
   // }
-  const data = await get(`https://pollinations-ai-sigma.vercel.app/`, {
+  const data = await post(`https://api-mpop-backend.onrender.com/`, {
     message: event.message.text.substring(prefix.length),
     user: event.sender.id,
   });
