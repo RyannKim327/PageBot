@@ -7,16 +7,16 @@ module.exports = async (api, event, prefix) => {
   // if (msg[senderID] === undefined) {
   //   msg[senderID] = [];
   // }
-  // const data = await get(
-  //   `https://pollinations-ai-sigma.vercel.app/?message=${encodeURIComponent(event.message.text.substring(prefix.length))}&user=${encodeURIComponent(event.sender.id)}`,
-  // );
-  //
-  // if (data.error) {
-  //   api.sendMessage(
-  //     "My sincere apology, there's currently a problem within the system. Sorry.",
-  //     event,
-  //   );
-  // }
+  const data = await get(
+    `https://pollinations-ai-sigma.vercel.app/?message=${encodeURIComponent(event.message.text.substring(prefix.length))}&user=${encodeURIComponent(event.sender.id)}`,
+  );
+
+  if (data.error) {
+    api.sendMessage(
+      "My sincere apology, there's currently a problem within the system. Sorry.",
+      event,
+    );
+  }
 
   api.sendMessage(data.text ?? data.response, event, (failed, response) => {
     // msg[senderID].push({
