@@ -7,9 +7,10 @@ module.exports = async (api, event, prefix) => {
   // if (msg[senderID] === undefined) {
   //   msg[senderID] = [];
   // }
-  const data = await get(
-    `https://pollinations-ai-sigma.vercel.app/?message=${encodeURIComponent(event.message.text.substring(prefix.length))}&user=${encodeURIComponent(event.sender.id)}`,
-  );
+  const data = await get(`https://pollinations-ai-sigma.vercel.app/`, {
+    message: event.message.text.substring(prefix.length),
+    user: event.sender.id,
+  });
 
   if (data.error) {
     api.sendMessage(
