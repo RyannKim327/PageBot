@@ -2,6 +2,8 @@ const fs = require("fs");
 const { get, post } = require("../utils/api");
 
 module.exports = async (api, event, prefix) => {
+  api.sendMessage("hello test", event);
+
   const senderID = event.sender.id;
   const msg = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
   if (msg[senderID] === undefined) {
@@ -17,13 +19,13 @@ module.exports = async (api, event, prefix) => {
       },
     ];
   }
+  msg[senderID].push({
+    content: event.message.text.substring(prefix.length),
+    role: "user",
+  });
+
   const data = await post(`${process.env.API_BACKEND}/ai/chat`, {
-    messages: [
-      {
-        content: event.message.text.substring(prefix.length),
-        role: "user",
-      },
-    ],
+    messages: msg[senderID],
   });
 
   if (data.error) {
