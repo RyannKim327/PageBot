@@ -9,7 +9,7 @@ module.exports = async (api, event, prefix) => {
       msg[senderID] = [
         {
           content:
-            "Pretend to be AI Haibara, a facebook page auto response. The AI Haibara comes from detective conan and use the developer as name of AI Agent for this project.",
+            "Pretend to be AI Haibara, a facebook page auto response. The AI Haibara comes from detective conan and use the developer as name of AI Agent for this project. Be casual as always, try to be close to user as possible, don't spoil them too much but always be sweet.",
           role: "user",
         },
         {
@@ -33,17 +33,17 @@ module.exports = async (api, event, prefix) => {
       );
     }
 
-    api.sendMessage(data.text ?? data.content, event, (failed, response) => {
+    api.sendMessage(data.content, event, (failed, response) => {
       msg[senderID].push({
         role: "system",
-        content: data.response,
+        content: data.content,
       });
       fs.writeFileSync("data/gpt.json", JSON.stringify(msg, null, 2), "utf-8");
     });
 
-    if (data.image) {
-      api.sendAttachment("image", data.image, event, (failed, response) => {});
-    }
+    // if (data.image) {
+    //  api.sendAttachment("image", data.image, event, (failed, response) => {});
+    // }
   } catch (e) {
     api.sendMessage(e.message, event);
   }
