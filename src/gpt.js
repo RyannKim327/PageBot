@@ -33,7 +33,7 @@ module.exports = async (api, event, prefix) => {
       );
     }
 
-    api.sendMessage(data.text ?? data.response, event, (failed, response) => {
+    api.sendMessage(data.text ?? data.content, event, (failed, response) => {
       msg[senderID].push({
         role: "system",
         content: data.response,
