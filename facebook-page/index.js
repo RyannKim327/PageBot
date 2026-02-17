@@ -454,7 +454,7 @@ class FacebookPage {
     };
 
     const regex = this.#regex("help");
-    if (regex.test(event.message.text)) {
+    if (regex.test(event.message.text) || event.message.text === this.prefix) {
       this.#help(event);
       done = true;
     } else {
