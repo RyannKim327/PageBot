@@ -3,13 +3,27 @@ const { get, post } = require("../utils/api");
 
 module.exports = async (api, event, prefix) => {
   const senderID = event.sender.id;
-  // const msg = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
-  // if (msg[senderID] === undefined) {
-  //   msg[senderID] = [];
-  // }
-  const data = await post(`https://api-mpop-backend.onrender.com/`, {
-    message: event.message.text.substring(prefix.length),
-    user: event.sender.id,
+  const msg = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
+  if (msg[senderID] === undefined) {
+    msg[senderID] = [
+      {
+        content:
+          "Pretend to be AI Haibara, a facebook page auto response. The AI Haibara comes from detective conan and use the developer as name of AI Agent for this project.",
+        role: "user",
+      },
+      {
+        content: "Got it, thank you",
+        role: "assistant",
+      },
+    ];
+  }
+  const data = await post(`${process.env.API_BACKEND}/ai/chat`, {
+    messages: [
+      {
+        content: event.message.text.substring(prefix.length),
+        role: "user",
+      },
+    ],
   });
 
   if (data.error) {
@@ -20,11 +34,11 @@ module.exports = async (api, event, prefix) => {
   }
 
   api.sendMessage(data.text ?? data.response, event, (failed, response) => {
-    // msg[senderID].push({
-    //   role: "system",
-    //   content: data.response,
-    // });
-    // fs.writeFileSync("data/gpt.json", JSON.stringify(msg), "utf-8");
+    msg[senderID].push({
+      role: "system",
+      content: data.response,
+    });
+    fs.writeFileSync("data/gpt.json", JSON.stringify(msg, null, 2), "utf-8");
   });
 
   if (data.image) {

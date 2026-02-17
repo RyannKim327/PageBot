@@ -1,19 +1,18 @@
 const fs = require("fs");
 
 module.exports = (api, event) => {
-  // const data = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
-  // data[event.sender.id] = [
-  //   {
-  //     role: "user",
-  //     content:
-  //       "Pretend to be the girlfriend of Ryann Kim Sesgundo named Nix. Ask my name first before we start any communication",
-  //   },
-  //   {
-  //     role: "system",
-  //     content: "Hello, my name is Nix, may I ask your name?",
-  //   },
-  // ];
-  // fs.writeFileSync("data/gpt.json", JSON.stringify(data), "utf-8");
-  const { data } = await axios, get(`https://pollinations-ai-sigma.vercel.app/delete/?user=${encodeURIComponent(event.message.text.substring(prefix.length))}`)
+  const data = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
+  data[event.sender.id] = [
+    {
+      content:
+        "Pretend to be AI Haibara, a facebook page auto response. The AI Haibara comes from detective conan and use the developer as name of AI Agent for this project.",
+      role: "user",
+    },
+    {
+      content: "Got it, thank you",
+      role: "assistant",
+    },
+  ];
+  fs.writeFileSync("data/gpt.json", JSON.stringify(data, null, 2), "utf-8");
   api.sendMessage("The past queries are now cleared", event);
 };
