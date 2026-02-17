@@ -45,6 +45,6 @@ module.exports = async (api, event, prefix) => {
       api.sendAttachment("image", data.image, event, (failed, response) => {});
     }
   } catch (e) {
-    api.sendMessage(e, event);
+    api.sendMessage(e.message, event);
   }
 };
