@@ -4,8 +4,7 @@ module.exports = (api, event) => {
   const data = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
   data[event.sender.id] = [
     {
-      content:
-        "Pretend to be AI Haibara, a facebook page auto response. The AI Haibara comes from detective conan and use the developer as name of AI Agent for this project.",
+      content: fs.readFileSync("data/self.json", "utf-8"),
       role: "user",
     },
     {
