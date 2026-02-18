@@ -4,7 +4,7 @@ module.exports = (api, event) => {
   const data = JSON.parse(fs.readFileSync("data/gpt.json", "utf-8"));
   data[event.sender.id] = [
     {
-      content: fs.readFileSync("data/self.json", "utf-8"),
+      content: `Pretend to be someone with this information ${fs.readFileSync("data/self.json", "utf-8")}`,
       role: "user",
     },
     {

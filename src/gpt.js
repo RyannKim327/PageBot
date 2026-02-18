@@ -8,7 +8,7 @@ module.exports = async (api, event, prefix) => {
     if (msg[senderID] === undefined) {
       msg[senderID] = [
         {
-          content: fs.readFileSync("data/self.json", "utf-8"),
+          content: `Pretend to be someone with this information ${fs.readFileSync("data/self.json", "utf-8")}`,
           role: "user",
         },
         {
