@@ -13,7 +13,7 @@ module.exports = async (api, event, prefix) => {
         },
         {
           content: "Got it, thank you",
-          role: "assistant",
+          role: "system",
         },
       ];
     }
