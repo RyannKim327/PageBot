@@ -40,10 +40,10 @@ module.exports = async (api, event, regex) => {
     }
 
     api.sendMessage(
-      `Here's your request entitled: ${music.title}`,
+      `Here's your request entitled: ${search.title}`,
       event,
       () => {
-        api.sendAttachment("audio", music.url, event, (failed, response) => {
+        api.sendAttachment("audio", search.url, event, (failed, response) => {
           console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
           console.log("Send");
         });
