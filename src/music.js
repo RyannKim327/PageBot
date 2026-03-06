@@ -32,15 +32,25 @@ module.exports = async (api, event, regex) => {
   console.log("Initiation");
   try {
     console.log("Calling");
-    const search = await get(
-      "https://api.ccprojectsapis-jonell.gleeze.com/api/ytsearch",
-      {
-        title: body,
-      },
-    );
+    const search = await get(`${process.env.API_BACKEND}/yt`, {
+      videoID: body,
+    });
     if (search.error) {
       throw new Error(search.error);
     }
+
+    api.sendMessage(
+      `Here's your request entitled: ${music.title}`,
+      event,
+      () => {
+        api.sendAttachment("audio", music.url, event, (failed, response) => {
+          console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
+          console.log("Send");
+        });
+      },
+    );
+    return;
+
     // TODO: To search easily
 
     let i = 0;
@@ -51,7 +61,6 @@ module.exports = async (api, event, regex) => {
       }
     }
 
-    console.log("Done search");
     if (search) {
       console.log(search);
       const yt_link = `https://youtube.com/watch?v=${videoId}`;
