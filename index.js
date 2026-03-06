@@ -57,6 +57,7 @@ api.addCommand("music", {
   title: "Music Command",
   description: "A command that send music from youtube source.",
   command: "music ([\\w\\W]+)",
+  maintenance: true,
 });
 
 api.addCommand("sms", {
@@ -71,29 +72,6 @@ api.addCommand("bible", {
   description: "You may now have the bible verses into your messenger.",
   command: "verse ([\\w\\W]+)",
   hint: "verse [book] [chapter]:[verse (optional)]",
-});
-
-api.addCommand("answer", {
-  title: "Answer Challenge 1",
-  command: "flag_{([\\w\\W]+)}",
-  hidden: true,
-  unprefix: true,
-  any: true,
-});
-
-api.addCommand("answer", {
-  title: "Answer Challenges",
-  command: "flag{([\\w\\W]+)}",
-  hidden: true,
-  unprefix: true,
-  any: true,
-});
-
-api.addCommand("account", {
-  title: "Alias",
-  command: "alias ([\\w\\W]+)",
-  hidden: true,
-  unprefix: true,
 });
 
 api.setFallback("gpt", {
