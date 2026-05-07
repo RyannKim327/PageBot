@@ -10,24 +10,35 @@
  * Notes: This file is the single source of truth for bot wiring and runtime behavior.
  */
 
+import { CommandProperties, ResourcesProps, server } from "./interfaces";
+import onAddCommand from "./script/addCommand";
+import onAddService from "./script/addService";
 import onAttachment from "./script/sendAttachment"
 import onMessage from "./script/sendMessage"
+import startService from "./script/startService";
 import Server from "./server"
 import * as dotenv from 'dotenv';
 
-
-interface ResourcesProps {
-	public?: string,
-	temp?: string
-}
 
 export default function FacebookBot(options?: ResourcesProps) {
 	dotenv.config();
 
 	const token = process.env.FB_MESSENGER_TOKEN
 	const version = process.env.VERSION ?? "v23.0"
-	const key = process.env.FB_KEY ?? "pagebot"
-	let webhook = process.env.WEBHOOK ?? "/webhook"
+	const commands: CommandProperties[] = []
+
+	let webServices: server = {
+		"/": (req, res) => {
+			res.end(JSON.stringify({
+				"response": "Server currently running"
+			}))
+		},
+		"/404": (req, res) => {
+			res.end(JSON.stringify({
+				"error": "Endpoint not found"
+			}))
+		}
+	}
 
 	if (!options) {
 		options = {
@@ -44,75 +55,18 @@ export default function FacebookBot(options?: ResourcesProps) {
 		throw new Error("Please add your FB_MESSEGER_TOKEN in your environment variables")
 	}
 
-	if (!webhook.startsWith("/")) {
-		webhook = `/${webhook}`
-	}
-
-	Server({
-		"/": (req, res) => {
-			res.end(JSON.stringify({
-				"response": "Server currently running"
-			}))
-		},
-		[webhook]: (req, res) => {
-			const host = req.headers.host ?? ""
-			const url = new URL(req.url ?? "", `http://${host}`);
-
-			if (req.method === 'POST') {
-				let body = ''
-
-				req.on("data", chunk => {
-					body += chunk.toString()
-				})
-
-				req.on("end", () => {
-					console.log(body)
-
-					res.end(JSON.stringify({
-						received: body
-					}));
-				})
-			} else if (req.method === 'GET') {
-				const params = url.searchParams
-				const mode = params.get("hub.mode");
-				const token = params.get("hub.verify_token")
-				const challenge = params.get("hub.challenge");
-
-				if (token && mode) {
-					if (mode === "subscribe" && token === key) {
-						res.statusCode = 200
-						res.end(challenge);
-					} else {
-						res.statusCode = 400;
-						res.end(JSON.stringify({
-							"error": "Error"
-						}))
-					}
-				} else {
-					res.statusCode = 400;
-					res.end(JSON.stringify({
-						"error": "Error"
-					}))
-				}
-			} else {
-				res.end(JSON.stringify({
-					"error": "Invalid Method"
-				}))
-			}
-		},
-		"/404": (req, res) => {
-			res.end(JSON.stringify({
-				"error": "Endpoint not found"
-			}))
-		}
-	})
-
 	const sendMessage = onMessage(token, version)
 	const sendAttachment = onAttachment(token, version, options)
+	const addCommand = onAddCommand(commands)
+	const addService = onAddService(webServices)
+	const start = startService(webServices)
 
 	return {
 		sendAttachment,
-		sendMessage
+		sendMessage,
+		addCommand,
+		addService,
+		start
 	}
 }
 
