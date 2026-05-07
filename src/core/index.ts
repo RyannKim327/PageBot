@@ -16,7 +16,6 @@ import onAddService from "./script/addService";
 import onAttachment from "./script/sendAttachment"
 import onMessage from "./script/sendMessage"
 import startService from "./script/startService";
-import Server from "./server"
 import * as dotenv from 'dotenv';
 
 
@@ -26,6 +25,7 @@ export default function FacebookBot(options?: ResourcesProps) {
 	const token = process.env.FB_MESSENGER_TOKEN
 	const version = process.env.VERSION ?? "v23.0"
 	const commands: CommandProperties[] = []
+	const admins: string[] | number[] = []
 
 	let webServices: server = {
 		"/": (req, res) => {
@@ -59,7 +59,7 @@ export default function FacebookBot(options?: ResourcesProps) {
 	const sendAttachment = onAttachment(token, version, options)
 	const addCommand = onAddCommand(commands)
 	const addService = onAddService(webServices)
-	const start = startService(webServices)
+	const start = startService(webServices, commands, admins)
 
 	return {
 		sendAttachment,

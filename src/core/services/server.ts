@@ -1,8 +1,9 @@
 import http from "http"
 import SmeeClient from "smee-client"
-import { server } from "./interfaces"
+import { CommandProperties, json, server } from "../interfaces"
+import commandControl from "./commandControl"
 
-export default function Server(func: server) {
+export default function Server(func: server, commands: CommandProperties[], admins: string[] | number[]) {
 	const key = process.env.FB_KEY ?? "pagebot"
 	let webhook = process.env.WEBHOOK ?? "/webhook"
 
@@ -26,16 +27,32 @@ export default function Server(func: server) {
 			const url = new URL(req.url ?? "", `http://${host}`);
 
 			if (req.method === 'POST') {
-				let body = ''
+				let rawBody = ''
 
 				req.on("data", chunk => {
-					body += chunk.toString()
+					rawBody += chunk.toString()
 				})
 
 				req.on("end", () => {
-					res.end(JSON.stringify({
-						received: body
-					}));
+					const body = JSON.parse(rawBody)
+
+					// TODO: Filtration Control
+					if (body.object === "page") {
+						body.entry.forEach((entry: json) => {
+							entry.messaging.forEach((event: json) => {
+								if (event.message) {
+									if (event.message.text) {
+										commandControl(event, commands, admins)
+									}
+								}
+							})
+						})
+					}
+
+					res.statusCode = 200;
+					res.end("EVENT_RECEIVED")
+
+					return
 				})
 			} else if (req.method === 'GET') {
 				const params = url.searchParams

@@ -1,9 +1,8 @@
-import { server } from "../interfaces";
-import Server from "../server";
+import { CommandProperties, server } from "../interfaces";
+import Server from "../services/server";
 
-export default function startService(webServices: server) {
+export default function startService(webServices: server, commands: CommandProperties[], admins: string[] | number[]) {
 	return () => {
-		console.log(webServices)
-		Server(webServices)
+		Server(webServices, commands, admins)
 	}
 }

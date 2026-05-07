@@ -5,6 +5,7 @@ export interface commands {
 	description?: string
 	command: string
 	admin?: boolean
+	unprefix?: boolean
 }
 
 export interface CommandProperties {
@@ -24,4 +25,4 @@ export type serverContent = (req: IncomingMessage, res: ServerResponse) => void
 
 export type server = Record<string, serverContent>
 
-
+export type json = Record<string, any>
