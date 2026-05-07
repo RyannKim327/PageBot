@@ -11,7 +11,11 @@ export default function Server(func: server) {
 	const server = http.createServer((req, res) => {
 		if (!req.url) req.url = "/"
 
-		const handler = Object.keys(func).includes(req.url) ? func[req.url] : func["/404"]
+		const url = req.url.split("?")[0]
+
+		res.setHeader("X-Developed-By", "MPOP Reverse II")
+
+		const handler = Object.keys(func).includes(url) ? func[url] : func["/404"]
 		handler(req, res)
 	})
 
