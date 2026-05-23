@@ -1,106 +1,57 @@
-const axios = require("axios");
 const { get } = require("./../utils/api");
 
 module.exports = async (api, event, regex) => {
-  let body = event.message.text.match(regex)[1];
-  api.sendMessage(`Searching: ${body}`, event);
-
-  let isLink = false;
-  let videoId = "";
-
-  if (body.includes("youtube.com")) {
-    isLink = true;
-    // TODO: URL Matching
-    const regex = /youtube\.com\/watch\?v=([\w\W]+)/;
-    if (regex.test(body)) {
-      // TODO: Modification
-      const modify = body.match(regex)[1];
-      body = `https://youtube.com/watch?=${modify.split("&")[0]}`;
-      videoId = modify.split("&")[0];
-    }
-  }
-  if (body.includes("youtu.be")) {
-    isLink = true;
-    const regex = /youtu\.be\/([\w\W]+)/;
-    if (regex.test(body)) {
-      const modify = body.match(regex)[1];
-      body = `https://youtube.com/watch?=${modify.split("?")[0]}`;
-      videoId = modify.split("?")[0];
-    }
-  }
-
-  console.log("Initiation");
   try {
-    console.log("Calling");
+    const match = event.message.text.match(regex);
+    if (!match || !match[1]) {
+      return api.sendMessage("Please provide a song name or YouTube link. Usage: :music <query>", event);
+    }
+
+    let body = match[1];
+    api.sendMessage(`Searching: ${body}`, event);
+
+    if (body.includes("youtube.com")) {
+      const ytRegex = /youtube\.com\/watch\?v=([^&]+)/;
+      if (ytRegex.test(body)) {
+        const videoId = body.match(ytRegex)[1];
+        body = `https://youtube.com/watch?v=${videoId}`;
+      }
+    } else if (body.includes("youtu.be")) {
+      const ytBeRegex = /youtu\.be\/([^?]+)/;
+      if (ytBeRegex.test(body)) {
+        const videoId = body.match(ytBeRegex)[1];
+        body = `https://youtube.com/watch?v=${videoId}`;
+      }
+    }
+
+    console.log("Initiation: Music search");
     const search = await get(`${process.env.API_BACKEND}/yt`, {
       videoID: body,
     });
+
     if (search.error) {
       throw new Error(search.error);
     }
 
+    if (!search.url) {
+      throw new Error("Could not find a download URL for this request.");
+    }
+
     api.sendMessage(
-      `Here's your request entitled: ${search.title}`,
+      `Here's your request entitled: ${search.title || "Unknown Title"}`,
       event,
       () => {
         api.sendAttachment("audio", search.url, event, (failed, response) => {
-          console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
-          console.log("Send");
+          if (failed) {
+            console.error(`Music [RES ERR]: ${failed}`);
+          } else {
+            console.log("Music sent successfully");
+          }
         });
       },
     );
-    return;
-
-    // TODO: To search easily
-
-    let i = 0;
-    if (search.videoId !== videoId || videoId === "") {
-      if (data !== null && i < r.results.length) {
-        videoId = search.results[i];
-        i++;
-      }
-    }
-
-    if (search) {
-      console.log(search);
-      const yt_link = `https://youtube.com/watch?v=${videoId}`;
-      const music = await get(
-        `https://api.ccprojectsapis-jonell.gleeze.com/api/audiomp3`,
-        {
-          url: yt_link,
-        },
-      );
-
-      console.log(music);
-
-      if (music.error) {
-        throw new Error(
-          "System error, please try again after 5 minutes, sorry.",
-        );
-      }
-
-      api.sendMessage(
-        `Here's your request entitled: ${music.title}`,
-        event,
-        () => {
-          api.sendAttachment(
-            "audio",
-            music.downloadUrl,
-            event,
-            (failed, response) => {
-              console.log(`Music [RES]: ${failed} ${JSON.stringify(response)}`);
-              console.log("Send");
-            },
-          );
-        },
-      );
-    } else {
-      api.sendMessage(
-        "There's something wrong with this command, please wait until the developer fixed it, or try to search other song.",
-        event,
-      );
-    }
   } catch (e) {
-    api.sendMessage(`ERR [Music catch]: ${e.message}`, event);
+    console.error("Music Command Error:", e);
+    api.sendMessage(`ERR [Music]: ${e.message}`, event);
   }
 };
