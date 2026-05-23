@@ -2,7 +2,7 @@
   "name": "pagebot",
   "version": "0.1.5",
   "main": "index.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
