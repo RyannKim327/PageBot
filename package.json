@@ -1,7 +1,7 @@
 {
   "name": "pagebot",
   "version": "0.1.5",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index",
