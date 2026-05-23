@@ -1,4 +1,5 @@
-const guitar = require("ultimate-guitar");
+// const guitar = require("ultimate-guitar");
+import * as guitar from "ultimate-guitar"
 
 module.exports = async (api, event, regex) => {
   try {
