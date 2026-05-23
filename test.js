@@ -13,12 +13,13 @@
 // })();
 //
 
-const UltimateGuitar = require("ultimate-guitar");
+const { guitar } = require("ultimate-guitar");
 
 async function main() {
   const body = "Hello Adele";
-  const data = await UltimateGuitar.searchSong(body);
-  const result = await UltimateGuitar.fetchChords(data.responses[0]);
+  const ug = guitar()
+  const data = await ug.search(body);
+  const result = await ug.fetch(data.responses[0]);
 
   const chords = result.response;
   console.log(JSON.stringify(chords));
