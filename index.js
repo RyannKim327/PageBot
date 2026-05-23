@@ -7,8 +7,13 @@
  * and other related functions and control.
  */
 
-const bot = require("./facebook-page/index");
-const lister = require("./web/lister");
+import path from "path";
+import { fileURLToPath } from "url";
+import bot from "./facebook-page/index.js";
+import lister from "./web/lister.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const api = new bot();
 

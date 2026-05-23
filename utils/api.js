@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 const response = (data, status) => {
   if (status >= 200 && status < 300) {
@@ -26,7 +26,7 @@ const post = async (url, _data, headers = {}, params = {}) => {
   return response(data, status);
 };
 
-module.exports = {
+export {
   get,
   post,
 };

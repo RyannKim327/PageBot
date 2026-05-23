@@ -1,7 +1,7 @@
-const fs = require("fs");
-const { post } = require("../utils/api");
+import fs from "fs";
+import { post } from "../utils/api.js";
 
-module.exports = async (api, event, prefix) => {
+export default async (api, event, prefix) => {
   try {
     const senderID = event.sender.id;
     const gptPath = "data/gpt.json";

@@ -1,5 +1,10 @@
-const md = require("./../utils/markdown");
-module.exports = (api, event) => {
+import md from "./../utils/markdown.js";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default (api, event) => {
   api.sendMessage(md("Chill ka lang"), event);
   console.log(JSON.stringify(event, null, 2));
   api.sendToAdmin("Hello Admin", (error, response) => {

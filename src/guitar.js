@@ -1,6 +1,6 @@
-const { guitar } = require("ultimate-guitar");
+import { guitar } from "ultimate-guitar";
 
-module.exports = async (api, event, regex) => {
+export default async (api, event, regex) => {
   try {
     const ug = guitar()
     const body = event.message.text.match(regex);

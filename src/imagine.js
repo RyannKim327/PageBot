@@ -1,4 +1,4 @@
-module.exports = (api, event, regex) => {
+export default (api, event, regex) => {
   try {
     const match = event.message.text.match(regex);
     if (!match || !match[1]) {

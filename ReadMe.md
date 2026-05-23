@@ -26,10 +26,10 @@
 
 ```NodeJS
 // TODO: To import
-const bot = require("./facebook-page/index")
+import bot from "./facebook-page/index.js";
 
 // TODO: To call as object
-const api = new bot()
+const api = new bot();
 
 // TODO: To run the system as webhook.
 api.listen()
@@ -53,10 +53,10 @@ api.listen()
 
 ```NodeJS
 // TODO: To import
-const bot = require("./facebook-page/index")
+import bot from "./facebook-page/index.js";
 
 // TODO: To call as object
-const api = new bot()
+const api = new bot();
 
 // TODO: Add commands
 api.addCommand("test", {
@@ -76,10 +76,10 @@ api.listen()
 
 ```NodeJS
 // TODO: To import
-const bot = require("./facebook-page/index")
+import bot from "./facebook-page/index.js";
 
 // TODO: To call as object
-const api = new bot()
+const api = new bot();
 
 // TODO: Add commands
 api.addCommand("test", {
@@ -105,7 +105,7 @@ api.listen()
 ```NodeJS
 // Save as file example is: src/test.js
 
-module.exports = (api, event, regex){
+export default (api, event, regex) => {
 	api.sendMessage("Your message here", event)
 
 	// OR you may also use
@@ -126,7 +126,7 @@ module.exports = (api, event, regex){
 ```NodeJS
 // Save as file example is: src/test.js
 
-module.exports = (api, event, regex){
+export default (api, event, regex) => {
 	api.sendAttachment("audio", "https://youtube...", event)
 
 	// OR you may also use

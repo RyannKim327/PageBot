@@ -100,7 +100,7 @@ The `FacebookPage` class is the heart of the bot framework, implementing all cor
 ### ⚙️ **Constructor & Initialization**
 
 ```javascript
-const bot = require("./facebook-page/index");
+import bot from "./facebook-page/index.js";
 const api = new bot();
 ```
 
@@ -348,7 +348,7 @@ PORT=3000
 
 #### **Basic Bot Setup**
 ```javascript
-const bot = require("./facebook-page/index");
+import bot from "./facebook-page/index.js";
 const api = new bot();
 
 // Configure bot
@@ -391,7 +391,7 @@ api.listen((app) => {
 #### **Command Implementation Example**
 ```javascript
 // src/hello.js
-module.exports = (api, event, regex) => {
+export default (api, event, regex) => {
   const match = event.message.text.match(regex);
   api.sendMessage(`Hello! You said: ${match[0]}`, event);
 };

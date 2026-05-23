@@ -1,6 +1,6 @@
-const fs = require("fs");
+import fs from "fs";
 
-module.exports = (api, event) => {
+export default (api, event) => {
   try {
     const gptPath = "data/gpt.json";
     const selfPath = "data/self.json";

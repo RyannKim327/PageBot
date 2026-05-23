@@ -1,4 +1,4 @@
-module.exports = (time, timezone = "Asia/Manila") => {
+export default (time, timezone = "Asia/Manila") => {
     let a = new Date()
     if(time)
 	    a = new Date(time)

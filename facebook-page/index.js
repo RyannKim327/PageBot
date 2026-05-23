@@ -10,10 +10,14 @@
  * Notes: This file is the single source of truth for bot wiring and runtime behavior.
  */
 
-const fs = require("fs");
-const express = require("express");
-const axios = require("axios");
-const path = require("path");
+import fs from "fs";
+import express from "express";
+import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class FacebookPage {
   constructor() {
@@ -434,39 +438,35 @@ class FacebookPage {
     this.sendMessage(message, event);
   }
 
-  #processhandler(event) {
+  async #processhandler(event) {
     let done = false;
     const commands = this.commands;
-    let c = 0;
-    const execute = () => {
-      let command = commands[c];
+    
+    for (let command of commands) {
       let unpref = command.unprefix;
       let any = command.any ?? false;
       const _regex = this.#regex(command.command, unpref, any);
       if (_regex.test(event.message.text) && !done) {
-        const script = require(`./../src/${command.script}`);
+        const scriptPath = `./../src/${command.script}${command.script.endsWith(".js") ? "" : ".js"}`;
+        const { default: script } = await import(scriptPath);
         done = true;
         script(this, event, _regex);
-      } else if (!done && c < commands.length - 1) {
-        c++;
-        execute();
+        break;
       }
-    };
+    }
 
     const regex = this.#regex("help");
     if (regex.test(event.message.text) || event.message.text === this.prefix) {
       this.#help(event);
       done = true;
-    } else {
-      execute();
-
+    } else if (!done) {
       if (
         event.message.text.startsWith(this.prefix) &&
         this.fallback !== null &&
-        typeof this.fallback === "object" &&
-        !done
+        typeof this.fallback === "object"
       ) {
-        const script = require(`./../src/${this.fallback.script}`);
+        const scriptPath = `./../src/${this.fallback.script}${this.fallback.script.endsWith(".js") ? "" : ".js"}`;
+        const { default: script } = await import(scriptPath);
         script(this, event, this.prefix);
       }
     }
@@ -583,4 +583,4 @@ class FacebookPage {
   }
 }
 
-module.exports = FacebookPage;
+export default FacebookPage;

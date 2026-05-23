@@ -1,6 +1,6 @@
-const { get, post } = require("../utils/gist");
+import { get, post } from "../utils/gist.js";
 
-module.exports = async (api, event, regex) => {
+export default async (api, event, regex) => {
   api.sendMessage("This feature is in achive mode", event);
   return;
   const accounts = await get("accounts.json");

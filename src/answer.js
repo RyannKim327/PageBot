@@ -1,8 +1,8 @@
-const fs = require("fs");
-const { get, post } = require("../utils/gist");
-const date = require("../utils/date");
+import fs from "fs";
+import { get, post } from "../utils/gist.js";
+import date from "../utils/date.js";
 
-module.exports = async (api, event, regex) => {
+export default async (api, event, regex) => {
   api.sendMessage("This feature is in archive mode", event);
   return;
   const codes = JSON.parse(fs.readFileSync("flags/sources.json", "utf-8"));

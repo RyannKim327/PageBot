@@ -5,7 +5,7 @@
  * INFO: This file uses gist to handle data in json format.
  */
 
-const axios = require("axios");
+import axios from "axios";
 
 const TOKEN = process.env.GIST_TOKEN;
 const GIST = process.env.GIST_ID;
@@ -52,7 +52,7 @@ const post = async (FILE, _data) => {
 	return data;
 };
 
-module.exports = {
+export {
 	get,
 	post,
 };
