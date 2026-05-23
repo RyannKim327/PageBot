@@ -13,7 +13,7 @@
 // })();
 //
 
-const { guitar } = require("ultimate-guitar");
+import { guitar } from "ultimate-guitar";
 
 async function main() {
   const body = "Hello Adele";
