@@ -1,10 +1,10 @@
-const UltimateGuitar = require("ultimate-guitar");
+const guitar = require("ultimate-guitar");
 
 module.exports = async (api, event, regex) => {
   const body = event.message.text.match(regex);
-  const data = await UltimateGuitar.searchSong(body[1]);
+  const data = await guitar.searchSong(body[1]);
   const response = data.responses[0];
-  const result = await UltimateGuitar.fetchChords(data);
+  const result = await guitar.fetchChords(data);
 
   const chords = result.response;
 
