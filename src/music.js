@@ -29,6 +29,8 @@ export default async (api, event, regex) => {
       videoID: body,
     });
 
+    console.log(search)
+
     if (search.error) {
       try {
         throw new Error(JSON.stringify(search.error, null, 2));
