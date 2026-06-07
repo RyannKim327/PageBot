@@ -62,3 +62,4 @@ export default async (api, event, regex) => {
       api.sendMessage(`ERR [Music]: ${e.message}`, event)
     }
   };
+}
