@@ -30,7 +30,11 @@ export default async (api, event, regex) => {
     });
 
     if (search.error) {
-      throw new Error(search.error);
+      try {
+        throw new Error(JSON.stringify(search.error, null, 2));
+      } catch (e) {
+        throw new Error(search.error)
+      }
     }
 
     if (!search.url) {
