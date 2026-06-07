@@ -56,6 +56,9 @@ export default async (api, event, regex) => {
     );
   } catch (e) {
     console.error("Music Command Error:", e);
-    api.sendMessage(`ERR [Music]: ${e.message}`, event);
-  }
-};
+    try {
+      api.sendMessage(`ERR [Music]: ${JSON.stringify(e.message, null, 2)}`, event);
+    } catch (e) {
+      api.sendMessage(`ERR [Music]: ${e.message}`, event)
+    }
+  };
