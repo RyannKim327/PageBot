@@ -52,7 +52,7 @@ class FacebookPage {
 
     // TODO: To auto clear the temporary files for unexpected close
     if (fs.existsSync(`${__dirname}/..${this.__temp}/`)) {
-      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => {});
+      fs.rm(`${__dirname}/..${this.__temp}/`, { recursive: true }, (e) => { });
     }
 
     setTimeout(() => {
@@ -441,11 +441,14 @@ class FacebookPage {
   async #processhandler(event) {
     let done = false;
     const commands = this.commands;
-    
+
+    const prof = JSON.parse(fs.readFileSync(`data/${DATAFILE}`, "utf-8"))
+    let user = prof[event.sender.id] ?? false
+
     for (let command of commands) {
       let unpref = command.unprefix;
       let any = command.any ?? false;
-      const _regex = this.#regex(command.command, unpref, any);
+      const _regex = this.#regex(command.command, unpref || user, any);
       if (_regex.test(event.message.text) && !done) {
         const scriptPath = `./../src/${command.script}${command.script.endsWith(".js") ? "" : ".js"}`;
         const { default: script } = await import(scriptPath);
@@ -455,7 +458,7 @@ class FacebookPage {
       }
     }
 
-    const regex = this.#regex("help");
+    const regex = this.#regex("help", unpref = user);
     if (regex.test(event.message.text) || event.message.text === this.prefix) {
       this.#help(event);
       done = true;
