@@ -442,7 +442,7 @@ class FacebookPage {
     let done = false;
     const commands = this.commands;
 
-    const prof = JSON.parse(fs.readFileSync(`data/${DATAFILE}`, "utf-8"))
+    const prof = JSON.parse(fs.readFileSync(`data/auto_user.json`, "utf-8"))
     let user = prof[event.sender.id] ?? false
 
     for (let command of commands) {

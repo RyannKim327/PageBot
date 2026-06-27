@@ -1,4 +1,4 @@
-const DATAFILE = "gpt_data.json";
+const DATAFILE = "auto_user.json";
 
 export default {
   DATAFILE
