@@ -1,6 +1,6 @@
 import fs from "fs"
 
-export default async (api, event, regex) => {
+export default async (api, event) => {
   const data = JSON.parse(fs.readFileSync(`data/auto_user.json`, "utf-8"))
   if (data[event.sender.id]) {
     data[event.sender.id] = true
