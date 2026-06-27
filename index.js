@@ -19,6 +19,12 @@ const api = new bot();
 
 api.setPrefix(":");
 
+api.addCommand("autogpt", {
+  title: "Auto AI Activate",
+  description: "Just to automate",
+  command: "auto"
+})
+
 api.addCommand("chill", {
   title: "That chill guy",
   command: "chill",
