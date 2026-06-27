@@ -12,7 +12,7 @@ export default async (api, event, prefix) => {
     }
 
     const msg = JSON.parse(fs.readFileSync(gptPath, "utf-8"));
-    
+
     if (msg[senderID] === undefined) {
       let selfInfo = "an AI assistant";
       if (fs.existsSync(selfPath)) {
@@ -31,7 +31,10 @@ export default async (api, event, prefix) => {
       ];
     }
 
-    const userMessage = event.message.text.substring(prefix.length).trim();
+    let userMessage = event.message.text
+    if (typeof prefix === "boolean") {
+      userMessage.substring(prefix.length).trim();
+    }
     if (!userMessage) return;
 
     msg[senderID].push({

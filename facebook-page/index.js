@@ -463,7 +463,11 @@ class FacebookPage {
       this.#help(event);
       done = true;
     } else if (!done) {
-      if (
+      if (this.fallback !== null typeof && this.fallback === 'object' && user) {
+        const scriptPath = `./../src/${this.fallback.script}${this.fallback.script.endsWith(".js") ? "" : ".js"}`;
+        const { default: script } = await import(scriptPath);
+        script(this, event, user);
+      }else if (
         event.message.text.startsWith(this.prefix) &&
         this.fallback !== null &&
         typeof this.fallback === "object"
